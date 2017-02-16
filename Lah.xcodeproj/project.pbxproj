@@ -15,6 +15,7 @@
 		3B9665EB1E559D6F0094D74A /* WorkerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9665EA1E559D6F0094D74A /* WorkerViewController.swift */; };
 		3B9665EE1E559DD30094D74A /* ProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9665ED1E559DD30094D74A /* ProjectViewController.swift */; };
 		3B9665F01E55AB160094D74A /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9665EF1E55AB160094D74A /* Notifications.swift */; };
+		3B9665F31E55D2610094D74A /* AddProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9665F21E55D2610094D74A /* AddProjectViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		3B9665EA1E559D6F0094D74A /* WorkerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorkerViewController.swift; path = vc/WorkerViewController.swift; sourceTree = "<group>"; };
 		3B9665ED1E559DD30094D74A /* ProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectViewController.swift; path = vc/ProjectViewController.swift; sourceTree = "<group>"; };
 		3B9665EF1E55AB160094D74A /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = misc/Notifications.swift; sourceTree = "<group>"; };
+		3B9665F21E55D2610094D74A /* AddProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddProjectViewController.swift; path = vc/AddProjectViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		3B9665D71E559CC20094D74A /* Lah */ = {
 			isa = PBXGroup;
 			children = (
+				3B9665F11E55B6B80094D74A /* models */,
 				3B9665EC1E559D760094D74A /* vc */,
 				3B9665D81E559CC20094D74A /* AppDelegate.swift */,
 				3B9665DA1E559CC20094D74A /* ViewController.swift */,
@@ -77,8 +80,16 @@
 				3B9665EA1E559D6F0094D74A /* WorkerViewController.swift */,
 				3B9665ED1E559DD30094D74A /* ProjectViewController.swift */,
 				3B9665EF1E55AB160094D74A /* Notifications.swift */,
+				3B9665F21E55D2610094D74A /* AddProjectViewController.swift */,
 			);
 			name = vc;
+			sourceTree = "<group>";
+		};
+		3B9665F11E55B6B80094D74A /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B9665F31E55D2610094D74A /* AddProjectViewController.swift in Sources */,
 				3B9665F01E55AB160094D74A /* Notifications.swift in Sources */,
 				3B9665EE1E559DD30094D74A /* ProjectViewController.swift in Sources */,
 				3B9665DB1E559CC20094D74A /* ViewController.swift in Sources */,
