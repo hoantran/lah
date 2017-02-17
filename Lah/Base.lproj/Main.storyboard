@@ -107,6 +107,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
                                                         <action selector="save" destination="3r6-0h-Nv8" eventType="editingDidEndOnExit" id="yZq-BN-Lr0"/>
+                                                        <outlet property="delegate" destination="3r6-0h-Nv8" id="7PA-y4-CaZ"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
