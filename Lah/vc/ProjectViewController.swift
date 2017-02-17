@@ -8,36 +8,21 @@
 
 import UIKit
 
-class ProjectViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProjectViewController: UIViewController, UITableViewDelegate {
     static let storyboardID = "ProjectVC"
+    
+    @IBOutlet weak var tableView: UITableView!
+    var tableViewDataSource: ProjectDataSource?
+    var tableViewDelegate: ProjectTableViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableViewDataSource = ProjectDataSource(tableView: self.tableView)
+        self.tableViewDelegate = ProjectTableViewDelegate(tableView: self.tableView)
     }
 
     @IBAction func menuTapped(_ sender: UIBarButtonItem) {
         print("menu tapped")
     }
-
-    
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ProjectCell.cellID, for: indexPath) as! ProjectCell
-        cell.config("hi")
-        return cell
-    }
-
-    
 }
 
-
-class ProjectCell: UITableViewCell {
-    static let cellID: String = "ProjectCellID"
-    
-    func config(_ label: String) {
-        self.textLabel?.text = label
-    }
-}
