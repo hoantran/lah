@@ -17,7 +17,9 @@ class AddProjectViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableViewDelegate = AddProjectTableViewDelegate(tableView: tableView)
-
+        self.saveItem.action = #selector(self.save)
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -40,6 +42,11 @@ class AddProjectViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func save() {
+        let addProject = Project(name: self.project.text, isCompleted: false)
+        if addProject != nil {
+            NotificationCenter.default.post(Notification(name: .addProject, object: self, userInfo: ["addProject":addProject as Any]))
+        }
+        
         dismiss(animated: true, completion: nil)
     }
     
