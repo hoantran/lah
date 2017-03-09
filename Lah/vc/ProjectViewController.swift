@@ -19,6 +19,7 @@ class ProjectViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         self.tableViewDataSource = ProjectDataSource(tableView: self.tableView)
         self.tableViewDelegate = ProjectTableViewDelegate(tableView: self.tableView)
+        NotificationCenter.default.post(Notification(name: .getProjects, object: self, userInfo: nil))
     }
 
     @IBAction func menuTapped(_ sender: UIBarButtonItem) {
