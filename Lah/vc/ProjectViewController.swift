@@ -12,8 +12,8 @@ class ProjectViewController: UIViewController, UITableViewDelegate {
     static let storyboardID = "ProjectVC"
     
     @IBOutlet weak var tableView: UITableView!
-    var tableViewDataSource: ProjectDataSource?
-    var tableViewDelegate: ProjectTableViewDelegate?
+    weak var tableViewDataSource: ProjectDataSource?
+    weak var tableViewDelegate: ProjectTableViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
