@@ -288,7 +288,20 @@
                             <outlet property="delegate" destination="vv9-cy-0iv" id="V6c-lp-5q8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New Worker" id="MyY-9u-LO4"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="New Worker" id="MyY-9u-LO4">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="arF-Qy-jL9"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="qwc-Ph-ejW"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="email" destination="wDI-ef-pAo" id="cKh-Jo-P3R"/>
+                        <outlet property="firstName" destination="CIO-hf-Lsj" id="fEN-wz-Edd"/>
+                        <outlet property="lastName" destination="ScS-NM-IWg" id="Dg9-EA-ume"/>
+                        <outlet property="phone" destination="ghk-L0-0kf" id="gSG-0F-Nk9"/>
+                        <outlet property="rate" destination="EY8-dc-zh7" id="bnr-dT-ZbP"/>
+                        <outlet property="saveItem" destination="qwc-Ph-ejW" id="LT4-U5-tSb"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9R6-dl-7cV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

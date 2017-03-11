@@ -9,7 +9,44 @@
 import UIKit
 
 class AddWorkerViewController: UITableViewController {
+    @IBOutlet weak var rate: UITextField!
+    @IBOutlet weak var firstName: UITextField!
+    @IBOutlet weak var lastName: UITextField!
+    @IBOutlet weak var phone: UITextField!
+    @IBOutlet weak var email: UITextField!
+    
+    @IBOutlet weak var saveItem: UIBarButtonItem!
+    
+    var rateDelegate = CurrencyTextFieldDelegate()
+    
 
+    var isValidated: Bool {
+        // rate
+        guard let rate = self.rate.text else { return false }
+        if rate.isEmpty { return false }
+        
+        // first name
+        guard let firstName = self.firstName.text else { return false }
+        if firstName.isEmpty { return false }
+
+        // last name
+        guard let lastName = self.lastName.text else { return false }
+        if lastName.isEmpty { return false }
+
+        // phone
+        guard let phone = self.phone.text else { return false }
+        if phone.isEmpty { return false }
+        if !WorkerFieldValidations.isPhoneNumber(phone) { return false }
+        
+        // email
+        guard let email = self.email.text else { return false }
+        if email.isEmpty { return false }
+        if !WorkerFieldValidations.isEmail(email) { return false }
+        
+        return true
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,14 +55,26 @@ class AddWorkerViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        self.rate.delegate = rateDelegate
+        self.saveItem.isEnabled = self.isValidated
+        
+        self.rate.addTarget(self, action: #selector(checkSaveEnability(_:)), for: .editingChanged)
+        self.firstName.addTarget(self, action: #selector(checkSaveEnability(_:)), for: .editingChanged)
+        self.lastName.addTarget(self, action: #selector(checkSaveEnability(_:)), for: .editingChanged)
+        self.phone.addTarget(self, action: #selector(checkSaveEnability(_:)), for: .editingChanged)
+        self.email.addTarget(self, action: #selector(checkSaveEnability(_:)), for: .editingChanged)
+    }
+    
+    func checkSaveEnability(_ textField: UITextField) {
+        self.saveItem.isEnabled = self.isValidated
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
