@@ -22,6 +22,8 @@
 		3BB632241E723B8B0003CEA1 /* AddWorkerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB632231E723B8B0003CEA1 /* AddWorkerViewController.swift */; };
 		3BCEA41C1E73680500BCFE88 /* CurrencyTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCEA41B1E73680500BCFE88 /* CurrencyTextFieldDelegate.swift */; };
 		3BCEA41E1E73E1F100BCFE88 /* WorkerFieldValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCEA41D1E73E1F100BCFE88 /* WorkerFieldValidations.swift */; };
+		3BCEA4201E77C84800BCFE88 /* Worker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCEA41F1E77C84800BCFE88 /* Worker.swift */; };
+		3BCEA4221E77E44100BCFE88 /* WorkerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCEA4211E77E44100BCFE88 /* WorkerDataSource.swift */; };
 		3BDB7A341E57AF1C005E9DC7 /* AddProjectTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB7A331E57AF1C005E9DC7 /* AddProjectTableViewDelegate.swift */; };
 		3BE4850C1E5711B90037A3E8 /* ProjectDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE4850B1E5711B90037A3E8 /* ProjectDataSource.swift */; };
 		3BE4850E1E5713A90037A3E8 /* ProjectTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE4850D1E5713A90037A3E8 /* ProjectTableViewDelegate.swift */; };
@@ -47,6 +49,8 @@
 		3BB632231E723B8B0003CEA1 /* AddWorkerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddWorkerViewController.swift; path = vc/AddWorkerViewController.swift; sourceTree = "<group>"; };
 		3BCEA41B1E73680500BCFE88 /* CurrencyTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrencyTextFieldDelegate.swift; path = vc/CurrencyTextFieldDelegate.swift; sourceTree = "<group>"; };
 		3BCEA41D1E73E1F100BCFE88 /* WorkerFieldValidations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkerFieldValidations.swift; sourceTree = "<group>"; };
+		3BCEA41F1E77C84800BCFE88 /* Worker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Worker.swift; path = models/Worker.swift; sourceTree = "<group>"; };
+		3BCEA4211E77E44100BCFE88 /* WorkerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorkerDataSource.swift; path = vc/WorkerDataSource.swift; sourceTree = "<group>"; };
 		3BDB7A331E57AF1C005E9DC7 /* AddProjectTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddProjectTableViewDelegate.swift; path = vc/AddProjectTableViewDelegate.swift; sourceTree = "<group>"; };
 		3BE4850B1E5711B90037A3E8 /* ProjectDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectDataSource.swift; path = vc/ProjectDataSource.swift; sourceTree = "<group>"; };
 		3BE4850D1E5713A90037A3E8 /* ProjectTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectTableViewDelegate.swift; path = vc/ProjectTableViewDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 				3BB632231E723B8B0003CEA1 /* AddWorkerViewController.swift */,
 				3BCEA41B1E73680500BCFE88 /* CurrencyTextFieldDelegate.swift */,
 				3BCEA41D1E73E1F100BCFE88 /* WorkerFieldValidations.swift */,
+				3BCEA4211E77E44100BCFE88 /* WorkerDataSource.swift */,
 			);
 			name = vc;
 			sourceTree = "<group>";
@@ -126,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				3B679B3A1E57D6130095DF7D /* Project.swift */,
+				3BCEA41F1E77C84800BCFE88 /* Worker.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -290,10 +296,12 @@
 				3BDB7A341E57AF1C005E9DC7 /* AddProjectTableViewDelegate.swift in Sources */,
 				3B679B3B1E57D6130095DF7D /* Project.swift in Sources */,
 				3B9665F01E55AB160094D74A /* Notifications.swift in Sources */,
+				3BCEA4221E77E44100BCFE88 /* WorkerDataSource.swift in Sources */,
 				3B9665EE1E559DD30094D74A /* ProjectViewController.swift in Sources */,
 				3BCEA41E1E73E1F100BCFE88 /* WorkerFieldValidations.swift in Sources */,
 				3B9665DB1E559CC20094D74A /* ViewController.swift in Sources */,
 				3B9665EB1E559D6F0094D74A /* WorkerViewController.swift in Sources */,
+				3BCEA4201E77C84800BCFE88 /* Worker.swift in Sources */,
 				3BCEA41C1E73680500BCFE88 /* CurrencyTextFieldDelegate.swift in Sources */,
 				3BE4850E1E5713A90037A3E8 /* ProjectTableViewDelegate.swift in Sources */,
 				3BB632241E723B8B0003CEA1 /* AddWorkerViewController.swift in Sources */,

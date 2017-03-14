@@ -17,6 +17,8 @@ class AddWorkerViewController: UITableViewController {
     
     @IBOutlet weak var saveItem: UIBarButtonItem!
     
+    var worker: Worker? = nil
+    
     var rateDelegate = CurrencyTextFieldDelegate()
     
 
@@ -74,6 +76,25 @@ class AddWorkerViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    @IBAction func save(_ sender: Any) {
+        var wkr: Worker? = nil
+        if  self.worker != nil {
+            wkr = self.worker
+        } else {
+            wkr = Worker(firstName: self.firstName.text, lastName: self.lastName.text, phone: self.phone.text, email: self.email.text, rate: Float (self.rate.text ?? ""))
+        }
+        
+        NotificationCenter.default.post(name: .editedWorker, object: nil, userInfo: ["editedWorker":wkr as Any])
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func cancel(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
