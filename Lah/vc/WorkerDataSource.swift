@@ -9,12 +9,18 @@
 import UIKit
 
 class WorkerDataSource: NSObject {
-    var dataSet: [Worker]
+    var dataSet: [Worker] {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
     let tableView: UITableView
     
+    
+    
     init(tableView: UITableView) {
-        self.dataSet = [Worker]()
         self.tableView = tableView
+        self.dataSet = [Worker]()
         super.init()
         tableView.dataSource = self
         NotificationCenter.default.addObserver(forName: .newWorker, object: nil, queue: nil, using: {notif in
@@ -56,20 +62,20 @@ class WorkerDataSource: NSObject {
         return nil
     }
     
-    func doesContain(_ prj: Worker) -> Bool {
+    func doesContain(_ item: Worker) -> Bool {
         for p in self.dataSet {
-            if p == prj {
+            if p == item {
                 return true
             }
         }
         return false
     }
     
-    func add(_ prj: Worker) {
-        if !doesContain(prj) {
-            self.dataSet.append(prj)
-            self.tableView.reloadData()
+    func add(_ item: Worker) {
+        if let index = self.find(item) {
+            self.dataSet.remove(at: index)
         }
+        self.dataSet.append(item)
     }
 }
 
