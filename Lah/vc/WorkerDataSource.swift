@@ -28,10 +28,21 @@ class WorkerDataSource: NSObject {
             self.dataSet.remove(at: index)
             self.tableView.reloadData()
         })
+        NotificationCenter.default.addObserver(forName: .getWorkers, object: nil, queue: nil) { _ in
+            self.dataSet.removeAll()
+        }
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func get(atIndex: Int) -> Worker? {
+        if atIndex < 0 || atIndex > self.dataSet.count - 1 {
+            return nil
+        } else {
+            return self.dataSet[atIndex]
+        }
     }
     
     func find(_ prj: Worker) -> Int? {

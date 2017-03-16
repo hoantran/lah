@@ -26,11 +26,11 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WorkerCellID" id="oYT-H2-zTl" customClass="WorkerCell" customModule="Lah" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WorkerCellID" id="oYT-H2-zTl" customClass="WorkerCell" customModule="Lah" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oYT-H2-zTl" id="mdj-KM-PIw">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -53,12 +53,13 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="xjz-kG-rOF">
                             <connections>
-                                <segue destination="usO-6f-23C" kind="presentation" id="drR-59-ZBL"/>
+                                <segue destination="usO-6f-23C" kind="presentation" identifier="NewWorker" id="drR-59-ZBL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="A4f-tP-x5N" id="saY-AL-tAO"/>
+                        <segue destination="EB5-Si-pSF" kind="show" identifier="TimeCard" id="4my-nW-4P6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X32-I0-uaG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -182,6 +183,35 @@
             </objects>
             <point key="canvasLocation" x="2863.1999999999998" y="30.134932533733135"/>
         </scene>
+        <!--name-->
+        <scene sceneID="fWe-bb-AZ3">
+            <objects>
+                <viewController id="EB5-Si-pSF" customClass="TimeCardViewController" customModule="Lah" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HwF-Ok-F4F"/>
+                        <viewControllerLayoutGuide type="bottom" id="8yo-Sk-gVk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="R5y-9B-V8j">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="name" id="KVd-RI-gBJ">
+                        <barButtonItem key="backBarButtonItem" title="Workers" id="E8V-i6-3UM"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="h7P-VV-3Ga">
+                            <connections>
+                                <action selector="edit:" destination="EB5-Si-pSF" id="eR9-DQ-JDk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="usO-6f-23C" kind="presentation" identifier="EditWorker" id="c8X-7J-XYa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O5D-TQ-xv6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2846" y="-1473"/>
+        </scene>
         <!--New Worker-->
         <scene sceneID="xDl-L6-NYt">
             <objects>
@@ -277,7 +307,7 @@
                                         <rect key="frame" x="0.0" y="203" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="16w-ex-fjZ" id="7R6-ab-LcQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ghk-L0-0kf">
@@ -299,7 +329,7 @@
                                         <rect key="frame" x="0.0" y="247" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y9z-5q-hHa" id="DrF-ec-23i">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wDI-ef-pAo">
@@ -424,8 +454,30 @@
             </objects>
             <point key="canvasLocation" x="33" y="-766"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Kp6-gP-QNa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="v5B-Z0-uJ9" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KiJ-uM-8Oj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="EB5-Si-pSF" kind="relationship" relationship="rootViewController" id="FcW-HG-JHC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tNu-O1-wVj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1881" y="-1474"/>
+        </scene>
     </scenes>
     <resources>
         <image name="menu" width="28" height="20"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="c8X-7J-XYa"/>
+        <segue reference="FcW-HG-JHC"/>
+    </inferredMetricsTieBreakers>
 </document>

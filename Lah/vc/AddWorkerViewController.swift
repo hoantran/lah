@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol EditedWorkerDelegate {
+    func setWorker(_ worker: Worker)
+}
+
 class AddWorkerViewController: UITableViewController {
     @IBOutlet weak var rate: UITextField!
     @IBOutlet weak var firstName: UITextField!
@@ -18,6 +22,7 @@ class AddWorkerViewController: UITableViewController {
     @IBOutlet weak var saveItem: UIBarButtonItem!
     
     var worker: Worker? = nil
+    var editedWorkerDelegate: EditedWorkerDelegate?
     
     var rateDelegate = CurrencyTextFieldDelegate()
     
@@ -58,6 +63,15 @@ class AddWorkerViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        if let worker = self.worker {
+            self.rate.text = String(worker.rate)
+            self.firstName.text = worker.firstName
+            self.lastName.text = worker.lastName
+            self.phone.text = worker.phone
+            self.email.text = worker.email
+            navigationItem.title = "Edit Worker"
+        }
+        
         self.rate.delegate = rateDelegate
         self.saveItem.isEnabled = self.isValidated
         
@@ -79,14 +93,17 @@ class AddWorkerViewController: UITableViewController {
     
     
     @IBAction func save(_ sender: Any) {
-        var wkr: Worker? = nil
-        if  self.worker != nil {
-            wkr = self.worker
-        } else {
-            wkr = Worker(firstName: self.firstName.text, lastName: self.lastName.text, phone: self.phone.text, email: self.email.text, rate: Float (self.rate.text ?? ""))
+        var key: String? = ""
+        if self.worker != nil || self.worker?.key != "" {
+            key = self.worker?.key
         }
         
+        let wkr = Worker(firstName: self.firstName.text, lastName: self.lastName.text, phone: self.phone.text, email: self.email.text, rate: Float (self.rate.text ?? ""), key: key!)
+        
         NotificationCenter.default.post(name: .editedWorker, object: nil, userInfo: ["editedWorker":wkr as Any])
+        if let delegate = self.editedWorkerDelegate {
+            delegate.setWorker(wkr!)
+        }
         
         dismiss(animated: true, completion: nil)
     }
