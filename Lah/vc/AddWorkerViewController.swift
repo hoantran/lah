@@ -94,7 +94,7 @@ class AddWorkerViewController: UITableViewController {
     
     @IBAction func save(_ sender: Any) {
         var key: String? = ""
-        if self.worker != nil || self.worker?.key != "" {
+        if self.worker != nil && self.worker?.key != "" {
             key = self.worker?.key
         }
         
