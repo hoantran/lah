@@ -12,6 +12,7 @@
 		3B679B3B1E57D6130095DF7D /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B679B3A1E57D6130095DF7D /* Project.swift */; };
 		3B679B3E1E5D89570095DF7D /* TransportMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B679B3D1E5D89570095DF7D /* TransportMgr.swift */; };
 		3B70A37D1E6965960036407C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B70A37C1E6965960036407C /* GoogleService-Info.plist */; };
+		3B8197A91E7C7A2B000D55A9 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197A81E7C7A2B000D55A9 /* ContainerViewController.swift */; };
 		3B9665D91E559CC20094D74A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9665D81E559CC20094D74A /* AppDelegate.swift */; };
 		3B9665DB1E559CC20094D74A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9665DA1E559CC20094D74A /* ViewController.swift */; };
 		3B9665DE1E559CC20094D74A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9665DC1E559CC20094D74A /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 		3BDB7A341E57AF1C005E9DC7 /* AddProjectTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB7A331E57AF1C005E9DC7 /* AddProjectTableViewDelegate.swift */; };
 		3BE4850C1E5711B90037A3E8 /* ProjectDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE4850B1E5711B90037A3E8 /* ProjectDataSource.swift */; };
 		3BE4850E1E5713A90037A3E8 /* ProjectTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE4850D1E5713A90037A3E8 /* ProjectTableViewDelegate.swift */; };
+		3BEA91741E7CAC6200726DA0 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA91731E7CAC6200726DA0 /* MenuViewController.swift */; };
 		83D9B3E3C168AAC9CA80FAE4 /* Pods_Lah.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96643590B54C0A3D94CD8984 /* Pods_Lah.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +41,7 @@
 		3B679B3A1E57D6130095DF7D /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = models/Project.swift; sourceTree = "<group>"; };
 		3B679B3D1E5D89570095DF7D /* TransportMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransportMgr.swift; path = transport/TransportMgr.swift; sourceTree = "<group>"; };
 		3B70A37C1E6965960036407C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3B8197A81E7C7A2B000D55A9 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerViewController.swift; path = vc/ContainerViewController.swift; sourceTree = "<group>"; };
 		3B9665D51E559CC20094D74A /* Lah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B9665D81E559CC20094D74A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B9665DA1E559CC20094D74A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +61,7 @@
 		3BDB7A331E57AF1C005E9DC7 /* AddProjectTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddProjectTableViewDelegate.swift; path = vc/AddProjectTableViewDelegate.swift; sourceTree = "<group>"; };
 		3BE4850B1E5711B90037A3E8 /* ProjectDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectDataSource.swift; path = vc/ProjectDataSource.swift; sourceTree = "<group>"; };
 		3BE4850D1E5713A90037A3E8 /* ProjectTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectTableViewDelegate.swift; path = vc/ProjectTableViewDelegate.swift; sourceTree = "<group>"; };
+		3BEA91731E7CAC6200726DA0 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = vc/MenuViewController.swift; sourceTree = "<group>"; };
 		958BE1A0D247CF1C9F0C7B00 /* Pods-Lah.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lah.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lah/Pods-Lah.debug.xcconfig"; sourceTree = "<group>"; };
 		96643590B54C0A3D94CD8984 /* Pods_Lah.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lah.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -94,6 +98,15 @@
 				3B679B3D1E5D89570095DF7D /* TransportMgr.swift */,
 			);
 			name = transport;
+			sourceTree = "<group>";
+		};
+		3B8197A71E7C79EA000D55A9 /* slide */ = {
+			isa = PBXGroup;
+			children = (
+				3B8197A81E7C7A2B000D55A9 /* ContainerViewController.swift */,
+				3BEA91731E7CAC6200726DA0 /* MenuViewController.swift */,
+			);
+			name = slide;
 			sourceTree = "<group>";
 		};
 		3B9665CC1E559CC10094D74A = {
@@ -134,6 +147,7 @@
 		3B9665EC1E559D760094D74A /* vc */ = {
 			isa = PBXGroup;
 			children = (
+				3B8197A71E7C79EA000D55A9 /* slide */,
 				3B3D69521E7944C900627365 /* worker */,
 				3BB632221E723B050003CEA1 /* project */,
 				3B9665EF1E55AB160094D74A /* Notifications.swift */,
@@ -315,7 +329,9 @@
 				3BCEA41E1E73E1F100BCFE88 /* WorkerFieldValidations.swift in Sources */,
 				3B9665DB1E559CC20094D74A /* ViewController.swift in Sources */,
 				3B9665EB1E559D6F0094D74A /* WorkerViewController.swift in Sources */,
+				3BEA91741E7CAC6200726DA0 /* MenuViewController.swift in Sources */,
 				3B3D69541E79496400627365 /* TimeCardViewController.swift in Sources */,
+				3B8197A91E7C7A2B000D55A9 /* ContainerViewController.swift in Sources */,
 				3BCEA4201E77C84800BCFE88 /* Worker.swift in Sources */,
 				3BCEA41C1E73680500BCFE88 /* CurrencyTextFieldDelegate.swift in Sources */,
 				3BE4850E1E5713A90037A3E8 /* ProjectTableViewDelegate.swift in Sources */,
