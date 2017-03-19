@@ -45,6 +45,14 @@ class ContainerViewController: UIViewController {
     }
 
     var menuShown = false
+    @IBAction func swipeLeft(_ sender: Any) {
+        hideMenu()
+    }
+    
+    @IBAction func swipeRight(_ sender: Any) {
+        showMenu()
+    }
+    
     
     func showMenu() {
         showShadow(true)
@@ -74,12 +82,31 @@ class ContainerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setInitialControllers()
+        addNewVCObservers()
     }
     
     func setInitialControllers() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainNavigationController: UINavigationController = storyboard.instantiateViewController(withIdentifier: "NavVC") as! UINavigationController
+        let menuViewController: MenuViewController           = storyboard.instantiateViewController(withIdentifier: "MenuVC") as! MenuViewController
+        
+        self.leftViewController = menuViewController
+        self.rightViewController = mainNavigationController
         
     }
+    
+    func addNewVCObservers() {
+        let center = NotificationCenter.default
+        center.addObserver(forName: .vcSelected, object: nil, queue: nil) { _ in
+            self.hideMenu()
+        }
+        center.addObserver(forName: .menuTapped, object: nil, queue: nil) { _ in
+            self.showMenu()
+        }
+    }
+    
+    
     
 }
 

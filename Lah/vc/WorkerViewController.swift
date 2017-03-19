@@ -28,6 +28,7 @@ class WorkerViewController: UIViewController {
     
     @IBAction func menuTapped(_ sender: UIBarButtonItem) {
         print("menu tapped: worker")
+        NotificationCenter.default.post(Notification(name: .menuTapped))
     }
 
     

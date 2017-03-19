@@ -11,6 +11,7 @@
 		3B3D69541E79496400627365 /* TimeCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3D69531E79496400627365 /* TimeCardViewController.swift */; };
 		3B679B3B1E57D6130095DF7D /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B679B3A1E57D6130095DF7D /* Project.swift */; };
 		3B679B3E1E5D89570095DF7D /* TransportMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B679B3D1E5D89570095DF7D /* TransportMgr.swift */; };
+		3B6C3FFB1E7E590F006F773F /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C3FFA1E7E590F006F773F /* NavigationViewController.swift */; };
 		3B70A37D1E6965960036407C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B70A37C1E6965960036407C /* GoogleService-Info.plist */; };
 		3B8197A91E7C7A2B000D55A9 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8197A81E7C7A2B000D55A9 /* ContainerViewController.swift */; };
 		3B9665D91E559CC20094D74A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9665D81E559CC20094D74A /* AppDelegate.swift */; };
@@ -40,6 +41,7 @@
 		3B3D69531E79496400627365 /* TimeCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeCardViewController.swift; path = vc/TimeCardViewController.swift; sourceTree = "<group>"; };
 		3B679B3A1E57D6130095DF7D /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = models/Project.swift; sourceTree = "<group>"; };
 		3B679B3D1E5D89570095DF7D /* TransportMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransportMgr.swift; path = transport/TransportMgr.swift; sourceTree = "<group>"; };
+		3B6C3FFA1E7E590F006F773F /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationViewController.swift; path = vc/NavigationViewController.swift; sourceTree = "<group>"; };
 		3B70A37C1E6965960036407C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3B8197A81E7C7A2B000D55A9 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerViewController.swift; path = vc/ContainerViewController.swift; sourceTree = "<group>"; };
 		3B9665D51E559CC20094D74A /* Lah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lah.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +107,7 @@
 			children = (
 				3B8197A81E7C7A2B000D55A9 /* ContainerViewController.swift */,
 				3BEA91731E7CAC6200726DA0 /* MenuViewController.swift */,
+				3B6C3FFA1E7E590F006F773F /* NavigationViewController.swift */,
 			);
 			name = slide;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				3B9665DB1E559CC20094D74A /* ViewController.swift in Sources */,
 				3B9665EB1E559D6F0094D74A /* WorkerViewController.swift in Sources */,
 				3BEA91741E7CAC6200726DA0 /* MenuViewController.swift in Sources */,
+				3B6C3FFB1E7E590F006F773F /* NavigationViewController.swift in Sources */,
 				3B3D69541E79496400627365 /* TimeCardViewController.swift in Sources */,
 				3B8197A91E7C7A2B000D55A9 /* ContainerViewController.swift in Sources */,
 				3BCEA4201E77C84800BCFE88 /* Worker.swift in Sources */,

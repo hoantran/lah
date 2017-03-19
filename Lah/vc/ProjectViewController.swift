@@ -24,6 +24,7 @@ class ProjectViewController: UIViewController, UITableViewDelegate {
 
     @IBAction func menuTapped(_ sender: UIBarButtonItem) {
         print("menu tapped")
+        NotificationCenter.default.post(Notification(name: .menuTapped))
     }
 }
 

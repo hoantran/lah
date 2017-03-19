@@ -27,7 +27,7 @@ struct MenuDefintion {
     
     static var definitions: [MenuDefintion] {
         return [
-            MenuDefintion(title: "Workers", image: UIImage(named: "tedy_bear_128px.png"), notif: .workerSelected),
+            MenuDefintion(title: "Workers", image: UIImage(named: "tedy_bear_128px.png"), notif: .workersSelected),
             MenuDefintion(title: "Projects", image: UIImage(named: "lamp-2_128px.png"), notif: .projectsSelected)
         ]
     }
