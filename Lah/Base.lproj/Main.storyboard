@@ -451,10 +451,15 @@
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="dQB-Z8-EUA" appends="YES" id="AdU-np-iKj"/>
                             <outletCollection property="gestureRecognizers" destination="5o4-Gt-BHk" appends="YES" id="si1-Be-CSt"/>
+                            <outletCollection property="gestureRecognizers" destination="Yit-8i-Hkv" appends="YES" id="JLX-r5-5pi"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="tap" destination="Yit-8i-Hkv" id="1f8-fa-cVe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eCe-l5-Kma" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Yit-8i-Hkv"/>
                 <swipeGestureRecognizer direction="right" id="dQB-Z8-EUA">
                     <connections>
                         <action selector="swipeRight:" destination="TBA-dL-oyH" id="EQm-Yx-j9L"/>
@@ -574,6 +579,9 @@
                             <constraint firstItem="PjA-dI-vEs" firstAttribute="centerY" secondItem="Zl0-5L-qQh" secondAttribute="centerY" id="xxO-vs-a01"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="xmc-SY-yzl" id="TCP-gL-d8a"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nuT-Yt-wNt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -44,9 +44,13 @@ extension MenuData {
 }
 
 class MenuViewController: UIViewController, MenuData, UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let rowToSelect:NSIndexPath = NSIndexPath(row: 0, section: 0)
+        self.tableView.selectRow(at: rowToSelect as IndexPath, animated: true, scrollPosition: .none)
+
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

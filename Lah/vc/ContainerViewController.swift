@@ -11,7 +11,7 @@
 
 import UIKit
 
-class ContainerViewController: UIViewController {
+class ContainerViewController: UIViewController, UIGestureRecognizerDelegate {
     var leftViewController: UIViewController? {
         willSet {
             if self.leftViewController != nil {
@@ -53,6 +53,16 @@ class ContainerViewController: UIViewController {
         showMenu()
     }
     
+    @IBOutlet var tap: UITapGestureRecognizer!
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        let point:CGPoint = touch.location(in: self.rightViewController?.view)
+        if point.x > 0 && menuShown {
+            hideMenu()
+            return true
+        }
+        return false
+    }
     
     func showMenu() {
         showShadow(true)
@@ -84,6 +94,7 @@ class ContainerViewController: UIViewController {
         super.viewDidLoad()
         setInitialControllers()
         addNewVCObservers()
+        self.tap.delegate = self
     }
     
     func setInitialControllers() {
