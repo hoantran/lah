@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B0EF56A1E8C7BE400992545 /* BillableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B0EF5691E8C7BE400992545 /* BillableCell.xib */; };
 		3B3D69511E79422100627365 /* WorkerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3D69501E79422100627365 /* WorkerTableViewDelegate.swift */; };
 		3B3D69541E79496400627365 /* TimeCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3D69531E79496400627365 /* TimeCardViewController.swift */; };
+		3B6276FE1E83E161009B1B89 /* Billable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6276FD1E83E161009B1B89 /* Billable.swift */; };
 		3B679B3B1E57D6130095DF7D /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B679B3A1E57D6130095DF7D /* Project.swift */; };
 		3B679B3E1E5D89570095DF7D /* TransportMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B679B3D1E5D89570095DF7D /* TransportMgr.swift */; };
 		3B6C3FFB1E7E590F006F773F /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C3FFA1E7E590F006F773F /* NavigationViewController.swift */; };
@@ -37,8 +39,10 @@
 
 /* Begin PBXFileReference section */
 		235F065BF647671CD78B065D /* Pods-Lah.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lah.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lah/Pods-Lah.release.xcconfig"; sourceTree = "<group>"; };
+		3B0EF5691E8C7BE400992545 /* BillableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BillableCell.xib; path = vc/BillableCell.xib; sourceTree = "<group>"; };
 		3B3D69501E79422100627365 /* WorkerTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorkerTableViewDelegate.swift; path = vc/WorkerTableViewDelegate.swift; sourceTree = "<group>"; };
 		3B3D69531E79496400627365 /* TimeCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeCardViewController.swift; path = vc/TimeCardViewController.swift; sourceTree = "<group>"; };
+		3B6276FD1E83E161009B1B89 /* Billable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Billable.swift; path = models/Billable.swift; sourceTree = "<group>"; };
 		3B679B3A1E57D6130095DF7D /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = models/Project.swift; sourceTree = "<group>"; };
 		3B679B3D1E5D89570095DF7D /* TransportMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransportMgr.swift; path = transport/TransportMgr.swift; sourceTree = "<group>"; };
 		3B6C3FFA1E7E590F006F773F /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationViewController.swift; path = vc/NavigationViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 		3B3D69521E7944C900627365 /* worker */ = {
 			isa = PBXGroup;
 			children = (
+				3B0EF5691E8C7BE400992545 /* BillableCell.xib */,
 				3B9665EA1E559D6F0094D74A /* WorkerViewController.swift */,
 				3BB632231E723B8B0003CEA1 /* AddWorkerViewController.swift */,
 				3BCEA41B1E73680500BCFE88 /* CurrencyTextFieldDelegate.swift */,
@@ -163,6 +168,7 @@
 			children = (
 				3B679B3A1E57D6130095DF7D /* Project.swift */,
 				3BCEA41F1E77C84800BCFE88 /* Worker.swift */,
+				3B6276FD1E83E161009B1B89 /* Billable.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -259,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B0EF56A1E8C7BE400992545 /* BillableCell.xib in Resources */,
 				3B9665E31E559CC20094D74A /* LaunchScreen.storyboard in Resources */,
 				3B70A37D1E6965960036407C /* GoogleService-Info.plist in Resources */,
 				3B9665E01E559CC20094D74A /* Assets.xcassets in Resources */,
@@ -323,6 +330,7 @@
 			files = (
 				3B679B3E1E5D89570095DF7D /* TransportMgr.swift in Sources */,
 				3BE4850C1E5711B90037A3E8 /* ProjectDataSource.swift in Sources */,
+				3B6276FE1E83E161009B1B89 /* Billable.swift in Sources */,
 				3B9665F31E55D2610094D74A /* AddProjectViewController.swift in Sources */,
 				3BDB7A341E57AF1C005E9DC7 /* AddProjectTableViewDelegate.swift in Sources */,
 				3B679B3B1E57D6130095DF7D /* Project.swift in Sources */,
