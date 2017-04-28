@@ -69,3 +69,11 @@ struct Billable {
         ]
     }
 }
+
+extension Billable: CustomStringConvertible {
+    public var description: String {
+        return "\n[\(key)] \(rate) \(start) - \(end)"
+    }
+}
+
+
