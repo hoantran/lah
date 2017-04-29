@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BillableCell" id="odi-v0-gtM">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="BillableCellID" selectionStyle="default" indentationWidth="10" reuseIdentifier="BillableCellID" id="odi-v0-gtM" customClass="BillableCellTableViewCell" customModule="Lah" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="odi-v0-gtM" id="egE-7u-Evx">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcv-X4-5yf">
@@ -86,6 +86,13 @@
                     <constraint firstItem="wcv-X4-5yf" firstAttribute="centerY" secondItem="egE-7u-Evx" secondAttribute="centerY" id="iq8-ZF-duK"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="amount" destination="IWi-bJ-glc" id="XbQ-9l-cNJ"/>
+                <outlet property="date" destination="cqY-it-OON" id="N9O-Br-9hq"/>
+                <outlet property="duration" destination="wcv-X4-5yf" id="PEY-Ed-XIU"/>
+                <outlet property="paid" destination="Tjr-c5-Df5" id="fdm-Po-wNV"/>
+                <outlet property="time" destination="D8P-9k-7F5" id="NEN-zK-JeT"/>
+            </connections>
             <point key="canvasLocation" x="22" y="-159"/>
         </tableViewCell>
     </objects>

@@ -11,6 +11,9 @@
 		3B0EF56E1E8E2E1C00992545 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0EF56D1E8E2E1C00992545 /* Utilities.swift */; };
 		3B3D69511E79422100627365 /* WorkerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3D69501E79422100627365 /* WorkerTableViewDelegate.swift */; };
 		3B3D69541E79496400627365 /* TimeCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3D69531E79496400627365 /* TimeCardViewController.swift */; };
+		3B44B8801EB3C6740057671E /* BillableCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B44B87F1EB3C6740057671E /* BillableCellTableViewCell.swift */; };
+		3B44B8821EB3CA740057671E /* BillableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B44B8811EB3CA740057671E /* BillableDataSource.swift */; };
+		3B44B8841EB40AEC0057671E /* BillableTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B44B8831EB40AEC0057671E /* BillableTableDelegate.swift */; };
 		3B6276FE1E83E161009B1B89 /* Billable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6276FD1E83E161009B1B89 /* Billable.swift */; };
 		3B679B3B1E57D6130095DF7D /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B679B3A1E57D6130095DF7D /* Project.swift */; };
 		3B679B3E1E5D89570095DF7D /* TransportMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B679B3D1E5D89570095DF7D /* TransportMgr.swift */; };
@@ -44,6 +47,9 @@
 		3B0EF56D1E8E2E1C00992545 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = misc/Utilities.swift; sourceTree = "<group>"; };
 		3B3D69501E79422100627365 /* WorkerTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorkerTableViewDelegate.swift; path = vc/WorkerTableViewDelegate.swift; sourceTree = "<group>"; };
 		3B3D69531E79496400627365 /* TimeCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeCardViewController.swift; path = vc/TimeCardViewController.swift; sourceTree = "<group>"; };
+		3B44B87F1EB3C6740057671E /* BillableCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillableCellTableViewCell.swift; path = vc/BillableCellTableViewCell.swift; sourceTree = "<group>"; };
+		3B44B8811EB3CA740057671E /* BillableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillableDataSource.swift; path = vc/BillableDataSource.swift; sourceTree = "<group>"; };
+		3B44B8831EB40AEC0057671E /* BillableTableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillableTableDelegate.swift; path = vc/BillableTableDelegate.swift; sourceTree = "<group>"; };
 		3B6276FD1E83E161009B1B89 /* Billable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Billable.swift; path = models/Billable.swift; sourceTree = "<group>"; };
 		3B679B3A1E57D6130095DF7D /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = models/Project.swift; sourceTree = "<group>"; };
 		3B679B3D1E5D89570095DF7D /* TransportMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransportMgr.swift; path = transport/TransportMgr.swift; sourceTree = "<group>"; };
@@ -97,6 +103,9 @@
 				3BCEA4211E77E44100BCFE88 /* WorkerDataSource.swift */,
 				3B3D69501E79422100627365 /* WorkerTableViewDelegate.swift */,
 				3B3D69531E79496400627365 /* TimeCardViewController.swift */,
+				3B44B8811EB3CA740057671E /* BillableDataSource.swift */,
+				3B44B87F1EB3C6740057671E /* BillableCellTableViewCell.swift */,
+				3B44B8831EB40AEC0057671E /* BillableTableDelegate.swift */,
 			);
 			name = worker;
 			sourceTree = "<group>";
@@ -335,8 +344,11 @@
 				3BE4850C1E5711B90037A3E8 /* ProjectDataSource.swift in Sources */,
 				3B6276FE1E83E161009B1B89 /* Billable.swift in Sources */,
 				3B9665F31E55D2610094D74A /* AddProjectViewController.swift in Sources */,
+				3B44B8801EB3C6740057671E /* BillableCellTableViewCell.swift in Sources */,
 				3BDB7A341E57AF1C005E9DC7 /* AddProjectTableViewDelegate.swift in Sources */,
+				3B44B8841EB40AEC0057671E /* BillableTableDelegate.swift in Sources */,
 				3B679B3B1E57D6130095DF7D /* Project.swift in Sources */,
+				3B44B8821EB3CA740057671E /* BillableDataSource.swift in Sources */,
 				3B9665F01E55AB160094D74A /* Notifications.swift in Sources */,
 				3BCEA4221E77E44100BCFE88 /* WorkerDataSource.swift in Sources */,
 				3B9665EE1E559DD30094D74A /* ProjectViewController.swift in Sources */,
