@@ -1,5 +1,5 @@
 //
-//  TimeCardViewController.swift
+//  BillableViewController.swift
 //  Lah
 //
 //  Created by Hoan Tran on 3/15/17.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class TimeCardViewController: UIViewController, EditedWorkerDelegate {
+class BillableViewController: UIViewController, EditedWorkerDelegate {
     var worker: Worker?
-    static let TimeCardSegue = "EditWorker"
+    static let EditWorkerSegue = "EditWorker"
     var dataSource: BillableDataSource?
     var tableDelegate: BillableTableDelegate?
     @IBOutlet weak var billableTable: UITableView!
@@ -40,7 +40,7 @@ class TimeCardViewController: UIViewController, EditedWorkerDelegate {
     }
     
     @IBAction func edit(_ sender: Any) {
-        performSegue(withIdentifier: TimeCardViewController.TimeCardSegue, sender: self)
+        performSegue(withIdentifier: BillableViewController.EditWorkerSegue, sender: self)
     }
     
     func setWorker(_ worker: Worker) {
@@ -48,7 +48,7 @@ class TimeCardViewController: UIViewController, EditedWorkerDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == TimeCardViewController.TimeCardSegue {
+        if segue.identifier == BillableViewController.EditWorkerSegue {
             let upcoming: AddWorkerViewController = (( segue.destination ) as! UINavigationController).topViewController as! AddWorkerViewController
             upcoming.editedWorkerDelegate = self
             upcoming.worker = worker
