@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		3B0EF56A1E8C7BE400992545 /* BillableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B0EF5691E8C7BE400992545 /* BillableCell.xib */; };
 		3B0EF56E1E8E2E1C00992545 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0EF56D1E8E2E1C00992545 /* Utilities.swift */; };
+		3B317EEC1ECCCA8200F20E7F /* Project.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B317EEA1ECCCA8200F20E7F /* Project.storyboard */; };
+		3B317EEF1ECCCB3200F20E7F /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B317EED1ECCCB3200F20E7F /* Menu.storyboard */; };
 		3B3D69511E79422100627365 /* WorkerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3D69501E79422100627365 /* WorkerTableViewDelegate.swift */; };
-		3B3D69541E79496400627365 /* TimeCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3D69531E79496400627365 /* TimeCardViewController.swift */; };
+		3B3D69541E79496400627365 /* BillableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3D69531E79496400627365 /* BillableViewController.swift */; };
 		3B44B8801EB3C6740057671E /* BillableCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B44B87F1EB3C6740057671E /* BillableCellTableViewCell.swift */; };
 		3B44B8821EB3CA740057671E /* BillableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B44B8811EB3CA740057671E /* BillableDataSource.swift */; };
 		3B44B8841EB40AEC0057671E /* BillableTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B44B8831EB40AEC0057671E /* BillableTableDelegate.swift */; };
@@ -45,8 +47,10 @@
 		235F065BF647671CD78B065D /* Pods-Lah.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lah.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lah/Pods-Lah.release.xcconfig"; sourceTree = "<group>"; };
 		3B0EF5691E8C7BE400992545 /* BillableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BillableCell.xib; path = vc/BillableCell.xib; sourceTree = "<group>"; };
 		3B0EF56D1E8E2E1C00992545 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = misc/Utilities.swift; sourceTree = "<group>"; };
+		3B317EEB1ECCCA8200F20E7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Project.storyboard; sourceTree = "<group>"; };
+		3B317EEE1ECCCB3200F20E7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
 		3B3D69501E79422100627365 /* WorkerTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorkerTableViewDelegate.swift; path = vc/WorkerTableViewDelegate.swift; sourceTree = "<group>"; };
-		3B3D69531E79496400627365 /* TimeCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeCardViewController.swift; path = vc/TimeCardViewController.swift; sourceTree = "<group>"; };
+		3B3D69531E79496400627365 /* BillableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillableViewController.swift; path = vc/BillableViewController.swift; sourceTree = "<group>"; };
 		3B44B87F1EB3C6740057671E /* BillableCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillableCellTableViewCell.swift; path = vc/BillableCellTableViewCell.swift; sourceTree = "<group>"; };
 		3B44B8811EB3CA740057671E /* BillableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillableDataSource.swift; path = vc/BillableDataSource.swift; sourceTree = "<group>"; };
 		3B44B8831EB40AEC0057671E /* BillableTableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillableTableDelegate.swift; path = vc/BillableTableDelegate.swift; sourceTree = "<group>"; };
@@ -102,7 +106,7 @@
 				3BCEA41D1E73E1F100BCFE88 /* WorkerFieldValidations.swift */,
 				3BCEA4211E77E44100BCFE88 /* WorkerDataSource.swift */,
 				3B3D69501E79422100627365 /* WorkerTableViewDelegate.swift */,
-				3B3D69531E79496400627365 /* TimeCardViewController.swift */,
+				3B3D69531E79496400627365 /* BillableViewController.swift */,
 				3B44B8811EB3CA740057671E /* BillableDataSource.swift */,
 				3B44B87F1EB3C6740057671E /* BillableCellTableViewCell.swift */,
 				3B44B8831EB40AEC0057671E /* BillableTableDelegate.swift */,
@@ -156,6 +160,8 @@
 				3B9665D81E559CC20094D74A /* AppDelegate.swift */,
 				3B9665DA1E559CC20094D74A /* ViewController.swift */,
 				3B9665DC1E559CC20094D74A /* Main.storyboard */,
+				3B317EED1ECCCB3200F20E7F /* Menu.storyboard */,
+				3B317EEA1ECCCA8200F20E7F /* Project.storyboard */,
 				3B9665DF1E559CC20094D74A /* Assets.xcassets */,
 				3B9665E11E559CC20094D74A /* LaunchScreen.storyboard */,
 				3B9665E41E559CC20094D74A /* Info.plist */,
@@ -277,8 +283,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B317EEF1ECCCB3200F20E7F /* Menu.storyboard in Resources */,
 				3B0EF56A1E8C7BE400992545 /* BillableCell.xib in Resources */,
 				3B9665E31E559CC20094D74A /* LaunchScreen.storyboard in Resources */,
+				3B317EEC1ECCCA8200F20E7F /* Project.storyboard in Resources */,
 				3B70A37D1E6965960036407C /* GoogleService-Info.plist in Resources */,
 				3B9665E01E559CC20094D74A /* Assets.xcassets in Resources */,
 				3B9665DE1E559CC20094D74A /* Main.storyboard in Resources */,
@@ -358,7 +366,7 @@
 				3B0EF56E1E8E2E1C00992545 /* Utilities.swift in Sources */,
 				3BEA91741E7CAC6200726DA0 /* MenuViewController.swift in Sources */,
 				3B6C3FFB1E7E590F006F773F /* NavigationViewController.swift in Sources */,
-				3B3D69541E79496400627365 /* TimeCardViewController.swift in Sources */,
+				3B3D69541E79496400627365 /* BillableViewController.swift in Sources */,
 				3B8197A91E7C7A2B000D55A9 /* ContainerViewController.swift in Sources */,
 				3BCEA4201E77C84800BCFE88 /* Worker.swift in Sources */,
 				3BCEA41C1E73680500BCFE88 /* CurrencyTextFieldDelegate.swift in Sources */,
@@ -372,6 +380,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		3B317EEA1ECCCA8200F20E7F /* Project.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B317EEB1ECCCA8200F20E7F /* Base */,
+			);
+			name = Project.storyboard;
+			sourceTree = "<group>";
+		};
+		3B317EED1ECCCB3200F20E7F /* Menu.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B317EEE1ECCCB3200F20E7F /* Base */,
+			);
+			name = Menu.storyboard;
+			sourceTree = "<group>";
+		};
 		3B9665DC1E559CC20094D74A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
