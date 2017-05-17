@@ -23,12 +23,22 @@ class BillableCellTableViewCell: UITableViewCell {
         let hrs = Int(span/(60 * 60))
         let mins = Int((span - (hrs * 60 * 60))/60)
         
-        self.duration.text = "\(hrs)" + "h" + "\(mins)" + "min"
+        self.duration.text = "\(hrs)" + "h " + "\(mins)" + "m"
         self.paid.isEnabled = true
-        self.time.text = "8AM"
-        self.date.text = "Jan 2, 2013"
-        self.amount.text = "123.30"
         
+        let date = Date(timeIntervalSince1970: TimeInterval(billable.start))
+        let dayTimePeriodFormatter = DateFormatter()
+        
+        dayTimePeriodFormatter.dateFormat = "hh:mm a"
+        self.time.text = dayTimePeriodFormatter.string(from: date)
+        
+        dayTimePeriodFormatter.dateFormat = "MMM dd, YYYY"
+        self.date.text = dayTimePeriodFormatter.string(from: date)
+        
+        let hours:Float = Float(Float(span) / Float(3600))
+        let payable: Float = billable.rate * hours
+        
+        self.amount.text = payable.roundedTo(places: 2)
     }
     
 }

@@ -18,10 +18,14 @@ extension Float {
         return Float.random() * (max - min) + min
     }
     
-    func roundTo(places: Int) -> Float {
-        let divisor = Float(pow(10.0, Double(places)))
-        let numerator = self.multiplied(by: divisor)
-        return numerator.rounded() / divisor
+    func roundedTo(places: Int) -> String {
+        let divisor:Float = Float(pow(10.0, Double(places)))
+        let result = Darwin.round(self * divisor) / divisor
+        let str = String(format: "%.\(places)f", result)
+
+        return str
+//        let final = (str as NSString).floatValue
+//        return final
     }
 }
 
@@ -37,4 +41,3 @@ extension Int {
         return Int(start) + min
     }
 }
-

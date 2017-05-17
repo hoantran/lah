@@ -21,13 +21,15 @@ class BillableDataSource: NSObject {
     }
     
     func createFakeBillables(workerKey: String) {
-        let time = Int(CFAbsoluteTimeGetCurrent())
+        let date = Date()
+        
+        let time = Int(date.timeIntervalSince1970)
         let backtrack = 3 * 30 * 24 * 60 * 60 // about 3 months
         let maxDuration = 24 * 60 * 60 // 1 day
         for _ in 0...9 {
             let start = Int.random(min: (time-backtrack), max: time)
             let end = time + Int.random(min: 3600, max: maxDuration)
-            self.billables.append(Billable(rate: Float.random(min: 9.50, max: 15.87).roundTo(places: 2),
+            self.billables.append(Billable(rate: Float.random(min: 9.50, max: 15.87),
                                            start: start,
                                            end: end,
                                            project: "-Kf_n1c1uH3Jf0abIdku",
