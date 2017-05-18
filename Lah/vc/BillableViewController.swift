@@ -14,6 +14,7 @@ class BillableViewController: UIViewController, EditedWorkerDelegate {
     var dataSource: BillableDataSource?
     var tableDelegate: BillableTableDelegate?
     @IBOutlet weak var billableTable: UITableView!
+    var selectedRow: Int?
     
     
     override func viewDidLoad() {
@@ -52,6 +53,11 @@ class BillableViewController: UIViewController, EditedWorkerDelegate {
             let upcoming: AddWorkerViewController = (( segue.destination ) as! UINavigationController).topViewController as! AddWorkerViewController
             upcoming.editedWorkerDelegate = self
             upcoming.worker = worker
+        } else if segue.identifier == Segue.showTimeCardDetail.rawValue {
+            if let selectedRow = self.selectedRow {
+                let upcoming = segue.destination as! TimeCardViewController
+                upcoming.bill = dataSource?.billables[selectedRow]
+            }
         }
     }
     

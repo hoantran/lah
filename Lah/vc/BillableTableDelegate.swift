@@ -9,9 +9,9 @@
 import UIKit
 
 class BillableTableDelegate:NSObject {
-    weak var vc: UIViewController?
+    weak var vc: BillableViewController?
     
-    init(tableView: UITableView, vc: UIViewController) {
+    init(tableView: UITableView, vc: BillableViewController) {
         super.init()
         tableView.delegate = self
         self.vc = vc
@@ -21,6 +21,7 @@ class BillableTableDelegate:NSObject {
 extension BillableTableDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("row selected: \(indexPath.row)")
-//        self.vc?.performSegue(withIdentifier: "TimeCard", sender: self.vc)
+        self.vc?.selectedRow = indexPath.row
+        self.vc?.performSegue(withIdentifier: Segue.showTimeCardDetail.rawValue, sender: self.vc)
     }
 }

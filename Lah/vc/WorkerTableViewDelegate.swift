@@ -21,6 +21,6 @@ class WorkerTableViewDelegate:NSObject {
 extension WorkerTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("row selected: \(indexPath.row)")
-        self.vc?.performSegue(withIdentifier: "TimeCard", sender: self.vc)
+        self.vc?.performSegue(withIdentifier: Segue.showBillables.rawValue, sender: self.vc)
     }
 }

@@ -98,7 +98,18 @@ class AddWorkerViewController: UITableViewController {
             key = self.worker?.key
         }
         
-        let wkr = Worker(firstName: self.firstName.text, lastName: self.lastName.text, phone: self.phone.text, email: self.email.text, rate: Float (self.rate.text ?? ""), key: key!)
+        var rate: Float
+        
+        if var rateStr = self.rate.text {
+            if rateStr.characters.first == "$" {
+                rateStr.remove(at: rateStr.startIndex)
+            }
+            rate = Float(rateStr)!
+        } else {
+            rate = 0.00
+        }
+        
+        let wkr = Worker(firstName: self.firstName.text, lastName: self.lastName.text, phone: self.phone.text, email: self.email.text, rate: rate, key: key!)
         
         NotificationCenter.default.post(name: .editedWorker, object: nil, userInfo: ["editedWorker":wkr as Any])
         if let delegate = self.editedWorkerDelegate {

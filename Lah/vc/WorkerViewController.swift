@@ -33,7 +33,7 @@ class WorkerViewController: UIViewController {
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "TimeCard" {
+        if segue.identifier == Segue.showBillables.rawValue {
 //            let upcoming: BillableViewController = (( segue.destination ) as! UINavigationController).topViewController as! BillableViewController
             let upcoming: BillableViewController = segue.destination as! BillableViewController
             let indexPath = self.tableView.indexPathForSelectedRow

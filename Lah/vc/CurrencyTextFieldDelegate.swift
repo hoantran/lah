@@ -18,7 +18,7 @@ class CurrencyTextFieldDelegate: NSObject, UITextFieldDelegate {
         do {
             let newText:NSString = ( textField.text ?? "") as NSString
             var newString = newText.replacingCharacters(in: range, with: string)
-            let expression = "^([0-9]+)?(\\.([0-9]{1,2})?)?$"
+            let expression = "^(\\$)?([0-9]+)?(\\.([0-9]{1,2})?)?$"
             let regex = try NSRegularExpression(pattern: expression, options: .caseInsensitive )
             let numberOfMatches = regex.numberOfMatches(in: newString, options: [], range: NSRange(location: 0, length: newString.characters.count))
             if numberOfMatches == 0 {

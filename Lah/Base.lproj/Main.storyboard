@@ -59,14 +59,14 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="A4f-tP-x5N" id="saY-AL-tAO"/>
-                        <segue destination="EB5-Si-pSF" kind="show" identifier="TimeCard" id="4my-nW-4P6"/>
+                        <segue destination="EB5-Si-pSF" kind="show" identifier="showBillables" id="4my-nW-4P6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X32-I0-uaG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="972" y="-766"/>
         </scene>
-        <!--name-->
+        <!--Billable-->
         <scene sceneID="fWe-bb-AZ3">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="EB5-Si-pSF" customClass="BillableViewController" customModule="Lah" customModuleProvider="target" sceneMemberID="viewController">
@@ -111,8 +111,8 @@
                             <constraint firstItem="8yo-Sk-gVk" firstAttribute="top" secondItem="alf-bY-a5t" secondAttribute="bottom" id="sD0-6R-YQq"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="name" id="KVd-RI-gBJ">
-                        <barButtonItem key="backBarButtonItem" title="Workers" id="E8V-i6-3UM"/>
+                    <navigationItem key="navigationItem" title="Billable" id="KVd-RI-gBJ">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="OJs-Az-Ozn"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="h7P-VV-3Ga">
                             <connections>
                                 <action selector="edit:" destination="EB5-Si-pSF" id="eR9-DQ-JDk"/>
@@ -122,11 +122,20 @@
                     <connections>
                         <outlet property="billableTable" destination="8RO-xi-s29" id="sbt-eK-HgU"/>
                         <segue destination="usO-6f-23C" kind="presentation" identifier="EditWorker" id="c8X-7J-XYa"/>
+                        <segue destination="6Ci-pH-gDd" kind="show" identifier="showTimeCardDetail" id="BaF-os-rSa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O5D-TQ-xv6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2845.5999999999999" y="-1473.0134932533733"/>
+        </scene>
+        <!--TimeCard-->
+        <scene sceneID="4d1-uZ-Yhb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TimeCard" id="6Ci-pH-gDd" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xYL-xi-utx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3787" y="-1474"/>
         </scene>
         <!--New Worker-->
         <scene sceneID="xDl-L6-NYt">
@@ -410,7 +419,7 @@
         <image name="menu" width="28" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="drR-59-ZBL"/>
         <segue reference="4my-nW-4P6"/>
+        <segue reference="c8X-7J-XYa"/>
     </inferredMetricsTieBreakers>
 </document>
