@@ -18,6 +18,7 @@ class TimeCardViewController: UITableViewController {
         // rate
         guard let rate = self.rate.text else { return false }
         if rate.isEmpty { return false }
+        if rate.characters.count == 1 && rate.characters.first == "$" { return false }
         
         return true
     }
@@ -36,14 +37,24 @@ class TimeCardViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationItem.title = "Edit"
-        self.navigationItem.rightBarButtonItem  = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(self.save))
-        self.rate.delegate = rateDelegate
+        
         if let bill = self.bill {
             rate.text = "$\(bill.rate.roundedTo(places: 2))"
         }
+        
+        self.navigationItem.title = "Edit"
+        self.navigationItem.rightBarButtonItem  = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(self.save))
+        self.navigationItem.rightBarButtonItem?.isEnabled = self.isValidated
+        self.rate.addTarget(self, action: #selector(checkSaveEnability(_:)), for: .editingChanged)
+        self.rate.delegate = rateDelegate
     }
-    
+
+    func checkSaveEnability(_ textField: UITextField) {
+        self.navigationItem.rightBarButtonItem?.isEnabled = self.isValidated
+    }
+
+
+
     func save() {
         if self.rate.text?.characters.count == 0 {
             print("nothing")
