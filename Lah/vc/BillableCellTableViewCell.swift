@@ -19,11 +19,7 @@ class BillableCellTableViewCell: UITableViewCell {
     @IBOutlet weak var amount: UILabel!
     
     func config(billable: Billable) {
-        let span = billable.end - billable.start;
-        let hrs = Int(span/(60 * 60))
-        let mins = Int((span - (hrs * 60 * 60))/60)
-        
-        self.duration.text = "\(hrs)" + "h " + "\(mins)" + "m"
+        self.duration.text = Billable.getDuration(start: billable.start, end: billable.end)
         self.paid.isEnabled = true
         
         let date = Date(timeIntervalSince1970: TimeInterval(billable.start))
@@ -35,10 +31,7 @@ class BillableCellTableViewCell: UITableViewCell {
         dayTimePeriodFormatter.dateFormat = "MMM dd, YYYY"
         self.date.text = dayTimePeriodFormatter.string(from: date)
         
-        let hours:Float = Float(Float(span) / Float(3600))
-        let payable: Float = billable.rate * hours
-        
-        self.amount.text = payable.roundedTo(places: 2)
+        self.amount.text = Billable.getTotal(start: billable.start, end: billable.end, rate: billable.rate)
     }
     
 }

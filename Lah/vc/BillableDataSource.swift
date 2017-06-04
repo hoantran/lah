@@ -28,7 +28,7 @@ class BillableDataSource: NSObject {
         let maxDuration = 24 * 60 * 60 // 1 day
         for _ in 0...9 {
             let start = Int.random(min: (time-backtrack), max: time)
-            let end = time + Int.random(min: 3600, max: maxDuration)
+            let end = start + Int.random(min: 3600, max: maxDuration)
             self.billables.append(Billable(rate: Float.random(min: 9.50, max: 15.87),
                                            start: start,
                                            end: end,

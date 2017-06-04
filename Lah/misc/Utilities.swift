@@ -6,7 +6,7 @@
 //  Copyright © 2017 Pego Consulting. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension Float {
     static func random() -> Float {
@@ -39,5 +39,14 @@ extension Int {
         let fraction = Double(arc4random()) / Double(UINT32_MAX )
         let start = (fraction * Double(max-min)).rounded()
         return Int(start) + min
+    }
+}
+
+// http://kevinvanderlugt.com/generating-a-random-letter-string-in-swift/
+extension UITableViewCell {
+    static func getRandomLetter() -> String {
+        let uppercaseLetters = Array(65...90).map {String(UnicodeScalar($0))}
+        let randomIndex = arc4random_uniform(UInt32(uppercaseLetters.count))
+        return uppercaseLetters[Int(randomIndex)]
     }
 }
