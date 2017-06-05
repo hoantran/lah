@@ -78,12 +78,16 @@ extension Billable: CustomStringConvertible {
 
 // UI Helper
 extension Billable {
-    static func getDuration(start: Int, end: Int) -> String {
-        let span = end - start;
-        let hrs = Int(span/(60 * 60))
-        let mins = Int((span - (hrs * 60 * 60))/60)
-        
-        return "\(hrs)" + "h " + "\(mins)" + "m"
+    static func getDuration(start: Int?, end: Int?) -> String {
+        if let start = start, let end = end {
+            let span = end - start;
+            let hrs = Int(span/(60 * 60))
+            let mins = Int((span - (hrs * 60 * 60))/60)
+            
+            return "\(hrs)" + "h " + "\(mins)" + "m"
+        } else {
+            return ""
+        }
     }
     
     static func getTotal(start: Int, end: Int, rate: Float) -> String {
@@ -111,6 +115,14 @@ extension Billable {
             return Date(timeIntervalSince1970: TimeInterval(date))
         } else {
             return Date()
+        }
+    }
+    
+    static func getSpan(start: Int?, end: Int?) -> TimeInterval {
+        if let start = start, let end = end {
+            return TimeInterval(end - start)
+        } else {
+            return 0
         }
     }
 }

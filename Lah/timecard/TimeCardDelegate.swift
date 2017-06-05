@@ -62,10 +62,10 @@ extension TimeCardDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath == self.selectedIndexPath {
             if indexPath.section == 1 {
-                return TCDatePickerCell.expandedHeight
+                return TCBasePickerCell.expandedHeight
             }
         }
         
-        return TCDatePickerCell.defaultHeight
+        return TCBasePickerCell.defaultHeight
     }
 }

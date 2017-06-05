@@ -30,7 +30,7 @@ extension TimeCardDataSource: UITableViewDataSource {
         if section == 0 {
             return 1
         } else {
-            return 2
+            return 3
         }
     }
     
@@ -47,21 +47,28 @@ extension TimeCardDataSource: UITableViewDataSource {
             return cell
             
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "dateCell", for: indexPath) as! TCDatePickerCell
-            
             switch indexPath.row {
             case 0:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "dateCell", for: indexPath) as! TCDatePickerCell
                 cell.dateLabel.text = "Start"
                 cell.dateValue.text = Billable.getDateStr(unixDate: self.bill?.start)
                 cell.datePicker.date = Billable.getDate(unixDate: self.bill?.start)
+                return cell
                 
-            default:
+            case 1:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "dateCell", for: indexPath) as! TCDatePickerCell
                 cell.dateLabel.text = "Stop"
                 cell.dateValue.text = Billable.getDateStr(unixDate: self.bill?.end)
                 cell.datePicker.date = Billable.getDate(unixDate: self.bill?.end)
+                return cell
+                
+            default:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "durationCell", for: indexPath) as! TCDurationCell
+
+                cell.durationValue.text = Billable.getDuration(start: self.bill?.start, end: self.bill?.end)
+                cell.picker.countDownDuration = Billable.getSpan(start: self.bill?.start, end: self.bill?.end)
+                return cell
             }
-            
-            return cell
         }
     }
 

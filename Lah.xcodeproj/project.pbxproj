@@ -38,6 +38,8 @@
 		3B9665EE1E559DD30094D74A /* ProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9665ED1E559DD30094D74A /* ProjectViewController.swift */; };
 		3B9665F01E55AB160094D74A /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9665EF1E55AB160094D74A /* Notifications.swift */; };
 		3B9665F31E55D2610094D74A /* AddProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9665F21E55D2610094D74A /* AddProjectViewController.swift */; };
+		3BA505CD1EE48FCA00D63761 /* TCDurationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA505CC1EE48FCA00D63761 /* TCDurationCell.swift */; };
+		3BA505CF1EE4A88500D63761 /* TCBasePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA505CE1EE4A88500D63761 /* TCBasePickerCell.swift */; };
 		3BB632241E723B8B0003CEA1 /* AddWorkerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB632231E723B8B0003CEA1 /* AddWorkerViewController.swift */; };
 		3BCEA41C1E73680500BCFE88 /* CurrencyTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCEA41B1E73680500BCFE88 /* CurrencyTextFieldDelegate.swift */; };
 		3BCEA41E1E73E1F100BCFE88 /* WorkerFieldValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCEA41D1E73E1F100BCFE88 /* WorkerFieldValidations.swift */; };
@@ -85,6 +87,8 @@
 		3B9665ED1E559DD30094D74A /* ProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectViewController.swift; path = vc/ProjectViewController.swift; sourceTree = "<group>"; };
 		3B9665EF1E55AB160094D74A /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = misc/Notifications.swift; sourceTree = "<group>"; };
 		3B9665F21E55D2610094D74A /* AddProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddProjectViewController.swift; path = vc/AddProjectViewController.swift; sourceTree = "<group>"; };
+		3BA505CC1EE48FCA00D63761 /* TCDurationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TCDurationCell.swift; path = timecard/TCDurationCell.swift; sourceTree = "<group>"; };
+		3BA505CE1EE4A88500D63761 /* TCBasePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TCBasePickerCell.swift; path = timecard/TCBasePickerCell.swift; sourceTree = "<group>"; };
 		3BB632231E723B8B0003CEA1 /* AddWorkerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddWorkerViewController.swift; path = vc/AddWorkerViewController.swift; sourceTree = "<group>"; };
 		3BCEA41B1E73680500BCFE88 /* CurrencyTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrencyTextFieldDelegate.swift; path = vc/CurrencyTextFieldDelegate.swift; sourceTree = "<group>"; };
 		3BCEA41D1E73E1F100BCFE88 /* WorkerFieldValidations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkerFieldValidations.swift; sourceTree = "<group>"; };
@@ -131,6 +135,8 @@
 				3B502EC61EDD45DC008A1122 /* TCRateCell.swift */,
 				3B502EC81EDD52F2008A1122 /* TimeCardDelegate.swift */,
 				3B502ECA1EDDED83008A1122 /* TCDatePickerCell.swift */,
+				3BA505CC1EE48FCA00D63761 /* TCDurationCell.swift */,
+				3BA505CE1EE4A88500D63761 /* TCBasePickerCell.swift */,
 			);
 			name = timecard;
 			sourceTree = "<group>";
@@ -405,9 +411,11 @@
 				3B44B8841EB40AEC0057671E /* BillableTableDelegate.swift in Sources */,
 				3B317EF71ECCE47E00F20E7F /* Segue.swift in Sources */,
 				3B679B3B1E57D6130095DF7D /* Project.swift in Sources */,
+				3BA505CD1EE48FCA00D63761 /* TCDurationCell.swift in Sources */,
 				3B44B8821EB3CA740057671E /* BillableDataSource.swift in Sources */,
 				3B502EC71EDD45DC008A1122 /* TCRateCell.swift in Sources */,
 				3B9665F01E55AB160094D74A /* Notifications.swift in Sources */,
+				3BA505CF1EE4A88500D63761 /* TCBasePickerCell.swift in Sources */,
 				3BCEA4221E77E44100BCFE88 /* WorkerDataSource.swift in Sources */,
 				3B9665EE1E559DD30094D74A /* ProjectViewController.swift in Sources */,
 				3BCEA41E1E73E1F100BCFE88 /* WorkerFieldValidations.swift in Sources */,
