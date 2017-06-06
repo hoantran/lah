@@ -85,7 +85,7 @@ class TransportMgr {
         refWorker.observe(.value, with: self.processWorkers)
         refWorker.observe(.childRemoved, with: {snapshot in
             print(snapshot)
-            guard let itemModel = Project(snapshot: snapshot) else { return }
+            guard let itemModel = Worker(snapshot: snapshot) else { return }
             NotificationCenter.default.post(name: .delWorkerSvr, object: nil, userInfo: ["delWorkerSvr":itemModel])
         })
     }
