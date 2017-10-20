@@ -1,2 +1,0 @@
-# Lend A Hand
-
