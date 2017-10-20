@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		19A1D42F7A607798642AE406 /* Pods_LendAHandTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707213B750403FCBDFCC54B0 /* Pods_LendAHandTests.framework */; };
 		31F4526ACD25C84351A52738 /* Pods_LendAHand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D774373E19AC3307274EF5C /* Pods_LendAHand.framework */; };
+		3B04FD061F99F7390044A857 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3B04FD051F99F7390044A857 /* Podfile */; };
 		3B29BC141F99767900E66F21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B29BC131F99767900E66F21 /* AppDelegate.swift */; };
 		3B29BC161F99767900E66F21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B29BC151F99767900E66F21 /* ViewController.swift */; };
 		3B29BC191F99767900E66F21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B29BC171F99767900E66F21 /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		2413133E6B76F5A53A5E9117 /* Pods-LendAHandUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LendAHandUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LendAHandUITests/Pods-LendAHandUITests.release.xcconfig"; sourceTree = "<group>"; };
+		3B04FD051F99F7390044A857 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		3B29BC101F99767900E66F21 /* LendAHand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LendAHand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B29BC131F99767900E66F21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B29BC151F99767900E66F21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 		01ED426AA9837EEC972E5D84 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				3B04FD051F99F7390044A857 /* Podfile */,
 				91FBB053565F8CAF3F3EC4D9 /* Pods-LendAHand.debug.xcconfig */,
 				991A91F1F61C057CA62E65C1 /* Pods-LendAHand.release.xcconfig */,
 				86BB575F4C8F179EF11862DB /* Pods-LendAHandTests.debug.xcconfig */,
@@ -286,6 +289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B04FD061F99F7390044A857 /* Podfile in Resources */,
 				3B29BC1E1F99767900E66F21 /* LaunchScreen.storyboard in Resources */,
 				3B4DCD651F9978BB00B29F83 /* GoogleService-Info.plist in Resources */,
 				3B29BC1B1F99767900E66F21 /* Assets.xcassets in Resources */,
@@ -383,6 +387,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LendAHand/Pods-LendAHand-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
@@ -391,11 +396,18 @@
 				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
@@ -404,6 +416,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,6 +19,7 @@ target 'LendAHand' do
   
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
 
   pod 'FacebookCore'
   pod 'FacebookLogin'
