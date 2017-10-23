@@ -14,6 +14,7 @@ import Firebase
 class ViewController: UIViewController, LoginButtonDelegate {
     var workers: LocalCollection<Worker>!
     var projects: LocalCollection<Project>!
+    var currents: LocalCollection<Current>!
   
   // Facebook Login using FB app doesn't dismiss Login Dialog after logging in
   // this is a known problem with iOS 11 and the FB SDK
@@ -37,6 +38,7 @@ class ViewController: UIViewController, LoginButtonDelegate {
         print("Error: Could not get FB access authentication token")
         return
       }
+      print("user just logged in : ", accessToken.appId, " : ", accessToken.userId ?? "")
       let credential = FacebookAuthProvider.credential(withAccessToken: token)
       Auth.auth().signIn(with: credential, completion: { (user, error) in
         if let error = error {
@@ -52,12 +54,22 @@ class ViewController: UIViewController, LoginButtonDelegate {
   }
   
   func userLoggedIn() {
-    writeWorkers()
     writeProjects()
-    setupWorkerObservation()
     setupProjectObservation()
-    self.workers.listen()
     self.projects.listen()
+    
+    writeWorkers()
+    setupWorkerObservation()
+    self.workers.listen()
+    
+    setupCurrentObservation()
+    self.currents.listen()
+  }
+  
+  deinit {
+    self.workers.stopListening()
+    self.projects.stopListening()
+    self.currents.stopListening()
   }
   
   func loginButtonDidLogOut(_ loginButton: LoginButton) {
@@ -77,7 +89,8 @@ class ViewController: UIViewController, LoginButtonDelegate {
   }
   
   func writeProjects() {
-    let project = Project(contact: "410FE041-5C4E-48DA-B4DE-04C15EA3DBAC", name: "SpaceX", completed: false)
+//    let project = Project(contact: "410FE041-5C4E-48DA-B4DE-04C15EA3DBAC", name: "SpaceX", completed: false)
+    let project = Project(contact: nil, name: "SpaceX", completed: false)
     let projectRef = Constants.firestoreProjectCollection.addDocument(data: project.dictionary)
     print("Projects:", projectRef)
   }
@@ -87,6 +100,25 @@ class ViewController: UIViewController, LoginButtonDelegate {
     self.workers = LocalCollection(query: query) { [unowned self] (changes) in
       print("..............: Workers")
       changes.forEach(){ print ("[", $0.type, "]", $0) }
+      if self.projects != nil && self.projects.count > 0 {
+        let projectID = self.projects.documents[0].reference.documentID
+        let worker = self.workers[0]
+        let start = Date()
+        let work = Work(project: projectID, rate: worker.rate, isPaid: false, start: start, stop: nil, note: nil)
+        let collection = self.workers.documents[0].reference.collection(Constants.works)
+        let newWork = collection.document()
+        newWork.setData(work.dictionary)
+        newWork.setData(work.dictionary) { error in
+          if let error = error {
+            print("Couldn't set new work:", error)
+            return
+          }
+          let current = Current(
+              worker: self.workers.documents[0].reference.documentID,
+              work: newWork.documentID)
+          Constants.firestoreCurrentCollection.addDocument(data: current.dictionary)
+        }
+      }
     }
   }
   
@@ -98,9 +130,12 @@ class ViewController: UIViewController, LoginButtonDelegate {
     }
   }
   
-  deinit {
-    self.workers.stopListening()
-    self.projects.stopListening()
+  func setupCurrentObservation() {
+    let query = Constants.firestoreCurrentCollection
+    self.currents = LocalCollection(query: query) { [unowned self] (changes) in
+      print("..............: Currents")
+      changes.forEach(){ print ("[", $0.type, "]", $0) }
+    }
   }
   
   override func viewWillAppear(_ animated: Bool) {

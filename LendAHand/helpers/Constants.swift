@@ -13,5 +13,7 @@ struct Constants {
   static let firestoreRoot = Firestore.firestore()
   static let firestoreWorkerCollection = Constants.firestoreRoot.collection("workers")
   static let firestoreProjectCollection = Constants.firestoreRoot.collection("projects")
+  static let firestoreCurrentCollection = Constants.firestoreRoot.collection("currents")
+  static let works = "works"
 }
 

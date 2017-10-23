@@ -16,7 +16,7 @@ struct Project {
   
   var dictionary: [String: Any] {
     return [
-      "contact": contact == nil ? "" : contact as Any,
+      "contact": contact == nil ? NSNull() : contact as Any,
       "name": name,
       "completed": completed
     ]
@@ -27,7 +27,7 @@ extension Project: DocumentSerializable {
   init?(dictionary: [String : Any]) {
     guard let name = dictionary["name"] as? String,
     let completed = dictionary["completed"] as? Bool else { return nil }
-    let contact = dictionary["contact"] == nil ? "" : dictionary["contact"] as? String
+    let contact = dictionary["contact"] == nil ? nil : dictionary["contact"] as? String
     
     self.init(contact: contact, name: name, completed: completed)
   }

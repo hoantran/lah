@@ -24,6 +24,8 @@
 		3B4DCD651F9978BB00B29F83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B4DCD641F9978BB00B29F83 /* GoogleService-Info.plist */; };
 		3B4DCD661F9978BB00B29F83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B4DCD641F9978BB00B29F83 /* GoogleService-Info.plist */; };
 		3B4DCD671F9978BB00B29F83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B4DCD641F9978BB00B29F83 /* GoogleService-Info.plist */; };
+		3B5696FE1F9DD6C2000CE7F5 /* Work.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5696FD1F9DD6C2000CE7F5 /* Work.swift */; };
+		3B5697001F9E7018000CE7F5 /* Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5696FF1F9E7018000CE7F5 /* Current.swift */; };
 		70FC41D6934D9A81033F8D38 /* Pods_LendAHandUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D662BA85C19697979754C5C /* Pods_LendAHandUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,8 @@
 		3B29BC331F99767900E66F21 /* LendAHandUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LendAHandUITests.swift; sourceTree = "<group>"; };
 		3B29BC351F99767900E66F21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B4DCD641F9978BB00B29F83 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3B5696FD1F9DD6C2000CE7F5 /* Work.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Work.swift; sourceTree = "<group>"; };
+		3B5696FF1F9E7018000CE7F5 /* Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Current.swift; sourceTree = "<group>"; };
 		4D662BA85C19697979754C5C /* Pods_LendAHandUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LendAHandUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68393D3EA8AF9EDCC96C99E0 /* Pods-LendAHandUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LendAHandUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LendAHandUITests/Pods-LendAHandUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		707213B750403FCBDFCC54B0 /* Pods_LendAHandTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LendAHandTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,7 +156,9 @@
 			isa = PBXGroup;
 			children = (
 				3B04FD0C1F9A9D610044A857 /* Worker.swift */,
+				3B5696FF1F9E7018000CE7F5 /* Current.swift */,
 				3B04FD121F9AB3110044A857 /* Project.swift */,
+				3B5696FD1F9DD6C2000CE7F5 /* Work.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -555,7 +561,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B04FD111F9AA29C0044A857 /* Constants.swift in Sources */,
+				3B5696FE1F9DD6C2000CE7F5 /* Work.swift in Sources */,
 				3B29BC161F99767900E66F21 /* ViewController.swift in Sources */,
+				3B5697001F9E7018000CE7F5 /* Current.swift in Sources */,
 				3B04FD0D1F9A9D610044A857 /* Worker.swift in Sources */,
 				3B29BC141F99767900E66F21 /* AppDelegate.swift in Sources */,
 				3B04FD0F1F9A9E2E0044A857 /* LocalCollection.swift in Sources */,
