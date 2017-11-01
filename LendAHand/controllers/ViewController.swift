@@ -19,7 +19,6 @@ class ViewController: UIViewController, LoginButtonDelegate {
   // Facebook Login using FB app doesn't dismiss Login Dialog after logging in
   // this is a known problem with iOS 11 and the FB SDK
   // https://stackoverflow.com/questions/45577898/facebook-login-doesnt-doesnt-dismiss-login-dialog-after-login
-  
   // But loggin in user email/password works fine
   func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {
     print(result)
@@ -74,6 +73,11 @@ class ViewController: UIViewController, LoginButtonDelegate {
   
   func loginButtonDidLogOut(_ loginButton: LoginButton) {
     print("FB Logged out")
+    do {
+      try Auth.auth().signOut()
+    } catch let signOutError as NSError {
+      print ("Error signing out: %@", signOutError)
+    }
   }
 
 //  Simulator
@@ -148,12 +152,17 @@ class ViewController: UIViewController, LoginButtonDelegate {
     view.backgroundColor = UIColor.cyan
     navigationItem.title = "FB"
     
+    if let uid = Auth.auth().currentUser?.uid {
+      print("But Firebase already logged in: ", uid)
+    }
+    
     if let accessToken = AccessToken.current {
       // User is logged in, use 'accessToken' here.
       print("user logged in : ", accessToken.appId, " : ", accessToken.userId ?? "")
     }
     
     let loginBtn = LoginButton(readPermissions: [.publicProfile])
+    loginBtn.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
     loginBtn.center = view.center
     loginBtn.delegate = self
     view.addSubview(loginBtn)

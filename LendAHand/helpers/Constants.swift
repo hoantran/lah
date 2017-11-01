@@ -6,7 +6,7 @@
 //  Copyright © 2017 Hoan Tran. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import FirebaseFirestore
 
 struct Constants {
@@ -15,5 +15,7 @@ struct Constants {
   static let firestoreProjectCollection = Constants.firestoreRoot.collection("projects")
   static let firestoreCurrentCollection = Constants.firestoreRoot.collection("currents")
   static let works = "works"
+  static let baseColor = UIColor(hex: "0X89CFF0")
+  static let highlightColor = UIColor(hex: "0Xdaf0fa")
 }
 

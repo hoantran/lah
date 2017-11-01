@@ -21,8 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
-    window?.rootViewController = UINavigationController(rootViewController: ViewController())
-    
+//    window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+//    window?.rootViewController = UINavigationController(rootViewController: ContainerViewController())
+    window?.rootViewController = ContainerViewController()
     FirebaseApp.configure()
     
     return true
