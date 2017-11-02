@@ -8,13 +8,23 @@
 
 import UIKit
 
-class ProjectViewController: UITableViewController {
+class ProjectViewController: UITableViewController, BurgerButton {
   static let cellID = "cellID"
   
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: ProjectViewController.cellID)
     navigationItem.title = "Projects"
+    
+    setupBurgerButton()
+  }
+  
+  func addTarget(_ btn: UIButton) {
+    btn.addTarget(self, action: #selector(handleBugerButtonTap), for: .touchUpInside)
+  }
+  
+  @objc func handleBugerButtonTap() {
+    postMenuTapped()
   }
   
   override func numberOfSections(in tableView: UITableView) -> Int {

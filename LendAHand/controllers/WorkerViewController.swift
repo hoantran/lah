@@ -11,7 +11,7 @@
 
 import UIKit
 
-class WorkerViewController: UITableViewController {
+class WorkerViewController: UITableViewController, BurgerButton {
   static let cellID = "cellID"
   
   
@@ -19,6 +19,15 @@ class WorkerViewController: UITableViewController {
     super.viewDidLoad()
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: WorkerViewController.cellID)
     navigationItem.title = "Workers"
+    setupBurgerButton()
+  }
+  
+  func addTarget(_ btn: UIButton) {
+    btn.addTarget(self, action: #selector(handleBugerButtonTap), for: .touchUpInside)
+  }
+  
+  @objc func handleBugerButtonTap() {
+    postMenuTapped()
   }
   
   override func numberOfSections(in tableView: UITableView) -> Int {
