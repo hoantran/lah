@@ -124,7 +124,10 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let center = NotificationCenter.default
     
     center.post(name: def.notif, object: nil)
-    center.post(name: .vcSelected, object: nil)
+    
+    if def.notif == .logoutSelected {
+      LoginViewController.logout()
+    }
   }
 }
 

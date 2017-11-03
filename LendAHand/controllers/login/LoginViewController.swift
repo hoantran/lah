@@ -52,7 +52,9 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
     if let user = Auth.auth().currentUser {
       print("[\(user.displayName ?? "" )] is logged into Firebase")
     }
-    showFBLoginButton()
+    
+    let container = ContainerViewController()
+    UIApplication.topViewController()?.present(container, animated: true, completion: nil)
   }
   
   func loginButtonDidLogOut(_ loginButton: LoginButton) {
@@ -85,5 +87,26 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
         showFBLoginButton()
       }
     }
+  }
+}
+
+extension LoginViewController {
+  static func logout() {
+    
+    let firebaseAuth = Auth.auth()
+    do {
+      try firebaseAuth.signOut()
+    } catch let signOutError as NSError {
+      print ("Error signing out: %@", signOutError)
+    }
+    
+    let loginManager = LoginManager()
+    loginManager.logOut()
+    AccessToken.current = nil
+    
+    print("logged out")
+    
+    let controller = UINavigationController(rootViewController: LoginViewController())
+    UIApplication.topViewController()?.present(controller, animated: true, completion: nil)
   }
 }

@@ -124,7 +124,8 @@ class ContainerViewController: UIViewController, UIGestureRecognizerDelegate {
   
   func addObservers() {
     let center = NotificationCenter.default
-    center.addObserver(self, selector: #selector(hideMenu), name: .vcSelected, object: nil)
+    center.addObserver(self, selector: #selector(hideMenu), name: .workersSelected, object: nil)
+    center.addObserver(self, selector: #selector(hideMenu), name: .projectsSelected, object: nil)
     center.addObserver(self, selector: #selector(showMenu), name: .menuTapped, object: nil)
   }
 }

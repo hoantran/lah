@@ -33,6 +33,8 @@
 		3B5697041F9E94DE000CE7F5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5697031F9E94DE000CE7F5 /* LoginViewController.swift */; };
 		3B8436031FAA6D6C000B1EF2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8436021FAA6D6C000B1EF2 /* Extensions.swift */; };
 		3B8436051FAB0ABB000B1EF2 /* BurgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8436041FAB0ABB000B1EF2 /* BurgerButton.swift */; };
+		3B8436071FAB94D3000B1EF2 /* AddNewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8436061FAB94D3000B1EF2 /* AddNewProjectViewController.swift */; };
+		3B84360C1FABE621000B1EF2 /* ProjectNameValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84360B1FABE621000B1EF2 /* ProjectNameValidation.swift */; };
 		70FC41D6934D9A81033F8D38 /* Pods_LendAHandUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D662BA85C19697979754C5C /* Pods_LendAHandUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +85,8 @@
 		3B5697031F9E94DE000CE7F5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3B8436021FAA6D6C000B1EF2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3B8436041FAB0ABB000B1EF2 /* BurgerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BurgerButton.swift; sourceTree = "<group>"; };
+		3B8436061FAB94D3000B1EF2 /* AddNewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewProjectViewController.swift; sourceTree = "<group>"; };
+		3B84360B1FABE621000B1EF2 /* ProjectNameValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNameValidation.swift; sourceTree = "<group>"; };
 		4D662BA85C19697979754C5C /* Pods_LendAHandUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LendAHandUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68393D3EA8AF9EDCC96C99E0 /* Pods-LendAHandUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LendAHandUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LendAHandUITests/Pods-LendAHandUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		707213B750403FCBDFCC54B0 /* Pods_LendAHandTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LendAHandTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,10 +150,9 @@
 		3B04FD081F9A85830044A857 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3B29BC151F99767900E66F21 /* ViewController.swift */,
-				3B5697031F9E94DE000CE7F5 /* LoginViewController.swift */,
-				3B4FF5731FA84666007DBB6A /* ProjectViewController.swift */,
-				3B4FF5751FA84ACB007DBB6A /* WorkerViewController.swift */,
+				3B84360A1FAB9871000B1EF2 /* login */,
+				3B8436091FAB9845000B1EF2 /* worker */,
+				3B8436081FAB981F000B1EF2 /* project */,
 				3B4FF5771FA861AB007DBB6A /* MenuViewController.swift */,
 				3B4FF57B1FA9ACB2007DBB6A /* NavigationViewController.swift */,
 				3B4FF5791FA94407007DBB6A /* ContainerViewController.swift */,
@@ -240,6 +243,33 @@
 				3B29BC351F99767900E66F21 /* Info.plist */,
 			);
 			path = LendAHandUITests;
+			sourceTree = "<group>";
+		};
+		3B8436081FAB981F000B1EF2 /* project */ = {
+			isa = PBXGroup;
+			children = (
+				3B4FF5731FA84666007DBB6A /* ProjectViewController.swift */,
+				3B8436061FAB94D3000B1EF2 /* AddNewProjectViewController.swift */,
+				3B84360B1FABE621000B1EF2 /* ProjectNameValidation.swift */,
+			);
+			path = project;
+			sourceTree = "<group>";
+		};
+		3B8436091FAB9845000B1EF2 /* worker */ = {
+			isa = PBXGroup;
+			children = (
+				3B4FF5751FA84ACB007DBB6A /* WorkerViewController.swift */,
+			);
+			path = worker;
+			sourceTree = "<group>";
+		};
+		3B84360A1FAB9871000B1EF2 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				3B29BC151F99767900E66F21 /* ViewController.swift */,
+				3B5697031F9E94DE000CE7F5 /* LoginViewController.swift */,
+			);
+			path = login;
 			sourceTree = "<group>";
 		};
 		4C3402DF2A3E98FB4ADB2878 /* Frameworks */ = {
@@ -583,6 +613,7 @@
 				3B8436051FAB0ABB000B1EF2 /* BurgerButton.swift in Sources */,
 				3B5697041F9E94DE000CE7F5 /* LoginViewController.swift in Sources */,
 				3B04FD111F9AA29C0044A857 /* Constants.swift in Sources */,
+				3B8436071FAB94D3000B1EF2 /* AddNewProjectViewController.swift in Sources */,
 				3B4FF57A1FA94407007DBB6A /* ContainerViewController.swift in Sources */,
 				3B5696FE1F9DD6C2000CE7F5 /* Work.swift in Sources */,
 				3B4FF5761FA84ACB007DBB6A /* WorkerViewController.swift in Sources */,
@@ -592,6 +623,7 @@
 				3B4FF5781FA861AB007DBB6A /* MenuViewController.swift in Sources */,
 				3B4FF5741FA84666007DBB6A /* ProjectViewController.swift in Sources */,
 				3B8436031FAA6D6C000B1EF2 /* Extensions.swift in Sources */,
+				3B84360C1FABE621000B1EF2 /* ProjectNameValidation.swift in Sources */,
 				3B29BC141F99767900E66F21 /* AppDelegate.swift in Sources */,
 				3B04FD0F1F9A9E2E0044A857 /* LocalCollection.swift in Sources */,
 				3B4FF57C1FA9ACB2007DBB6A /* NavigationViewController.swift in Sources */,
