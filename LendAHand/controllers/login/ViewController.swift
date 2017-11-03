@@ -88,19 +88,19 @@ class ViewController: UIViewController, LoginButtonDelegate {
 
   func writeWorkers() {
     let worker = Worker(contact: "0E672A84-A007-4140-B71F-187F8A2C99FE:ABPerson", rate: 14.70)
-    let workerRef = Constants.firestoreWorkerCollection.addDocument(data: worker.dictionary)
+    let workerRef = Constants.firestore.collection.workers.addDocument(data: worker.dictionary)
     print(workerRef)
   }
   
   func writeProjects() {
 //    let project = Project(contact: "410FE041-5C4E-48DA-B4DE-04C15EA3DBAC", name: "SpaceX", completed: false)
     let project = Project(contact: nil, name: "SpaceX", completed: false)
-    let projectRef = Constants.firestoreProjectCollection.addDocument(data: project.dictionary)
+    let projectRef = Constants.firestore.collection.projects.addDocument(data: project.dictionary)
     print("Projects:", projectRef)
   }
   
   func setupWorkerObservation() {
-    let query = Constants.firestoreWorkerCollection
+    let query = Constants.firestore.collection.workers
     self.workers = LocalCollection(query: query) { [unowned self] (changes) in
       print("..............: Workers")
       changes.forEach(){ print ("[", $0.type, "]", $0) }
@@ -120,14 +120,14 @@ class ViewController: UIViewController, LoginButtonDelegate {
           let current = Current(
               worker: self.workers.documents[0].reference.documentID,
               work: newWork.documentID)
-          Constants.firestoreCurrentCollection.addDocument(data: current.dictionary)
+          Constants.firestore.collection.currents.addDocument(data: current.dictionary)
         }
       }
     }
   }
   
   func setupProjectObservation() {
-    let query = Constants.firestoreProjectCollection
+    let query = Constants.firestore.collection.projects
     self.projects = LocalCollection(query: query) { [unowned self] (changes) in
       print("..............: Projects")
       changes.forEach(){ print ("[", $0.type, "]", $0) }
@@ -135,7 +135,7 @@ class ViewController: UIViewController, LoginButtonDelegate {
   }
   
   func setupCurrentObservation() {
-    let query = Constants.firestoreCurrentCollection
+    let query = Constants.firestore.collection.currents
     self.currents = LocalCollection(query: query) { [unowned self] (changes) in
       print("..............: Currents")
       changes.forEach(){ print ("[", $0.type, "]", $0) }

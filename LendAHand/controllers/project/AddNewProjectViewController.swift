@@ -18,7 +18,7 @@ class AddNewProjectViewController: UIViewController {
   let inputsContainerView: UIView = {
     let v = UIView()
     v.translatesAutoresizingMaskIntoConstraints = false
-    v.backgroundColor = Constants.fieldBkgColor
+    v.backgroundColor = Constants.color.fieldBkg
     v.layer.cornerRadius = 5
     v.layer.masksToBounds = true
     return v
@@ -73,7 +73,7 @@ class AddNewProjectViewController: UIViewController {
     navigationItem.title = "New Project"
     setupSaveButton()
     
-    view.backgroundColor = Constants.bkgColor
+    view.backgroundColor = Constants.color.bkg
     setupTextFields()
   }
   

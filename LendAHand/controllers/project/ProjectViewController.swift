@@ -50,11 +50,11 @@ class ProjectViewController: UITableViewController, BurgerButton, NewProjectDele
   }
   
   func observeNewProject(_ prj: Project) {
-    Constants.firestoreProjectCollection.addDocument(data: prj.dictionary)
+    Constants.firestore.collection.projects.addDocument(data: prj.dictionary)
   }
   
   func setupProjectObservation() {
-    let query = Constants.firestoreProjectCollection
+    let query = Constants.firestore.collection.projects
     self.projects = LocalCollection(query: query) { [unowned self] (changes) in
       print("..............: Projects")
       changes.forEach(){ print ("[", $0.type, "]", $0) }

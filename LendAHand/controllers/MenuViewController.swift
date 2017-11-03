@@ -58,7 +58,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = Constants.baseColor
+    view.backgroundColor = Constants.color.bkg
     navigationItem.title = "Menu"
     navigationController?.isNavigationBarHidden = true
     
@@ -182,7 +182,7 @@ class MenuCell: UITableViewCell {
   
   func configureSelectedBackgroundView() {
     let view = UIView()
-    view.backgroundColor = Constants.highlightColor
+    view.backgroundColor = Constants.color.highlight
     selectedBackgroundView = view
   }
   

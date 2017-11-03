@@ -10,14 +10,33 @@ import UIKit
 import FirebaseFirestore
 
 struct Constants {
-  static let firestoreRoot = Firestore.firestore()
-  static let firestoreWorkerCollection = Constants.firestoreRoot.collection("workers")
-  static let firestoreProjectCollection = Constants.firestoreRoot.collection("projects")
-  static let firestoreCurrentCollection = Constants.firestoreRoot.collection("currents")
   static let works = "works"
-  static let baseColor = UIColor(hex: "0x89CFF0")
-  static let highlightColor = UIColor(hex: "0xdaf0fa")
-  static let bkgColor = UIColor(hex: "0xf5fbfd")
-  static let fieldBkgColor = UIColor(hex: "0xdaf0fa")
+  
+  public struct Color {
+    public let base = UIColor(hex: "0x89CFF0")
+    public let highlight = UIColor(hex: "0xdaf0fa")
+    public let bkg = UIColor(hex: "0xf5fbfd")
+    public let fieldBkg = UIColor(hex: "0xdaf0fa")
+  }
+  public static var color: Color {
+    return Color()
+  }
+  
+  public struct KFirestore {
+    public let root = Firestore.firestore()
+
+    public struct KCollection {
+      public let workers = Constants.firestore.root.collection("workers")
+      public let projects = Constants.firestore.root.collection("projects")
+      public let currents = Constants.firestore.root.collection("currents")
+    }
+    
+    public var collection: KCollection {
+      return KCollection()
+    }
+  }
+  public static var firestore: KFirestore {
+    return KFirestore()
+  }
 }
 
