@@ -35,6 +35,7 @@
 		3B8436051FAB0ABB000B1EF2 /* BurgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8436041FAB0ABB000B1EF2 /* BurgerButton.swift */; };
 		3B8436071FAB94D3000B1EF2 /* AddNewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8436061FAB94D3000B1EF2 /* AddNewProjectViewController.swift */; };
 		3B84360C1FABE621000B1EF2 /* ProjectNameValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84360B1FABE621000B1EF2 /* ProjectNameValidation.swift */; };
+		3B84360F1FAD8F32000B1EF2 /* ContactMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84360E1FAD8F32000B1EF2 /* ContactMgr.swift */; };
 		70FC41D6934D9A81033F8D38 /* Pods_LendAHandUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D662BA85C19697979754C5C /* Pods_LendAHandUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,7 @@
 		3B8436041FAB0ABB000B1EF2 /* BurgerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BurgerButton.swift; sourceTree = "<group>"; };
 		3B8436061FAB94D3000B1EF2 /* AddNewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewProjectViewController.swift; sourceTree = "<group>"; };
 		3B84360B1FABE621000B1EF2 /* ProjectNameValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNameValidation.swift; sourceTree = "<group>"; };
+		3B84360E1FAD8F32000B1EF2 /* ContactMgr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMgr.swift; sourceTree = "<group>"; };
 		4D662BA85C19697979754C5C /* Pods_LendAHandUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LendAHandUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68393D3EA8AF9EDCC96C99E0 /* Pods-LendAHandUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LendAHandUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LendAHandUITests/Pods-LendAHandUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		707213B750403FCBDFCC54B0 /* Pods_LendAHandTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LendAHandTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +152,7 @@
 		3B04FD081F9A85830044A857 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3B84360D1FAD8F16000B1EF2 /* Contact */,
 				3B84360A1FAB9871000B1EF2 /* login */,
 				3B8436091FAB9845000B1EF2 /* worker */,
 				3B8436081FAB981F000B1EF2 /* project */,
@@ -270,6 +273,14 @@
 				3B5697031F9E94DE000CE7F5 /* LoginViewController.swift */,
 			);
 			path = login;
+			sourceTree = "<group>";
+		};
+		3B84360D1FAD8F16000B1EF2 /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				3B84360E1FAD8F32000B1EF2 /* ContactMgr.swift */,
+			);
+			path = Contact;
 			sourceTree = "<group>";
 		};
 		4C3402DF2A3E98FB4ADB2878 /* Frameworks */ = {
@@ -627,6 +638,7 @@
 				3B29BC141F99767900E66F21 /* AppDelegate.swift in Sources */,
 				3B04FD0F1F9A9E2E0044A857 /* LocalCollection.swift in Sources */,
 				3B4FF57C1FA9ACB2007DBB6A /* NavigationViewController.swift in Sources */,
+				3B84360F1FAD8F32000B1EF2 /* ContactMgr.swift in Sources */,
 				3B04FD131F9AB3110044A857 /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

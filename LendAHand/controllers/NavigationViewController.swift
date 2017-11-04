@@ -29,7 +29,7 @@ class NavigationViewController: UINavigationController {
   override func viewDidLoad() {
     super.viewDidLoad()
     navigationBar.barTintColor = Constants.color.base
-    let controller = ProjectViewController()
+    let controller = WorkerViewController()
     self.setViewControllers([controller], animated: true)    
   }
   

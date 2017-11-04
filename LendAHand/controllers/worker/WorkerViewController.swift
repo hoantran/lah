@@ -12,6 +12,8 @@
 import UIKit
 
 class WorkerViewController: UITableViewController, BurgerButton {
+  var workers: LocalCollection<Worker>!
+  
   static let cellID = "cellID"
   
   
@@ -20,7 +22,28 @@ class WorkerViewController: UITableViewController, BurgerButton {
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: WorkerViewController.cellID)
     navigationItem.title = "Workers"
     setupBurgerButton()
+    setupWorkerObservation()
+    self.workers.listen()
   }
+  
+  deinit {
+    if self.workers != nil {
+      self.workers.stopListening()
+    }
+  }
+  
+  func setupWorkerObservation() {
+    let query = Constants.firestore.collection.workers
+    self.workers = LocalCollection(query: query) { [unowned self] (changes) in
+      print("..............: Workers")
+      changes.forEach(){ print ("[", $0.type, "]", $0) }
+      DispatchQueue.main.async {
+        self.tableView.reloadData()
+      }
+    }
+  }
+  
+  
   
   func addTarget(_ btn: UIButton) {
     btn.addTarget(self, action: #selector(handleBugerButtonTap), for: .touchUpInside)
@@ -35,14 +58,16 @@ class WorkerViewController: UITableViewController, BurgerButton {
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 5
+    return self.workers.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: WorkerViewController.cellID, for: indexPath)
     
-    cell.textLabel?.text = "Worker \(indexPath.row)"
-    cell.detailTextLabel?.text = "\(indexPath.row)"
+//    let contactID = self.workers[indexPath.row].contact
+    let contactID = "410FE041-5C4E-48DA-B4DE-04C15EA3DBAC"
+    cell.textLabel?.text = ContactMgr.shared.fetchName(contactID)
+    
     
     return cell
   }
