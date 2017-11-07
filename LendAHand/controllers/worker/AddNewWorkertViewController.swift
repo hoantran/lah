@@ -13,7 +13,6 @@ protocol NewWorkerDelegate {
   func observeNewWorker(_ worker: Worker)
 }
 
-
 class AddNewWorkertViewController: UIViewController, ContactSelectionDelegate {
   
   var worker:CNContact? {
@@ -26,6 +25,7 @@ class AddNewWorkertViewController: UIViewController, ContactSelectionDelegate {
   }
   
   var workerDelegate: NewWorkerDelegate?
+  var workerDataSourceDelegate: WorkerDataSourceDelegate?
   
   var name:UIButton = {
     let b = UIButton()
@@ -61,12 +61,6 @@ class AddNewWorkertViewController: UIViewController, ContactSelectionDelegate {
   
   func selectContact(_ contact: CNContact) {
     self.worker = contact
-    checkSavability()
-  }
-  
-  var isWorkerExist: Bool = false
-  func workerExists(_ flag: Bool) {
-    self.isWorkerExist = flag
     checkSavability()
   }
   
@@ -120,8 +114,15 @@ class AddNewWorkertViewController: UIViewController, ContactSelectionDelegate {
   }
   
   fileprivate func checkSavability() {
-    if let rate = rate.text {
-      navigationItem.rightBarButtonItem?.isEnabled = rate.count > 0 && self.worker != nil && !isWorkerExist
+    if  let rate = rate.text,
+        let delegate = workerDataSourceDelegate,
+        let identifier = self.worker?.identifier
+    {
+      let worker = Worker(contact: identifier, rate: 0.0)
+      navigationItem.rightBarButtonItem?.isEnabled =
+        rate.count > 0 &&
+        self.worker != nil &&
+        !delegate.exists(worker)
     }
   }
 

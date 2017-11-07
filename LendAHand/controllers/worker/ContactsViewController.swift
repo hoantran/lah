@@ -12,7 +12,6 @@ import ContactsUI
 
 protocol ContactSelectionDelegate {
   func selectContact(_ contact: CNContact)
-  func workerExists(_ flag: Bool)
 }
 
 class ContactsViewController: UITableViewController, CNContactViewControllerDelegate {
@@ -43,17 +42,7 @@ class ContactsViewController: UITableViewController, CNContactViewControllerDele
   
   func passUpContact(_ contact: CNContact) {
     selectDelegate?.selectContact(contact)
-    selectDelegate?.workerExists(isWorkerExist(contact))
     navigationController?.popViewController(animated: true)
-  }
-  
-  func isWorkerExist(_ contact: CNContact)->Bool {
-    for contactIter in self.contacts {
-      if contactIter.identifier == contact.identifier {
-        return true
-      }
-    }
-    return false
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

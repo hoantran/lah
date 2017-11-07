@@ -6,6 +6,9 @@
 //  Copyright © 2017 Hoan Tran. All rights reserved.
 //
 
+// http://dennissuratna.com/slide-out-navigation-swift/
+// https://www.raywenderlich.com/78568/create-slide-out-navigation-panel-swift
+
 import UIKit
 
 class ContainerViewController: UIViewController, UIGestureRecognizerDelegate {

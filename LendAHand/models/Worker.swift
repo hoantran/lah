@@ -31,4 +31,10 @@ extension Worker: DocumentSerializable {
   }
 }
 
+extension Worker: Equatable {
+  static func ==(lhs: Worker, rhs: Worker) -> Bool {
+    return lhs.contact == rhs.contact
+  }
+}
+
 

@@ -6,12 +6,13 @@
 //  Copyright © 2017 Hoan Tran. All rights reserved.
 //
 
-// http://dennissuratna.com/slide-out-navigation-swift/
-// https://www.raywenderlich.com/78568/create-slide-out-navigation-panel-swift
-
 import UIKit
 
-class WorkerViewController: UITableViewController, BurgerButton, NewWorkerDelegate {
+protocol WorkerDataSourceDelegate {
+  func exists(_ worker: Worker) -> Bool
+}
+
+class WorkerViewController: UITableViewController {
   var workers: LocalCollection<Worker>!
   static let cellID = "cellID"
   var contactAccessPermission = false {
@@ -65,19 +66,8 @@ class WorkerViewController: UITableViewController, BurgerButton, NewWorkerDelega
     navigationItem.backBarButtonItem = cancelBtn
     let controller = AddNewWorkertViewController()
     controller.workerDelegate = self
+    controller.workerDataSourceDelegate = self
     navigationController?.pushViewController(controller, animated: true)
-  }
-  
-  func observeNewWorker(_ worker: Worker) {
-    Constants.firestore.collection.workers.addDocument(data: worker.dictionary)
-  }
-  
-  func addTarget(_ btn: UIButton) {
-    btn.addTarget(self, action: #selector(handleBugerButtonTap), for: .touchUpInside)
-  }
-  
-  @objc func handleBugerButtonTap() {
-    postMenuTapped()
   }
   
   override func numberOfSections(in tableView: UITableView) -> Int {
@@ -99,3 +89,34 @@ class WorkerViewController: UITableViewController, BurgerButton, NewWorkerDelega
     return cell
   }
 }
+
+
+extension WorkerViewController:BurgerButton {
+  func addTarget(_ btn: UIButton) {
+    btn.addTarget(self, action: #selector(handleBugerButtonTap), for: .touchUpInside)
+  }
+  @objc func handleBugerButtonTap() {
+    postMenuTapped()
+  }
+}
+
+extension WorkerViewController:NewWorkerDelegate {
+  func observeNewWorker(_ worker: Worker) {
+    Constants.firestore.collection.workers.addDocument(data: worker.dictionary)
+  }
+}
+
+
+extension WorkerViewController: WorkerDataSourceDelegate {
+  func exists(_ worker: Worker) -> Bool {
+    if self.workers.count > 0 {
+      for i in 0...self.workers.count-1 {
+        if worker == self.workers[i] {
+          return true
+        }
+      }
+    }
+    return false
+  }
+}
+
