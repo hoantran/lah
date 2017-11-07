@@ -17,7 +17,7 @@ class ContactMgr: NSObject, CNContactPickerDelegate {
   func fetchName(_ id: String)->String {
     if let retrievedContact = fetch(id) {
       let name = retrievedContact.givenName + " " + retrievedContact.familyName
-      print("R[", retrievedContact.identifier, "]", name)
+//      print("R[", retrievedContact.identifier, "]", name)
       return name
     } else {
       return "Can not retrieve name"
@@ -74,6 +74,41 @@ class ContactMgr: NSObject, CNContactPickerDelegate {
   func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
     print("[", contact.identifier, "]", contact.givenName, contact.familyName)
     _ = fetchName(contact.identifier)
+  }
+  
+  func getAll(_ completion: @escaping ([CNContact]?)->Void ){
+    requestContactAccess{ isAllowed in
+      if isAllowed {
+        let store = CNContactStore()
+    
+        let keysToFetch = [CNContactFormatter.descriptorForRequiredKeys(for: .fullName)]
+        var allContainers = [CNContainer]()
+        var results = [CNContact]()
+    
+        do {
+          allContainers = try store.containers(matching: nil)
+        } catch {
+          print ("Error fetching contact containers")
+          completion(nil)
+          return
+        }
+    
+        for container in allContainers {
+          let fetchPredicate = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
+          do {
+            let containerResults = try store.unifiedContacts(matching: fetchPredicate, keysToFetch: keysToFetch)
+            results.append(contentsOf: containerResults)
+          } catch {
+            print("Error fetching contact results from container [\(container.identifier)]")
+          }
+        }
+        
+        completion(results)
+      } else {
+        print("Not allowed to have contact access")
+        completion(nil)
+      }
+    }
   }
   
 }

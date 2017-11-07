@@ -24,7 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.makeKeyAndVisible()
     window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
 //    window?.rootViewController = UINavigationController(rootViewController: ContainerViewController())
-//    window?.rootViewController = LoginViewController()
+//    window?.rootViewController = ContainerViewController()
+    
 
     
     return true

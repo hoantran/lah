@@ -56,8 +56,7 @@ class ProjectViewController: UITableViewController, BurgerButton, NewProjectDele
   func setupProjectObservation() {
     let query = Constants.firestore.collection.projects
     self.projects = LocalCollection(query: query) { [unowned self] (changes) in
-      print("..............: Projects")
-      changes.forEach(){ print ("[", $0.type, "]", $0) }
+//      changes.forEach(){ print ("[", $0.type, "]", $0) }
       DispatchQueue.main.async {
         self.tableView.reloadData()
       }
