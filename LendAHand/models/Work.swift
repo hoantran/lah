@@ -41,3 +41,54 @@ extension Work: DocumentSerializable {
     self.init(project: project, rate: rate, isPaid: isPaid, start: start, stop: stop, note: note)
   }
 }
+
+// UI Helper
+extension Work {
+//  static func getDuration(start: Int?, end: Int?) -> String {
+//    if let start = start, let end = end {
+//      let span = end - start;
+//      let hrs = Int(span/(60 * 60))
+//      let mins = Int((span - (hrs * 60 * 60))/60)
+//
+//      return "\(hrs)" + "h " + "\(mins)" + "m"
+//    } else {
+//      return ""
+//    }
+//  }
+//
+//  static func getTotal(start: Int, end: Int, rate: Float) -> String {
+//    let span = end - start;
+//    let hours:Float = Float(Float(span) / Float(3600))
+//    let payable: Float = rate * hours
+//
+//    return payable.roundedTo(places: 2)
+//  }
+//
+//  static func getDateStr(unixDate: Int?) -> String {
+//    if let date = unixDate {
+//      let epochDate = Date(timeIntervalSince1970: TimeInterval(date))
+//      let dayTimePeriodFormatter = DateFormatter()
+//      dayTimePeriodFormatter.dateFormat = "MMM dd, YYYY  hh:mm a"
+//
+//      return dayTimePeriodFormatter.string(from: epochDate)
+//    } else {
+//      return ""
+//    }
+//  }
+//
+//  static func getDate(unixDate: Int?) -> Date {
+//    if let date = unixDate {
+//      return Date(timeIntervalSince1970: TimeInterval(date))
+//    } else {
+//      return Date()
+//    }
+//  }
+//
+//  static func getSpan(start: Int?, end: Int?) -> TimeInterval {
+//    if let start = start, let end = end {
+//      return TimeInterval(end - start)
+//    } else {
+//      return 0
+//    }
+//  }
+}

@@ -14,6 +14,10 @@
 		3B04FD0F1F9A9E2E0044A857 /* LocalCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B04FD0E1F9A9E2E0044A857 /* LocalCollection.swift */; };
 		3B04FD111F9AA29C0044A857 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B04FD101F9AA29C0044A857 /* Constants.swift */; };
 		3B04FD131F9AB3110044A857 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B04FD121F9AB3110044A857 /* Project.swift */; };
+		3B0BBE0C1FB28A05004821D7 /* BillableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BBE0B1FB28A05004821D7 /* BillableViewController.swift */; };
+		3B0BBE0E1FB304BB004821D7 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BBE0D1FB304BB004821D7 /* BaseCell.swift */; };
+		3B0BBE101FB30594004821D7 /* BillableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BBE0F1FB30594004821D7 /* BillableCell.swift */; };
+		3B0BBE121FB3C289004821D7 /* ProjectProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BBE111FB3C289004821D7 /* ProjectProxy.swift */; };
 		3B29BC141F99767900E66F21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B29BC131F99767900E66F21 /* AppDelegate.swift */; };
 		3B29BC161F99767900E66F21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B29BC151F99767900E66F21 /* ViewController.swift */; };
 		3B29BC1B1F99767900E66F21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B29BC1A1F99767900E66F21 /* Assets.xcassets */; };
@@ -66,6 +70,10 @@
 		3B04FD0E1F9A9E2E0044A857 /* LocalCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalCollection.swift; sourceTree = "<group>"; };
 		3B04FD101F9AA29C0044A857 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3B04FD121F9AB3110044A857 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		3B0BBE0B1FB28A05004821D7 /* BillableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillableViewController.swift; sourceTree = "<group>"; };
+		3B0BBE0D1FB304BB004821D7 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
+		3B0BBE0F1FB30594004821D7 /* BillableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillableCell.swift; sourceTree = "<group>"; };
+		3B0BBE111FB3C289004821D7 /* ProjectProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectProxy.swift; sourceTree = "<group>"; };
 		3B29BC101F99767900E66F21 /* LendAHand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LendAHand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B29BC131F99767900E66F21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B29BC151F99767900E66F21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +166,7 @@
 		3B04FD081F9A85830044A857 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3B0BBE0A1FB289EA004821D7 /* billable */,
 				3B84360D1FAD8F16000B1EF2 /* Contact */,
 				3B84360A1FAB9871000B1EF2 /* login */,
 				3B8436091FAB9845000B1EF2 /* worker */,
@@ -183,6 +192,7 @@
 				3B8436021FAA6D6C000B1EF2 /* Extensions.swift */,
 				3B8436041FAB0ABB000B1EF2 /* BurgerButton.swift */,
 				3B7468871FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift */,
+				3B0BBE0D1FB304BB004821D7 /* BaseCell.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -196,6 +206,15 @@
 				3B5696FD1F9DD6C2000CE7F5 /* Work.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		3B0BBE0A1FB289EA004821D7 /* billable */ = {
+			isa = PBXGroup;
+			children = (
+				3B0BBE0B1FB28A05004821D7 /* BillableViewController.swift */,
+				3B0BBE0F1FB30594004821D7 /* BillableCell.swift */,
+			);
+			path = billable;
 			sourceTree = "<group>";
 		};
 		3B29BC071F99767900E66F21 = {
@@ -261,6 +280,7 @@
 				3B4FF5731FA84666007DBB6A /* ProjectViewController.swift */,
 				3B8436061FAB94D3000B1EF2 /* AddNewProjectViewController.swift */,
 				3B84360B1FABE621000B1EF2 /* ProjectNameValidation.swift */,
+				3B0BBE111FB3C289004821D7 /* ProjectProxy.swift */,
 			);
 			path = project;
 			sourceTree = "<group>";
@@ -634,6 +654,7 @@
 				3B74688A1FB12E8D00ED77B1 /* ContactsViewController.swift in Sources */,
 				3B5697041F9E94DE000CE7F5 /* LoginViewController.swift in Sources */,
 				3B04FD111F9AA29C0044A857 /* Constants.swift in Sources */,
+				3B0BBE0E1FB304BB004821D7 /* BaseCell.swift in Sources */,
 				3B8436071FAB94D3000B1EF2 /* AddNewProjectViewController.swift in Sources */,
 				3B4FF57A1FA94407007DBB6A /* ContainerViewController.swift in Sources */,
 				3B5696FE1F9DD6C2000CE7F5 /* Work.swift in Sources */,
@@ -644,13 +665,16 @@
 				3B4FF5781FA861AB007DBB6A /* MenuViewController.swift in Sources */,
 				3B4FF5741FA84666007DBB6A /* ProjectViewController.swift in Sources */,
 				3B8436031FAA6D6C000B1EF2 /* Extensions.swift in Sources */,
+				3B0BBE101FB30594004821D7 /* BillableCell.swift in Sources */,
 				3B84360C1FABE621000B1EF2 /* ProjectNameValidation.swift in Sources */,
 				3B29BC141F99767900E66F21 /* AppDelegate.swift in Sources */,
 				3B7468881FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift in Sources */,
+				3B0BBE0C1FB28A05004821D7 /* BillableViewController.swift in Sources */,
 				3B04FD0F1F9A9E2E0044A857 /* LocalCollection.swift in Sources */,
 				3B7468861FB0F1EC00ED77B1 /* AddNewWorkertViewController.swift in Sources */,
 				3B4FF57C1FA9ACB2007DBB6A /* NavigationViewController.swift in Sources */,
 				3B84360F1FAD8F32000B1EF2 /* ContactMgr.swift in Sources */,
+				3B0BBE121FB3C289004821D7 /* ProjectProxy.swift in Sources */,
 				3B04FD131F9AB3110044A857 /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

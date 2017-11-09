@@ -14,20 +14,22 @@ class ContactMgr: NSObject, CNContactPickerDelegate {
   static let shared = ContactMgr()
   private override init(){}
   
-  func fetchName(_ id: String)->String {
-    if let retrievedContact = fetch(id) {
-      let name = retrievedContact.givenName + " " + retrievedContact.familyName
-//      print("R[", retrievedContact.identifier, "]", name)
-      return name
-    } else {
-      return "Can not retrieve name"
+  func fetchName(_ id: String, completion: @escaping (String?)->Void) {
+    fetch(id) { retrievedContact in
+      //      let formatter = CNContactFormatter()
+      //      cell.textLabel?.text = formatter.string(from: contact)
+      var name:String?
+      if let contact = retrievedContact {
+        name = contact.givenName + " " + contact.familyName
+      }
+      completion(name)
     }
   }
   
-  func fetch(_ id: String) -> CNContact? {
-    var contact: CNContact?
-    
+  func fetch(_ id: String, completion: @escaping (CNContact?)->Void)  {
     requestContactAccess{ isAllowed in
+      var contact: CNContact?
+      
       if isAllowed {
         let store = CNContactStore()
         let keysToFetch = [CNContactGivenNameKey, CNContactFamilyNameKey]
@@ -39,9 +41,8 @@ class ContactMgr: NSObject, CNContactPickerDelegate {
       } else {
         print("Not allowed to have contact access")
       }
+      completion(contact)
     }
-    
-    return contact
   }
   
   func requestContactAccess(completion: @escaping (Bool)->Void ) {
@@ -73,7 +74,7 @@ class ContactMgr: NSObject, CNContactPickerDelegate {
   
   func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
     print("[", contact.identifier, "]", contact.givenName, contact.familyName)
-    _ = fetchName(contact.identifier)
+//    _ = fetchName(contact.identifier)
   }
   
   func getAll(_ completion: @escaping ([CNContact]?)->Void ){

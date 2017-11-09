@@ -82,11 +82,21 @@ class WorkerViewController: UITableViewController {
     let cell = tableView.dequeueReusableCell(withIdentifier: WorkerViewController.cellID, for: indexPath)
     
     let contactID = self.workers[indexPath.row].contact
-//    let contactID = "410FE041-5C4E-48DA-B4DE-04C15EA3DBAC"
-    cell.textLabel?.text = ContactMgr.shared.fetchName(contactID)
-    
+    ContactMgr.shared.fetchName(contactID) { name in
+      if let name = name {
+        cell.textLabel?.text = name
+      } else {
+        cell.textLabel?.text = "Can not get name"
+      }
+    }
     
     return cell
+  }
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let controller = BillableViewController()
+    controller.worker = self.workers[indexPath.row]
+    navigationController?.pushViewController(controller, animated: true)
   }
 }
 

@@ -88,3 +88,15 @@ final class LocalCollection<T: DocumentSerializable> {
     stopListening()
   }
 }
+
+extension LocalCollection {
+  func retrieve(_ id: String) -> T? {
+    for i in 0 ..< documents.count {
+      if documents[i].documentID == id {
+        return self.items[i]
+      }
+    }
+    
+    return nil
+  }
+}
