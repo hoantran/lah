@@ -13,6 +13,12 @@ class BillableViewController: UIViewController {
   var worker: Worker?
   var observerToken: NSObjectProtocol?
   
+  var control: ClockControlView = {
+    let v = ClockControlView()
+    v.translatesAutoresizingMaskIntoConstraints = false
+    return v
+  }()
+  
   lazy var tableView: UITableView = {
     let table = UITableView()
     table.translatesAutoresizingMaskIntoConstraints = false
@@ -31,7 +37,7 @@ class BillableViewController: UIViewController {
       tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: top),
       tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
       tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
-      tableView.heightAnchor.constraint(equalTo: view.heightAnchor)
+      tableView.bottomAnchor.constraint(equalTo: control.topAnchor)
       ])
   }
   
@@ -56,6 +62,14 @@ class BillableViewController: UIViewController {
       }
     }
     
+    view.addSubview(control)
+    NSLayoutConstraint.activate([
+      control.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      control.leftAnchor.constraint(equalTo: view.leftAnchor),
+      control.rightAnchor.constraint(equalTo: view.rightAnchor),
+      control.heightAnchor.constraint(equalToConstant: 55)
+      ])
+    
     layoutTable()
     self.tableView.register(BillableCell.self, forCellReuseIdentifier: BillableCell.cellID)
     self.observerToken = NotificationCenter.default.addObserver(forName: .projectChanged, object: nil, queue: nil, using: {notif in
@@ -76,7 +90,7 @@ class BillableViewController: UIViewController {
 
 extension BillableViewController: UITableViewDataSource {
   public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 5
+    return 25
   }
   public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: BillableCell.cellID, for: indexPath) as! BillableCell

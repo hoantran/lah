@@ -18,6 +18,7 @@
 		3B0BBE0E1FB304BB004821D7 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BBE0D1FB304BB004821D7 /* BaseCell.swift */; };
 		3B0BBE101FB30594004821D7 /* BillableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BBE0F1FB30594004821D7 /* BillableCell.swift */; };
 		3B0BBE121FB3C289004821D7 /* ProjectProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BBE111FB3C289004821D7 /* ProjectProxy.swift */; };
+		3B0BBE141FB45141004821D7 /* ClockControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BBE131FB45141004821D7 /* ClockControlView.swift */; };
 		3B29BC141F99767900E66F21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B29BC131F99767900E66F21 /* AppDelegate.swift */; };
 		3B29BC161F99767900E66F21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B29BC151F99767900E66F21 /* ViewController.swift */; };
 		3B29BC1B1F99767900E66F21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B29BC1A1F99767900E66F21 /* Assets.xcassets */; };
@@ -74,6 +75,7 @@
 		3B0BBE0D1FB304BB004821D7 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		3B0BBE0F1FB30594004821D7 /* BillableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillableCell.swift; sourceTree = "<group>"; };
 		3B0BBE111FB3C289004821D7 /* ProjectProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectProxy.swift; sourceTree = "<group>"; };
+		3B0BBE131FB45141004821D7 /* ClockControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockControlView.swift; sourceTree = "<group>"; };
 		3B29BC101F99767900E66F21 /* LendAHand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LendAHand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B29BC131F99767900E66F21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B29BC151F99767900E66F21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 			children = (
 				3B0BBE0B1FB28A05004821D7 /* BillableViewController.swift */,
 				3B0BBE0F1FB30594004821D7 /* BillableCell.swift */,
+				3B0BBE131FB45141004821D7 /* ClockControlView.swift */,
 			);
 			path = billable;
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 				3B04FD0D1F9A9D610044A857 /* Worker.swift in Sources */,
 				3B4FF5781FA861AB007DBB6A /* MenuViewController.swift in Sources */,
 				3B4FF5741FA84666007DBB6A /* ProjectViewController.swift in Sources */,
+				3B0BBE141FB45141004821D7 /* ClockControlView.swift in Sources */,
 				3B8436031FAA6D6C000B1EF2 /* Extensions.swift in Sources */,
 				3B0BBE101FB30594004821D7 /* BillableCell.swift in Sources */,
 				3B84360C1FABE621000B1EF2 /* ProjectNameValidation.swift in Sources */,
