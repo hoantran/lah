@@ -96,6 +96,7 @@ class WorkerViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let controller = BillableViewController()
     controller.worker = self.workers[indexPath.row]
+    controller.workerID = self.workers.id(indexPath.row)
     navigationController?.pushViewController(controller, animated: true)
   }
 }

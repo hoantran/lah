@@ -11,12 +11,12 @@ import Foundation
 struct Current {
   
   var worker: String
-  var work: String
+  var start: Date
   
   var dictionary: [String: Any] {
     return [
       "worker": worker,
-      "work": work
+      "start": start
     ]
   }
 }
@@ -24,9 +24,10 @@ struct Current {
 extension Current: DocumentSerializable {
   
   init?(dictionary: [String : Any]) {
-    guard let worker = dictionary["worker"] as? String,
-      let work = dictionary["work"] as? String else { return nil }
+    guard
+      let worker = dictionary["worker"] as? String,
+      let start = dictionary["start"] as? Date else { return nil }
     
-    self.init(worker: worker, work: work)
+    self.init(worker: worker, start: start)
   }
 }

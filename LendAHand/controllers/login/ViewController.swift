@@ -108,7 +108,7 @@ class ViewController: UIViewController, LoginButtonDelegate {
         let projectID = self.projects.documents[0].reference.documentID
         let worker = self.workers[0]
         let start = Date()
-        let work = Work(project: projectID, rate: worker.rate, isPaid: false, start: start, stop: nil, note: nil)
+        let work = Work(rate: worker.rate, isPaid: false, start: start, project: projectID, stop: nil, note: nil)
         let collection = self.workers.documents[0].reference.collection(Constants.works)
         let newWork = collection.document()
         newWork.setData(work.dictionary)
@@ -119,7 +119,7 @@ class ViewController: UIViewController, LoginButtonDelegate {
           }
           let current = Current(
               worker: self.workers.documents[0].reference.documentID,
-              work: newWork.documentID)
+              start: Date())
           Constants.firestore.collection.currents.addDocument(data: current.dictionary)
         }
       }

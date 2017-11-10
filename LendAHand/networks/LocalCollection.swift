@@ -99,4 +99,12 @@ extension LocalCollection {
     
     return nil
   }
+  
+  func id(_ index: Int) -> String? {
+    if index >= 0 && index < documents.count {
+      return documents[index].documentID
+    } else {
+      return nil
+    }
+  }
 }

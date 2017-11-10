@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol ClockControlDelegate {
+  func tapped()
+}
+
 class ClockControlView: UIView {
+  var delegate: ClockControlDelegate?
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     backgroundColor = UIColor.white
@@ -37,6 +43,7 @@ class ClockControlView: UIView {
       control.heightAnchor.constraint(equalToConstant: 40)
       ])
     
+    showClockIn()
     
 //    addConstraints(format: "V:|-[v0(1)]-[v1(25)]-|", views: separator, clock)
 //    addConstraints(format: "H:|-8-[v0(100)]-20-[v1(100)]-8-|", views: clock, control)
@@ -82,7 +89,17 @@ class ClockControlView: UIView {
     return b
   }()
   
+  func showClockIn() {
+    control.setTitle("CLOCK IN", for: .normal)
+    control.backgroundColor = UIColor.green
+  }
+  
+  func showClockOut() {
+    control.setTitle("CLOCK OUT", for: .normal)
+    control.backgroundColor = UIColor.red
+  }
+  
   @objc func handleControlTap() {
-    print("tap")
+    delegate?.tapped()
   }
 }

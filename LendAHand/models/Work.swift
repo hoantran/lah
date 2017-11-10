@@ -10,19 +10,19 @@ import Foundation
 
 struct Work {
   
-  var project: String
   var rate: Float
   var isPaid: Bool
   var start: Date
+  var project: String?
   var stop: Date?
   var note: String?
   
   var dictionary: [String: Any] {
     return [
-      "project": project,
       "rate": rate,
       "isPaid": isPaid,
       "start": start,
+      "project": project == nil ? NSNull() : project as Any,
       "stop": stop == nil ? NSNull() : stop as Any,
       "note": note == nil ? NSNull() : note as Any
     ]
@@ -31,14 +31,15 @@ struct Work {
 
 extension Work: DocumentSerializable {
   init?(dictionary: [String : Any]) {
-    guard let project = dictionary["project"] as? String,
+    guard
       let rate = dictionary["rate"] as? Float,
       let isPaid = dictionary["isPaid"] as? Bool,
       let start = dictionary["start"] as? Date else { return nil }
+    let project = dictionary["project"] == nil ? nil : dictionary["project"] as? String
     let stop = dictionary["stop"] == nil ? nil : dictionary["stop"] as? Date
     let note = dictionary["note"] == nil ? nil : dictionary["note"] as? String
     
-    self.init(project: project, rate: rate, isPaid: isPaid, start: start, stop: stop, note: note)
+    self.init(rate: rate, isPaid: isPaid, start: start, project: project, stop: stop, note: note)
   }
 }
 

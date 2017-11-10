@@ -12,7 +12,11 @@ class BillableCell: BaseCell {
   var work:Work? {
     didSet {
       if let work = self.work {
-        project.text = ProjectProxy.shared.getName(work.project)
+        if let prj = work.project {
+          project.text = ProjectProxy.shared.getName(prj)
+        } else {
+          project.text = String(work.start.timeIntervalSince1970)
+        }
         paid.isHidden = !work.isPaid
         
         var seconds = 0
