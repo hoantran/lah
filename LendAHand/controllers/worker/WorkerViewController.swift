@@ -16,6 +16,8 @@ protocol WorkerDataSourceDelegate {
 class WorkerViewController: UITableViewController {
   var workers: LocalCollection<Worker>!
   var currents: LocalCollection<Current>!
+  var indexOrder = Array<Int>()
+  
   static let cellID = "cellID"
   
   var contactAccessPermission = false {
@@ -73,11 +75,11 @@ class WorkerViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: WorkerViewController.cellID, for: indexPath)
     
-    if let workerID = self.workers.id(indexPath.row) {
-      cell.backgroundColor = isInCurrents(workerID) ? UIColor.init(hex: "0xfec1c2") : UIColor.white
-    }
+    let indexRow = self.indexOrder[indexPath.row]
     
-    let contactID = self.workers[indexPath.row].contact
+    cell.backgroundColor = indexPath.row < self.currents.count ? UIColor.init(hex: "0xfec1c2") : UIColor.white
+
+    let contactID = self.workers[indexRow].contact
     ContactMgr.shared.fetchName(contactID) { name in
       if let name = name {
         cell.textLabel?.text = name
@@ -90,18 +92,42 @@ class WorkerViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let indexRow = self.indexOrder[indexPath.row]
+    
     let controller = BillableViewController()
-    controller.worker = self.workers[indexPath.row]
-    controller.workerID = self.workers.id(indexPath.row)
+    controller.worker = self.workers[indexRow]
+    controller.workerID = self.workers.id(indexRow)
     navigationController?.pushViewController(controller, animated: true)
   }
 }
 
 
 extension WorkerViewController {
+  
+  func sort() {
+    var allCounts: [Int] = Array(repeating:0, count: self.workers.count)
+    for (i, _) in allCounts.enumerated() {
+      allCounts[i] = i
+    }
+    
+    var newHightlighted = [Int]()
+    let newNormals = allCounts.filter { el in
+      if let workerID = self.workers.id(el) {
+        if isInCurrents(workerID) {
+          newHightlighted.append(el)
+          return false
+        }
+      }
+      return true
+    }
+    
+    self.indexOrder = newHightlighted + newNormals
+  }
+  
   func setupCurrents() {
     let query = Constants.firestore.collection.currents
     self.currents = LocalCollection(query: query) { [unowned self] (changes) in
+      self.sort()
       DispatchQueue.main.async {
         self.tableView.reloadData()
       }
@@ -132,6 +158,7 @@ extension WorkerViewController {
   func setupWorkers() {
     let query = Constants.firestore.collection.workers
     self.workers = LocalCollection(query: query) { [unowned self] (changes) in
+      self.sort()
       DispatchQueue.main.async {
         self.tableView.reloadData()
       }
