@@ -8,18 +8,9 @@
 
 import UIKit
 
-protocol MoreExtension {
-  func moreSetups()
-  func moreDeinits()
-}
-
-extension MoreExtension {
-  func moreSetups(){}
-  func moreDeinits(){}
-}
-
-class BillableViewController: UIViewController, MoreExtension {
+class BillableViewController: UIViewController {
   var currents: LocalCollection<Current>!
+  var works: LocalCollection<Work>!
   
   static let cellID = "BillableCellID"
   var worker: Worker?
@@ -55,13 +46,13 @@ class BillableViewController: UIViewController, MoreExtension {
       ])
   }
   
-  var work: Work = {
-    let project = "0VXsIC8d14Q1x79F3H7y"
-    let start = Date()
-    let stop = Date(timeInterval: 3723, since: start)
-    let w = Work(rate: 7.8, isPaid: true, start: start, project: project, stop: stop, note: "One note to bring")
-    return w
-  }()
+//  var work: Work = {
+//    let project = "0VXsIC8d14Q1x79F3H7y"
+//    let start = Date()
+//    let stop = Date(timeInterval: 3723, since: start)
+//    let w = Work(rate: 7.8, isPaid: true, start: start, project: project, stop: stop, note: "One note to bring")
+//    return w
+//  }()
   
   fileprivate func setupHeader() {
     view.backgroundColor = UIColor.blue
@@ -102,17 +93,39 @@ class BillableViewController: UIViewController, MoreExtension {
     setupHeader()
     setupControl()
     setupTable()
-    moreSetups()
+    setupCurrents()
+    setupWorks()
   }
   
   deinit {
     if let token = self.observerToken {
       NotificationCenter.default.removeObserver(token)
     }
-    moreDeinits()
+    deinitCurrents()
+    deinitWorks()
   }
 }
 
+
+extension BillableViewController {
+  func setupWorks() {
+    if let workerID = self.workerID {
+      let query = Constants.firestore.collection.workers.document(workerID).collection(Constants.works)
+      self.works = LocalCollection(query: query) { [unowned self] (changes) in
+        DispatchQueue.main.async {
+          self.tableView.reloadData()
+        }
+      }
+      self.works.listen()
+    }
+  }
+  
+  func deinitWorks() {
+    if let works = self.works {
+      works.stopListening()
+    }
+  }
+}
 
 
 extension BillableViewController: ClockControlDelegate {
@@ -196,7 +209,7 @@ extension BillableViewController: ClockControlDelegate {
     }
   }
   
-  func moreSetups() {
+  func setupCurrents() {
     let query = Constants.firestore.collection.currents
     self.currents = LocalCollection(query: query) { [unowned self] (changes) in
       //      changes.forEach(){ print ("[", $0.type, "]", $0) }
@@ -205,7 +218,7 @@ extension BillableViewController: ClockControlDelegate {
     self.currents.listen()
   }
   
-  func moreDeinits() {
+  func deinitCurrents() {
     if let currents = self.currents {
       currents.stopListening()
     }
@@ -216,14 +229,20 @@ extension BillableViewController: ClockControlDelegate {
 
 extension BillableViewController: UITableViewDataSource {
   public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 25
+    if let works = self.works {
+      return works.count
+    } else {
+      return 0
+    }
   }
   public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: BillableCell.cellID, for: indexPath) as! BillableCell
-    cell.work = work
+    cell.work = self.works[indexPath.row]
     return cell
   }
 }
+
+
 
 extension BillableViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

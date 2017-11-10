@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol WorkerDataSourceDelegate {
   func exists(_ worker: Worker) -> Bool
@@ -14,7 +15,9 @@ protocol WorkerDataSourceDelegate {
 
 class WorkerViewController: UITableViewController {
   var workers: LocalCollection<Worker>!
+  var currents: LocalCollection<Current>!
   static let cellID = "cellID"
+  
   var contactAccessPermission = false {
     didSet {
       DispatchQueue.main.async {
@@ -28,31 +31,20 @@ class WorkerViewController: UITableViewController {
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: WorkerViewController.cellID)
     navigationItem.title = "Workers"
     setupBurgerButton()
-    setupWorkerObservation()
-    self.workers.listen()
+    setupWorkers()
     setupAddNewWorker()
     requestContactAccess()
+    setupCurrents()
   }
   
   deinit {
-    if self.workers != nil {
-      self.workers.stopListening()
-    }
+    deinitWorkers()
+    deinitCurrents()
   }
   
   fileprivate func requestContactAccess() {
     ContactMgr.shared.requestContactAccess() { permission in
       self.contactAccessPermission = permission
-    }
-  }
-  
-  func setupWorkerObservation() {
-    let query = Constants.firestore.collection.workers
-    self.workers = LocalCollection(query: query) { [unowned self] (changes) in
-//      changes.forEach(){ print ("[", $0.type, "]", $0) }
-      DispatchQueue.main.async {
-        self.tableView.reloadData()
-      }
     }
   }
   
@@ -81,6 +73,10 @@ class WorkerViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: WorkerViewController.cellID, for: indexPath)
     
+    if let workerID = self.workers.id(indexPath.row) {
+      cell.backgroundColor = isInCurrents(workerID) ? UIColor.init(hex: "0xfec1c2") : UIColor.white
+    }
+    
     let contactID = self.workers[indexPath.row].contact
     ContactMgr.shared.fetchName(contactID) { name in
       if let name = name {
@@ -101,6 +97,54 @@ class WorkerViewController: UITableViewController {
   }
 }
 
+
+extension WorkerViewController {
+  func setupCurrents() {
+    let query = Constants.firestore.collection.currents
+    self.currents = LocalCollection(query: query) { [unowned self] (changes) in
+      DispatchQueue.main.async {
+        self.tableView.reloadData()
+      }
+    }
+    self.currents.listen()
+  }
+
+  func deinitCurrents() {
+    if self.currents != nil {
+      self.currents.stopListening()
+    }
+  }
+  
+  func isInCurrents(_ id: String)->Bool {
+    if self.currents.count > 0 {
+      for i in 0...self.currents.count-1 {
+        if id == self.currents[i].worker {
+          return true
+        }
+      }
+    }
+    return false
+  }
+}
+
+
+extension WorkerViewController {
+  func setupWorkers() {
+    let query = Constants.firestore.collection.workers
+    self.workers = LocalCollection(query: query) { [unowned self] (changes) in
+      DispatchQueue.main.async {
+        self.tableView.reloadData()
+      }
+    }
+    self.workers.listen()
+  }
+  
+  func deinitWorkers() {
+    if self.workers != nil {
+      self.workers.stopListening()
+    }
+  }
+}
 
 extension WorkerViewController:BurgerButton {
   func addTarget(_ btn: UIButton) {
