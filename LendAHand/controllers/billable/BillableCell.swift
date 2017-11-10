@@ -94,7 +94,18 @@ class BillableCell: BaseCell {
     addSubview(date)
     addSubview(amount)
     
-    addConstraints(format: "H:|-8-[v0(>=130)]-4-[v1(50)]-4-[v2(75)]-[v3(<=85)]-8-|", views: project, paid, duration, amount)
+    //    addConstraints(format: "H:|-8-[v0(>=130)]-4-[v1(50)]-4-[v2(75)]-[v3(<=85)]-8-|", views: project, paid, duration, amount)
+    NSLayoutConstraint.activate([
+      amount.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
+      amount.widthAnchor.constraint(equalToConstant: 80),
+      duration.rightAnchor.constraint(equalTo: amount.leftAnchor, constant: -2),
+      duration.widthAnchor.constraint(equalToConstant: 60),
+      paid.rightAnchor.constraint(equalTo: duration.leftAnchor, constant: -4),
+      paid.widthAnchor.constraint(equalToConstant: 50),
+      project.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
+      project.rightAnchor.constraint(equalTo: paid.leftAnchor, constant: -4)
+      ])
+    
     addConstraints(format: "V:|-[v0]-|", views: project)
     addConstraints(format: "V:|-[v0]-|", views: paid)
     addConstraints(format: "V:|-[v0]-|", views: amount)
