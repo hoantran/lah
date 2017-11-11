@@ -31,6 +31,7 @@ class WorkerViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: WorkerViewController.cellID)
+    tableView.register(HighlightedWorkerCell.self, forCellReuseIdentifier: HighlightedWorkerCell.cellID)
     navigationItem.title = "Workers"
     setupBurgerButton()
     setupWorkers()
@@ -42,6 +43,10 @@ class WorkerViewController: UITableViewController {
   deinit {
     deinitWorkers()
     deinitCurrents()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    self.tableView.reloadData()
   }
   
   fileprivate func requestContactAccess() {
@@ -73,22 +78,41 @@ class WorkerViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: WorkerViewController.cellID, for: indexPath)
-    
-    let indexRow = self.indexOrder[indexPath.row]
-    
-    cell.backgroundColor = indexPath.row < self.currents.count ? UIColor.init(hex: "0xfec1c2") : UIColor.white
-
-    let contactID = self.workers[indexRow].contact
-    ContactMgr.shared.fetchName(contactID) { name in
-      if let name = name {
-        cell.textLabel?.text = name
-      } else {
-        cell.textLabel?.text = "Can not get name"
+    if isHighlightedRow(indexPath.row) {
+      let cell = tableView.dequeueReusableCell(withIdentifier: HighlightedWorkerCell.cellID, for: indexPath) as! HighlightedWorkerCell
+      cell.start = self.currents[indexPath.row].start
+      let indexRow = self.indexOrder[indexPath.row]
+      cell.rate = self.workers[indexRow].rate
+      cell.clock.restartAnimation()
+      cell.update()
+      let contactID = self.workers[indexRow].contact
+      ContactMgr.shared.fetchName(contactID) { name in
+        if let name = name {
+          cell.name = name
+        } else {
+          cell.name = "Can not get name"
+        }
       }
+
+      return cell
+      
+    } else {
+      
+      let cell = tableView.dequeueReusableCell(withIdentifier: WorkerViewController.cellID, for: indexPath)
+      let indexRow = self.indexOrder[indexPath.row]
+      cell.backgroundColor = UIColor.white
+
+      let contactID = self.workers[indexRow].contact
+      ContactMgr.shared.fetchName(contactID) { name in
+        if let name = name {
+          cell.textLabel?.text = name
+        } else {
+          cell.textLabel?.text = "Can not get name"
+        }
+      }
+      
+      return cell
     }
-    
-    return cell
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -99,7 +123,18 @@ class WorkerViewController: UITableViewController {
     controller.workerID = self.workers.id(indexRow)
     navigationController?.pushViewController(controller, animated: true)
   }
+  
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    if isHighlightedRow(indexPath.row) {
+      return 70
+    } else {
+      return 35
+    }
+  }
 }
+
+
+
 
 
 extension WorkerViewController {
@@ -122,6 +157,10 @@ extension WorkerViewController {
     }
     
     self.indexOrder = newHightlighted + newNormals
+  }
+  
+  func isHighlightedRow(_ row: Int)->Bool {
+    return row < self.currents.count
   }
   
   func setupCurrents() {
@@ -152,6 +191,11 @@ extension WorkerViewController {
     return false
   }
 }
+
+
+
+
+
 
 
 extension WorkerViewController {
@@ -187,6 +231,10 @@ extension WorkerViewController:NewWorkerDelegate {
     Constants.firestore.collection.workers.addDocument(data: worker.dictionary)
   }
 }
+
+
+
+
 
 
 extension WorkerViewController: WorkerDataSourceDelegate {

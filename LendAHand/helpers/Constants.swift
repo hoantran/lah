@@ -17,6 +17,7 @@ struct Constants {
     public let highlight = UIColor(hex: "0xdaf0fa")
     public let bkg = UIColor(hex: "0xf5fbfd")
     public let fieldBkg = UIColor(hex: "0xdaf0fa")
+    public let amount = UIColor(hex: "0xf47200")
   }
   public static var color: Color {
     return Color()

@@ -73,7 +73,27 @@ extension UIView {
   }
 }
 
+extension Double {
+  static func random() -> Double {
+    return Double(arc4random())/Double(UInt32.max)
+  }
+  
+  static func random(min: Double, max: Double) -> Double {
+    assert(min<max)
+    return Double.random() * (max - min) + min
+  }
+}
+
 extension Float {
+  static func random() -> Float {
+    return Float(arc4random())/Float(UInt32.max)
+  }
+  
+  static func random(min: Float, max: Float) -> Float {
+    assert(min<max)
+    return Float.random() * (max - min) + min
+  }
+  
   func roundedTo(places: Int) -> String {
     let divisor:Float = Float(pow(10.0, Double(places)))
     let result = Darwin.round(self * divisor) / divisor
