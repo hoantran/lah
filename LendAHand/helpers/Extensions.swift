@@ -13,6 +13,23 @@ extension Notification.Name {
   static let projectsSelected = Notification.Name("projectsSelected")
   static let logoutSelected = Notification.Name("logoutSelected")
   static let menuTapped = Notification.Name("menuTapped")
+  static let timerForWorkerFired = Notification.Name("workerTimerFired")
+}
+
+extension Date {
+  // return elapsed time from this date to now, in form of 00:00:00
+  func elapsed()->String{
+    let now = Date()
+    let elapsed = Int(now.timeIntervalSince(self))
+    if elapsed <= 0 {
+      return "00:00:00"
+    } else {
+      let hours = Int(elapsed/(60*60))
+      let minutes = Int( (elapsed - (hours*60*60))/60 )
+      let seconds = Int( elapsed - (hours*60*60) - (minutes*60))
+      return "\( String(format: "%02d", hours) ):\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
+    }
+  }
 }
 
 extension UIColor {

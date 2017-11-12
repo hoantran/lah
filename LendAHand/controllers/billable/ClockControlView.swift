@@ -8,12 +8,12 @@
 
 import UIKit
 
-protocol ClockControlDelegate {
+protocol ClockControlDelegate: class {
   func tapped()
 }
 
 class ClockControlView: UIView {
-  var delegate: ClockControlDelegate?
+  weak var delegate: ClockControlDelegate?
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -70,6 +70,14 @@ class ClockControlView: UIView {
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
+  
+  func update(_ elapsed: String) {
+    clock.text = elapsed
+  }
+  
+  func clear() {
+    clock.text = "00:00:00"
+  }
   
   let control: UIButton = {
     let b = UIButton()

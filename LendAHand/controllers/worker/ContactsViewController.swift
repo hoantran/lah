@@ -10,13 +10,13 @@ import UIKit
 import Contacts
 import ContactsUI
 
-protocol ContactSelectionDelegate {
+protocol ContactSelectionDelegate: class {
   func selectContact(_ contact: CNContact)
 }
 
 class ContactsViewController: UITableViewController, CNContactViewControllerDelegate {
   static let cellID = "ContactCellID"
-  var selectDelegate: ContactSelectionDelegate?
+  weak var selectDelegate: ContactSelectionDelegate?
   
   var contacts: [CNContact] = [] {
     didSet {

@@ -8,12 +8,12 @@
 
 import UIKit
 
-protocol NewProjectDelegate {
+protocol NewProjectDelegate: class {
   func observeNewProject(_ prj: Project)
 }
 
 class AddNewProjectViewController: UIViewController {
-  var projectDelegate: NewProjectDelegate?
+  weak var projectDelegate: NewProjectDelegate?
   
   let inputsContainerView: UIView = {
     let v = UIView()
@@ -75,6 +75,8 @@ class AddNewProjectViewController: UIViewController {
     
     view.backgroundColor = Constants.color.bkg
     setupTextFields()
+    
+//    print("--- INIT ---")
   }
   
   @objc func handleSave() {
@@ -83,6 +85,10 @@ class AddNewProjectViewController: UIViewController {
       projectDelegate?.observeNewProject(project)
     }
     navigationController?.popViewController(animated: true)
+  }
+  
+  deinit {
+//    print("--- DEINIT ---")
   }
   
 }

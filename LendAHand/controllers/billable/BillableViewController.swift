@@ -11,6 +11,7 @@ import UIKit
 class BillableViewController: UIViewController {
   var currents: LocalCollection<Current>!
   var works: LocalCollection<Work>!
+  var timer: Timer!
   
   static let cellID = "BillableCellID"
   var worker: Worker?
@@ -87,24 +88,59 @@ class BillableViewController: UIViewController {
     })
   }
   
+  fileprivate func unObserve() {
+    if let token = self.observerToken {
+      NotificationCenter.default.removeObserver(token)
+      self.observerToken = nil
+    }
+  }
+  
+  fileprivate func cleanup() {
+    unObserve()
+    deinitCurrents()
+    deinitWorks()
+    clearTimer()
+    self.worker = nil
+    self.workerID = nil
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    cleanup()
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     setupHeader()
     setupControl()
     setupTable()
     setupCurrents()
     setupWorks()
+//    print("--- INIT ---")
   }
   
   deinit {
-    if let token = self.observerToken {
-      NotificationCenter.default.removeObserver(token)
-    }
-    deinitCurrents()
-    deinitWorks()
+//    print("--- DEINIT ---")
+    cleanup()
   }
 }
+
+extension BillableViewController {
+  func startTimer() {
+    clearTimer()
+    self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
+  }
+  
+  func clearTimer() {
+    self.timer?.invalidate()
+    self.timer = nil
+  }
+  
+  @objc func timerFired(timer: Timer) {
+    updateClock()
+  }
+}
+
 
 
 extension BillableViewController {
@@ -123,6 +159,7 @@ extension BillableViewController {
   func deinitWorks() {
     if let works = self.works {
       works.stopListening()
+      self.works = nil
     }
   }
 }
@@ -130,11 +167,21 @@ extension BillableViewController {
 
 extension BillableViewController: ClockControlDelegate {
   
+  func updateClock() {
+    if let index = currentIndex() {
+      let current = self.currents[index]
+      control.update(current.start.elapsed())
+    }
+  }
+  
   func updateControl() {
     if isOnTheClock() {
       control.showClockOut()
+      startTimer()
     } else {
       control.showClockIn()
+      clearTimer()
+      control.clear()
     }
   }
   
@@ -221,6 +268,7 @@ extension BillableViewController: ClockControlDelegate {
   func deinitCurrents() {
     if let currents = self.currents {
       currents.stopListening()
+      self.currents = nil
     }
   }
 }

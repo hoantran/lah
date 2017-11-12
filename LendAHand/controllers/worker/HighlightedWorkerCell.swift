@@ -10,7 +10,8 @@ import UIKit
 
 class HighlightedWorkerCell: BaseCell {
   static let cellID = "HighlightedWorkerCell"
-  var timer: Timer!
+  var observerToken: NSObjectProtocol?
+  
   var start: Date? {
     didSet {
       if let start = start {
@@ -81,29 +82,25 @@ class HighlightedWorkerCell: BaseCell {
       stats.heightAnchor.constraint(equalToConstant: 50),
       ])
     
-    moreSetups()
+    subscribeToTimer()
+  }
+  
+  private func subscribeToTimer() {
+    let center = NotificationCenter.default
+    self.observerToken = center.addObserver(forName: .timerForWorkerFired, object: nil, queue: nil, using: {notif in
+      self.update()
+    })
+
   }
   
   deinit {
-    moreDeinits()
-  }
-
-}
-
-extension HighlightedWorkerCell {
-  func moreSetups() {
-    self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
-  }
- 
-  func moreDeinits() {
-    self.timer?.invalidate()
-    self.timer = nil
-  }
-  
-  @objc func timerFired(timer: Timer) {
-    self.update()
+    if let token = self.observerToken {
+      NotificationCenter.default.removeObserver(token)
+    }
   }
 }
+
+
 
 
 

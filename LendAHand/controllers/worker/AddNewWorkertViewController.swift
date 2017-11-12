@@ -9,7 +9,7 @@
 import UIKit
 import Contacts
 
-protocol NewWorkerDelegate {
+protocol NewWorkerDelegate: class {
   func observeNewWorker(_ worker: Worker)
 }
 
@@ -24,8 +24,8 @@ class AddNewWorkertViewController: UIViewController, ContactSelectionDelegate {
     }
   }
   
-  var workerDelegate: NewWorkerDelegate?
-  var workerDataSourceDelegate: WorkerDataSourceDelegate?
+  weak var workerDelegate: NewWorkerDelegate?
+  weak var workerDataSourceDelegate: WorkerDataSourceDelegate?
   
   var name:UIButton = {
     let b = UIButton()
@@ -157,7 +157,13 @@ class AddNewWorkertViewController: UIViewController, ContactSelectionDelegate {
     setupRateUnitLabel()
     setupRate()
     rate.delegate = rateDelegate
+//    print("--- INIT ---")
   }
+  
+  deinit {
+//    print("--- DEINIT ---")
+  }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }

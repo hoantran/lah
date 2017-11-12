@@ -26,12 +26,13 @@ class ClockView: UIView {
   }()
   
   func update() {
-    let now = Date()
-    let elapsed = Int(now.timeIntervalSince(start))
-    let hours = Int(elapsed/(60*60))
-    let minutes = Int( (elapsed - (hours*60*60))/60 )
-    let seconds = Int( elapsed - (hours*60*60) - (minutes*60))
-    self.digits.text = "\( String(format: "%02d", hours) ):\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
+//    let now = Date()
+//    let elapsed = Int(now.timeIntervalSince(start))
+//    let hours = Int(elapsed/(60*60))
+//    let minutes = Int( (elapsed - (hours*60*60))/60 )
+//    let seconds = Int( elapsed - (hours*60*60) - (minutes*60))
+//    self.digits.text = "\( String(format: "%02d", hours) ):\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
+    self.digits.text = start.elapsed()
   }
   
   func restartAnimation() {

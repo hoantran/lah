@@ -22,10 +22,12 @@ class ProjectViewController: UITableViewController, BurgerButton, NewProjectDele
     
     setupProjectObservation()
     self.projects.listen()
+//    print("--- INIT ---")
   }
   
   deinit {
     self.projects.stopListening()
+//    print("--- DEINIT ---")
   }
   
   func addTarget(_ btn: UIButton) {

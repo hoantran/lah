@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-protocol WorkerDataSourceDelegate {
+protocol WorkerDataSourceDelegate: class {
   func exists(_ worker: Worker) -> Bool
 }
 
@@ -17,6 +17,8 @@ class WorkerViewController: UITableViewController {
   var workers: LocalCollection<Worker>!
   var currents: LocalCollection<Current>!
   var indexOrder = Array<Int>()
+  var timer: Timer!
+
   
   static let cellID = "cellID"
   
@@ -38,15 +40,24 @@ class WorkerViewController: UITableViewController {
     setupAddNewWorker()
     requestContactAccess()
     setupCurrents()
+//    print("--- INIT ---")
   }
   
   deinit {
     deinitWorkers()
     deinitCurrents()
+//    print("--- DEINIT ---")
   }
   
   override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    startTimer()
     self.tableView.reloadData()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    clearTimer()
   }
   
   fileprivate func requestContactAccess() {
@@ -117,11 +128,14 @@ class WorkerViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let indexRow = self.indexOrder[indexPath.row]
-    
+
     let controller = BillableViewController()
     controller.worker = self.workers[indexRow]
     controller.workerID = self.workers.id(indexRow)
     navigationController?.pushViewController(controller, animated: true)
+    
+//    let controller = DummyVC()
+//    navigationController?.pushViewController(controller, animated: true)
   }
   
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -134,6 +148,22 @@ class WorkerViewController: UITableViewController {
 }
 
 
+
+extension WorkerViewController {
+  func startTimer() {
+    clearTimer()
+    self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
+  }
+  
+  func clearTimer() {
+    self.timer?.invalidate()
+    self.timer = nil
+  }
+  
+  @objc func timerFired(timer: Timer) {
+    NotificationCenter.default.post(name: .timerForWorkerFired, object: nil)
+  }
+}
 
 
 

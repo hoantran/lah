@@ -37,8 +37,8 @@ class StatsView: UIView {
     let elapsed = Float(now.timeIntervalSince(start))
     let earned = (elapsed/3600) * rate
     amount.text = earned.roundedTo(places: 2)
-    print(".......")
-    print("[\(name)]-[rt:\(rate) ]:[\(earned)]")
+//    print(".......")
+//    print("[\(name)]-[rt:\(rate) ]:[\(earned)]")
   }
   
   var dollar: UILabel = {
