@@ -11,6 +11,7 @@ import UIKit
 class ProjectViewController: UITableViewController, BurgerButton, NewProjectDelegate {
   static let cellID = "cellID"
   var projects: LocalCollection<Project>!
+  var sortedProjects = Array<Project>()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -58,26 +59,32 @@ class ProjectViewController: UITableViewController, BurgerButton, NewProjectDele
   func setupProjectObservation() {
     let query = Constants.firestore.collection.projects
     self.projects = LocalCollection(query: query) { [unowned self] (changes) in
-//      changes.forEach(){ print ("[", $0.type, "]", $0) }
+      self.sort()
       DispatchQueue.main.async {
         self.tableView.reloadData()
       }
     }
   }
 
+  private func sort() {
+    self.sortedProjects = self.projects.sorted() { prj1, prj2 in
+      return prj1.name < prj2.name
+    }
+  }
+  
   
   override func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.projects.count
+    return self.sortedProjects.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViewController.cellID, for: indexPath)
     
-    cell.textLabel?.text = self.projects[indexPath.row].name //  "Project \(indexPath.row)"
+    cell.textLabel?.text = self.sortedProjects[indexPath.row].name //  "Project \(indexPath.row)"
 //    cell.detailTextLabel?.text = "\(indexPath.row)"
     
     return cell

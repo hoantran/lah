@@ -16,13 +16,7 @@ class ContactMgr: NSObject, CNContactPickerDelegate {
   
   func fetchName(_ id: String, completion: @escaping (String?)->Void) {
     fetch(id) { retrievedContact in
-      //      let formatter = CNContactFormatter()
-      //      cell.textLabel?.text = formatter.string(from: contact)
-      var name:String?
-      if let contact = retrievedContact {
-        name = contact.givenName + " " + contact.familyName
-      }
-      completion(name)
+      completion(self.getName(retrievedContact))
     }
   }
   
@@ -31,19 +25,56 @@ class ContactMgr: NSObject, CNContactPickerDelegate {
       var contact: CNContact?
       
       if isAllowed {
-        let store = CNContactStore()
-        let keysToFetch = [CNContactGivenNameKey, CNContactFamilyNameKey]
-        do {
-          contact = try store.unifiedContact(withIdentifier: id, keysToFetch: keysToFetch as [CNKeyDescriptor])
-        } catch {
-          print("exception encountered while fetching \(id)")
-        }
+        contact = self.getContact(id)
       } else {
         print("Not allowed to have contact access")
       }
       completion(contact)
     }
   }
+  
+  fileprivate func getContact(_ id: String)->CNContact? {
+    let store = CNContactStore()
+    let keysToFetch = [CNContactGivenNameKey, CNContactFamilyNameKey]
+    do {
+      return try store.unifiedContact(withIdentifier: id, keysToFetch: keysToFetch as [CNKeyDescriptor])
+    } catch {
+      print("exception encountered while fetching \(id)")
+    }
+    return nil
+  }
+  
+  fileprivate func getName(_ contact: CNContact?)->String? {
+    if let contact = contact {
+      return contact.givenName + " " + contact.familyName
+    }
+    return nil
+  }
+  
+  func getName(_ id: String)->String? {
+    let store = CNContactStore()
+    let keysToFetch = [CNContactGivenNameKey, CNContactFamilyNameKey]
+    do {
+      let contact = try store.unifiedContact(withIdentifier: id, keysToFetch: keysToFetch as [CNKeyDescriptor])
+      return contact.givenName + " " + contact.familyName
+    } catch {
+      print("exception encountered while fetching \(id)")
+    }
+    return nil
+  }
+  
+  func getFirstName(_ id: String)->String? {
+    let store = CNContactStore()
+    let keysToFetch = [CNContactGivenNameKey]
+    do {
+      let contact = try store.unifiedContact(withIdentifier: id, keysToFetch: keysToFetch as [CNKeyDescriptor])
+      return contact.givenName
+    } catch {
+      print("exception encountered while fetching \(id)")
+    }
+    return nil
+  }
+  
   
   func requestContactAccess(completion: @escaping (Bool)->Void ) {
     let store = CNContactStore()
@@ -110,6 +141,17 @@ class ContactMgr: NSObject, CNContactPickerDelegate {
         completion(nil)
       }
     }
+  }
+  
+  func getName(id: String, allContacts: [CNContact]?)->String? {
+    if let all = allContacts {
+      for contact in all {
+        if let name = getName(contact) {
+          return name
+        }
+      }
+    }
+    return nil
   }
   
 }

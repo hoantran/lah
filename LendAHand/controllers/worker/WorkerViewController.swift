@@ -18,13 +18,13 @@ class WorkerViewController: UITableViewController {
   var currents: LocalCollection<Current>!
   var indexOrder = Array<Int>()
   var timer: Timer!
-
   
   static let cellID = "cellID"
   
   var contactAccessPermission = false {
     didSet {
       DispatchQueue.main.async {
+        self.sort()
         self.tableView.reloadData()
       }
     }
@@ -91,18 +91,23 @@ class WorkerViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if isHighlightedRow(indexPath.row) {
       let cell = tableView.dequeueReusableCell(withIdentifier: HighlightedWorkerCell.cellID, for: indexPath) as! HighlightedWorkerCell
-      cell.start = self.currents[indexPath.row].start
       let indexRow = self.indexOrder[indexPath.row]
-      cell.rate = self.workers[indexRow].rate
-      cell.clock.restartAnimation()
-      cell.update()
-      let contactID = self.workers[indexRow].contact
-      ContactMgr.shared.fetchName(contactID) { name in
-        if let name = name {
-          cell.name = name
-        } else {
-          cell.name = "Can not get name"
+      let worker = self.workers[indexRow]
+      if let start = getStart(self.workers.id(indexRow)) {
+        cell.start = start
+        cell.rate = worker.rate
+        cell.clock.restartAnimation()
+        cell.update()
+        let contactID = worker.contact
+        ContactMgr.shared.fetchName(contactID) { name in
+          if let name = name {
+            cell.name = name
+          } else {
+            cell.name = "Can not get name"
+          }
         }
+      } else {
+        print ("Err: Can not find the user's ID in currently highlighted list.")
       }
 
       return cell
@@ -133,9 +138,6 @@ class WorkerViewController: UITableViewController {
     controller.worker = self.workers[indexRow]
     controller.workerID = self.workers.id(indexRow)
     navigationController?.pushViewController(controller, animated: true)
-    
-//    let controller = DummyVC()
-//    navigationController?.pushViewController(controller, animated: true)
   }
   
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -169,6 +171,19 @@ extension WorkerViewController {
 
 extension WorkerViewController {
   
+  func getStart(_ workerID: String?) -> Date? {
+    guard let workerID = workerID else { return nil }
+    if self.currents != nil && self.currents.count > 0{
+      for i in 0..<self.currents.count {
+        let worker = self.currents[i]
+        if workerID == worker.worker {
+          return worker.start
+        }
+      }
+    }
+    return nil
+  }
+  
   func sort() {
     var allCounts: [Int] = Array(repeating:0, count: self.workers.count)
     for (i, _) in allCounts.enumerated() {
@@ -186,7 +201,23 @@ extension WorkerViewController {
       return true
     }
     
-    self.indexOrder = newHightlighted + newNormals
+    if self.contactAccessPermission {
+      self.indexOrder = nameSort(newHightlighted) + nameSort(newNormals)
+    } else {
+      self.indexOrder = newHightlighted + newNormals
+    }
+  }
+  
+  private func nameSort(_ set: [Int])->[Int] {
+    return set.sorted() { one, two in
+      if  let name1 = ContactMgr.shared.getName(self.workers[one].contact),
+        let name2 = ContactMgr.shared.getName(self.workers[two].contact) {
+        return name1 < name2
+      }
+      else {
+        return false
+      }
+    }
   }
   
   func isHighlightedRow(_ row: Int)->Bool {

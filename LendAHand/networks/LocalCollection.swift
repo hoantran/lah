@@ -108,3 +108,11 @@ extension LocalCollection {
     }
   }
 }
+
+
+extension LocalCollection {
+  func sorted(by areInIncreasingOrder: (T, T) -> Bool) -> [T] {
+    return items.sorted(by: areInIncreasingOrder)
+  }
+}
+
