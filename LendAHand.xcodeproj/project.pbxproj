@@ -25,6 +25,12 @@
 		3B29BC1E1F99767900E66F21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B29BC1C1F99767900E66F21 /* LaunchScreen.storyboard */; };
 		3B29BC291F99767900E66F21 /* LendAHandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B29BC281F99767900E66F21 /* LendAHandTests.swift */; };
 		3B29BC341F99767900E66F21 /* LendAHandUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B29BC331F99767900E66F21 /* LendAHandUITests.swift */; };
+		3B321DB91FBAD4DF0053A4B8 /* TimeCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B321DB81FBAD4DF0053A4B8 /* TimeCardViewController.swift */; };
+		3B321DBB1FBAD5450053A4B8 /* TimeCardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B321DBA1FBAD5450053A4B8 /* TimeCardDataSource.swift */; };
+		3B321DBD1FBAD8EA0053A4B8 /* TimeCardDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B321DBC1FBAD8EA0053A4B8 /* TimeCardDelegate.swift */; };
+		3B321DBF1FBC26290053A4B8 /* TimeCardDatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B321DBE1FBC26290053A4B8 /* TimeCardDatePickerCell.swift */; };
+		3B321DC11FBC272D0053A4B8 /* CellObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B321DC01FBC272D0053A4B8 /* CellObserver.swift */; };
+		3B321DC31FBC27AE0053A4B8 /* TimeCardRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B321DC21FBC27AE0053A4B8 /* TimeCardRateCell.swift */; };
 		3B4DCD651F9978BB00B29F83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B4DCD641F9978BB00B29F83 /* GoogleService-Info.plist */; };
 		3B4DCD661F9978BB00B29F83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B4DCD641F9978BB00B29F83 /* GoogleService-Info.plist */; };
 		3B4DCD671F9978BB00B29F83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B4DCD641F9978BB00B29F83 /* GoogleService-Info.plist */; };
@@ -92,6 +98,12 @@
 		3B29BC2F1F99767900E66F21 /* LendAHandUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LendAHandUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B29BC331F99767900E66F21 /* LendAHandUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LendAHandUITests.swift; sourceTree = "<group>"; };
 		3B29BC351F99767900E66F21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B321DB81FBAD4DF0053A4B8 /* TimeCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardViewController.swift; sourceTree = "<group>"; };
+		3B321DBA1FBAD5450053A4B8 /* TimeCardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardDataSource.swift; sourceTree = "<group>"; };
+		3B321DBC1FBAD8EA0053A4B8 /* TimeCardDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardDelegate.swift; sourceTree = "<group>"; };
+		3B321DBE1FBC26290053A4B8 /* TimeCardDatePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardDatePickerCell.swift; sourceTree = "<group>"; };
+		3B321DC01FBC272D0053A4B8 /* CellObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellObserver.swift; sourceTree = "<group>"; };
+		3B321DC21FBC27AE0053A4B8 /* TimeCardRateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardRateCell.swift; sourceTree = "<group>"; };
 		3B4DCD641F9978BB00B29F83 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3B4FF5731FA84666007DBB6A /* ProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewController.swift; sourceTree = "<group>"; };
 		3B4FF5751FA84ACB007DBB6A /* WorkerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +188,7 @@
 		3B04FD081F9A85830044A857 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3B321DB71FBAD4920053A4B8 /* timecard */,
 				3B0BBE0A1FB289EA004821D7 /* billable */,
 				3B84360D1FAD8F16000B1EF2 /* Contact */,
 				3B84360A1FAB9871000B1EF2 /* login */,
@@ -284,6 +297,19 @@
 				3B29BC351F99767900E66F21 /* Info.plist */,
 			);
 			path = LendAHandUITests;
+			sourceTree = "<group>";
+		};
+		3B321DB71FBAD4920053A4B8 /* timecard */ = {
+			isa = PBXGroup;
+			children = (
+				3B321DB81FBAD4DF0053A4B8 /* TimeCardViewController.swift */,
+				3B321DC01FBC272D0053A4B8 /* CellObserver.swift */,
+				3B321DBA1FBAD5450053A4B8 /* TimeCardDataSource.swift */,
+				3B321DBC1FBAD8EA0053A4B8 /* TimeCardDelegate.swift */,
+				3B321DBE1FBC26290053A4B8 /* TimeCardDatePickerCell.swift */,
+				3B321DC21FBC27AE0053A4B8 /* TimeCardRateCell.swift */,
+			);
+			path = timecard;
 			sourceTree = "<group>";
 		};
 		3B8436081FAB981F000B1EF2 /* project */ = {
@@ -677,16 +703,21 @@
 				3BC077A31FB82F3A008D5F94 /* DummyVC.swift in Sources */,
 				3B29BC161F99767900E66F21 /* ViewController.swift in Sources */,
 				3B5697001F9E7018000CE7F5 /* Current.swift in Sources */,
+				3B321DC31FBC27AE0053A4B8 /* TimeCardRateCell.swift in Sources */,
 				3B04FD0D1F9A9D610044A857 /* Worker.swift in Sources */,
 				3B4FF5781FA861AB007DBB6A /* MenuViewController.swift in Sources */,
 				3B8AF7011FB6778900C79016 /* HighlightedWorkerCell.swift in Sources */,
 				3B4FF5741FA84666007DBB6A /* ProjectViewController.swift in Sources */,
 				3B0BBE141FB45141004821D7 /* ClockControlView.swift in Sources */,
+				3B321DC11FBC272D0053A4B8 /* CellObserver.swift in Sources */,
+				3B321DBB1FBAD5450053A4B8 /* TimeCardDataSource.swift in Sources */,
 				3B8436031FAA6D6C000B1EF2 /* Extensions.swift in Sources */,
 				3B0BBE101FB30594004821D7 /* BillableCell.swift in Sources */,
 				3B84360C1FABE621000B1EF2 /* ProjectNameValidation.swift in Sources */,
 				3B29BC141F99767900E66F21 /* AppDelegate.swift in Sources */,
+				3B321DBF1FBC26290053A4B8 /* TimeCardDatePickerCell.swift in Sources */,
 				3B7468881FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift in Sources */,
+				3B321DBD1FBAD8EA0053A4B8 /* TimeCardDelegate.swift in Sources */,
 				3B0BBE0C1FB28A05004821D7 /* BillableViewController.swift in Sources */,
 				3B04FD0F1F9A9E2E0044A857 /* LocalCollection.swift in Sources */,
 				3B8AF7031FB682B100C79016 /* ClockView.swift in Sources */,
@@ -696,6 +727,7 @@
 				3B84360F1FAD8F32000B1EF2 /* ContactMgr.swift in Sources */,
 				3B0BBE121FB3C289004821D7 /* ProjectProxy.swift in Sources */,
 				3B04FD131F9AB3110044A857 /* Project.swift in Sources */,
+				3B321DB91FBAD4DF0053A4B8 /* TimeCardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

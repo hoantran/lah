@@ -32,12 +32,6 @@ enum TimeCardArrangement: Int {
 }
 
 extension TimeCardViewController: UITableViewDataSource {
-  func refreshData(_ work: Work) {
-    self.start.datex = work.start
-    if let stop = work.stop {
-      self.stop.datex = stop
-    }
-  }
   
   func numberOfSections(in tableView: UITableView) -> Int {
     return TimeCardArrangement.count.rawValue
@@ -60,34 +54,77 @@ extension TimeCardViewController: UITableViewDataSource {
     switch indexPath.section {
     case TimeCardArrangement.rate.rawValue:
       print("rate")
-      return rate
+      let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardRateCell.cellID, for: indexPath) as! TimeCardRateCell
+      if let work = self.work {
+        cell.textLabel?.text = String(work.rate)
+      }
+      return cell
     
     case TimeCardArrangement.time.rawValue:
       switch indexPath.row {
       case TimeCardArrangement.timeRow.start.rawValue:
         print("start")
-        return start
+        let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardDatePickerCell.cellID, for: indexPath) as! TimeCardDatePickerCell
+        cell.title = "START"
+        if let work = self.work {
+          cell.date = work.start
+        }
+        cell.updateHandler = { date in
+          self.work?.start = date
+        }
+        return cell
+
       case TimeCardArrangement.timeRow.stop.rawValue:
         print("stop")
-        return stop
+        let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardDatePickerCell.cellID, for: indexPath) as! TimeCardDatePickerCell
+        cell.title = "STOP"
+        if let work = self.work {
+          if let stop = work.stop {
+            cell.date = stop
+          } else {
+            print("Err: stop time must be present here.")
+            cell.date = Date()
+          }
+        }
+        cell.updateHandler = { date in
+          self.work?.stop = date
+        }
+        return cell
       default:
         print("duration")
-        return duration
+        let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardRateCell.cellID, for: indexPath) as! TimeCardRateCell
+        cell.textLabel?.text = "DURATION"
+        return cell
       }
     
     case TimeCardArrangement.misc.rawValue:
       switch indexPath.row {
       case TimeCardArrangement.miscRow.project.rawValue:
         print("project")
-        return project
+        let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardRateCell.cellID, for: indexPath) as! TimeCardRateCell
+        cell.textLabel?.text = "PROJECT"
+        return cell
       default:
         print("paid")
-        return paid
+        let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardRateCell.cellID, for: indexPath) as! TimeCardRateCell
+        cell.textLabel?.text = "PAID"
+        return cell
+
       }
 
     default:
       print("note")
-      return note
+      let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardRateCell.cellID, for: indexPath) as! TimeCardRateCell
+      cell.textLabel?.text = "NOTE"
+      return cell
+
     }
   }
 }
+
+extension TimeCardViewController {
+  func newStart(_ date: Date) {
+    self.work?.start = date
+  }
+}
+

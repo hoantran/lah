@@ -13,31 +13,30 @@ class TimeCardDatePickerCell: BaseCell {
   static var expandedHeight: CGFloat { get { return 200 } }
   static var defaultHeight:  CGFloat { get { return 45  } }
   var observingCount: Int = 0 // make sure it does not remove observer too many times
-  var datex: Date? {
+  var date: Date? {
     didSet {
-      if let date = self.datex {
-        DispatchQueue.main.async {
-          self.dateLabel.text = self.formatter.string(from: date)
-          self.picker.date = date
-        }
+      if let date = self.date {
+        self.dateLabel.text = self.formatter.string(from: date)
+        self.picker.date = date
       }
     }
   }
+  var updateHandler: ((Date)->())?
   
   var title: String? {
     didSet {
       if let title = self.title {
-        DispatchQueue.main.async {
-          self.titleLabel.text = title
-        }
+        self.titleLabel.text = title
       }
     }
   }
   
   override func prepareForReuse() {
     super.prepareForReuse()
-    self.datex = nil
+    self.date = nil
     self.title = nil
+    self.updateHandler = nil
+    print("PREPARE FOR REUSE")
   }
   
   let formatter: DateFormatter = {
@@ -115,7 +114,7 @@ extension TimeCardDatePickerCell: CellObserver {
   func hideDatePickerIfNeeded() {
 //    print("[\(self.title)]", self)
     picker.isHidden = frame.size.height < TimeCardDatePickerCell.expandedHeight
-    if let date = self.datex {
+    if let date = self.date {
 //      print("if needed: ", self.formatter.string(from: date))
       DispatchQueue.main.async {
         self.dateLabel.text = self.formatter.string(from: date)
@@ -158,8 +157,8 @@ extension TimeCardDatePickerCell {
   
   @objc func handleDatePickerChange(sender: UIDatePicker) {
     print("handle: ", self.formatter.string(from: sender.date))
-    self.datex = sender.date
-    
+    self.date = sender.date
+    self.updateHandler?(sender.date)
   }
   
 }

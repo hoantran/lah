@@ -12,47 +12,11 @@ class TimeCardViewController: UIViewController {
   var selectedIndexPath: IndexPath?
   var work: Work? {
     didSet {
-      if let work = self.work {
-        refreshData(work)
+      DispatchQueue.main.async {
+        self.tableView.reloadData()
       }
     }
   }
-  
-  var rate:  TimeCardRateCell = {
-    let c = TimeCardRateCell()
-    c.textLabel?.text = "RATE"
-    return c
-  }()
-  var start: TimeCardDatePickerCell = {
-    let c = TimeCardDatePickerCell()
-    c.title = "START"
-    return c
-  }()
-  var stop: TimeCardDatePickerCell = {
-    let c = TimeCardDatePickerCell()
-    c.title = "STOP"
-    return c
-  }()
-  var duration:  TimeCardRateCell = {
-    let c = TimeCardRateCell()
-    c.textLabel?.text = "DURATION"
-    return c
-  }()
-  var project:  TimeCardRateCell = {
-    let c = TimeCardRateCell()
-    c.textLabel?.text = "PROJECT"
-    return c
-  }()
-  var paid:  TimeCardRateCell = {
-    let c = TimeCardRateCell()
-    c.textLabel?.text = "PAID"
-    return c
-  }()
-  var note:  TimeCardRateCell = {
-    let c = TimeCardRateCell()
-    c.textLabel?.text = "NOTE"
-    return c
-  }()
   
   lazy var tableView: UITableView = {
     let table = UITableView(frame: CGRect.zero, style: .grouped)

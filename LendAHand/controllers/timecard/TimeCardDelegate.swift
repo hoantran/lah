@@ -28,48 +28,10 @@ extension TimeCardViewController: UITableViewDelegate {
     }
     
     if indexPathArray.count > 0 {
-      DispatchQueue.main.async {
-//        tableView.reloadRows(at: indexPathArray, with: .automatic)
-//        tableView.reloadSections(IndexSet(integer: 1  ), with: .automatic)
-//        tableView.reloadData()
-      }
+      tableView.reloadRows(at: indexPathArray, with: .automatic)
     }
-    
-    var myarray = [IndexPath]()
-    for i in 0..<2 {
-      myarray.append(IndexPath(item: i, section: 1))
-    }
-    
-//    tableView.beginUpdates()
-    if indexPathArray.count > 0 {
-//      DispatchQueue.main.async {
-                tableView.reloadRows(at: indexPathArray, with: .automatic)
-        //        tableView.reloadSections(IndexSet(integer: 1  ), with: .automatic)
-        //        tableView.reloadData()
-//      }
-    }
-//    var indexPath = IndexPath(item: 0, section: 1)
-//    tableView.reloadRows(at: [indexPath], with: .top)
-//    indexPath = IndexPath(item: 1, section: 1)
-//    tableView.reloadRows(at: [indexPath], with: .top)
-//    tableView.reloadRows(at: myarray, with: .automatic)
-//    if let yourarray = tableView.indexPathsForVisibleRows {
-//      DispatchQueue.main.async {
-//        tableView.reloadRows(at: yourarray, with: .automatic)
-//      }
-//    }
-//    tableView.endUpdates()
-
-    print(".....")
-    for path in indexPathArray {
-      print(path)
-    }
-    
     
 ////    tableView.beginUpdates()
-//    if indexPathArray.count > 0 {
-//      tableView.reloadRows(at: indexPathArray, with: .automatic)
-//    }
 ////    tableView.endUpdates()
   }
   
@@ -79,6 +41,15 @@ extension TimeCardViewController: UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     ( cell as! CellObserver).ignoreChanges()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    for visible in tableView.visibleCells {
+      if let cell = visible as? CellObserver {
+        cell.ignoreChanges()
+      }
+    }
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
