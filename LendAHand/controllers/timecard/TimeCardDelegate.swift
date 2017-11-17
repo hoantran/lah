@@ -9,9 +9,11 @@
 // there are at least two ways to implement exapanding (UIDatePicker) cell:
 // [1] by inserting just a brand new cell that only embeds a UIDatePicker when a row is selected.
 //     this is well illustrated here: https://digitalleaves.com/blog/2017/01/dynamic-uidatepickers-in-a-table-view/
-//     and here: https://www.appcoda.com/expandable-table-view/
+//     and here: http://blog.fujianjin6471.com/2016/02/03/how-to-implement-inline-date-picker.html
 // [2] by expanding a cell that has both the label field(s) and a UIDatePicker just below it/them
 //     and when this cell is clicked, the height of the cell changes to expose or cover up the date picker element.
+//     like here: https://www.appcoda.com/expandable-table-view/
+//     or here: https://github.com/rcdilorenzo/Cell-Expander
 //     this is what is used in this code
 
 import UIKit
