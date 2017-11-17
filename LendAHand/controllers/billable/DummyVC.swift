@@ -8,13 +8,19 @@
 
 import UIKit
 
-class DummyVC: UIViewController {
+class DummyVC: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    navigationItem.title = "Dummy!"
+    navigationController?.navigationBar.prefersLargeTitles = true
+    view.backgroundColor = UIColor.blue
     print("--- INIT ---")
   }
   
   deinit {
     print("--- DEINIT ---")
   }
+  
+  
 }

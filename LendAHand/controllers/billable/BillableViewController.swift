@@ -34,13 +34,9 @@ class BillableViewController: UIViewController {
   }()
   
   fileprivate func layoutTable() {
-    var top:CGFloat = 44
-    if let rect = self.navigationController?.navigationBar.frame {
-      top = rect.size.height + rect.origin.y
-    }
     view.addSubview(tableView)
     NSLayoutConstraint.activate([
-      tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: top),
+      tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
       tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
       tableView.bottomAnchor.constraint(equalTo: control.topAnchor)

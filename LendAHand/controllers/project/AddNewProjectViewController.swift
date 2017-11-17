@@ -46,7 +46,7 @@ class AddNewProjectViewController: UIViewController {
   fileprivate func setupTextFields() {
     view.addSubview(inputsContainerView)
     NSLayoutConstraint.activate([
-      inputsContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+      inputsContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
       inputsContainerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8),
       inputsContainerView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8),
       inputsContainerView.heightAnchor.constraint(equalToConstant: 50)

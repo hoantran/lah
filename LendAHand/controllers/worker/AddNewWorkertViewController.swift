@@ -40,7 +40,7 @@ class AddNewWorkertViewController: UIViewController, ContactSelectionDelegate {
   fileprivate func setupName() {
     view.addSubview(name)
     NSLayoutConstraint.activate([
-      name.topAnchor.constraint(equalTo: view.topAnchor, constant: 75),
+      name.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       name.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8),
       name.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8),
       name.heightAnchor.constraint(equalToConstant: 25)
