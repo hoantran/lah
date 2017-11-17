@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class TimeCardDatePickerCell: BaseCell {
   static let cellID = "TimeCardDatePickerCell"
   static var expandedHeight: CGFloat { get { return 200 } }
@@ -112,10 +114,8 @@ extension TimeCardDatePickerCell: CellObserver {
   static let FRAME_KEY_PATH = "frame"
   
   func hideDatePickerIfNeeded() {
-//    print("[\(self.title)]", self)
     picker.isHidden = frame.size.height < TimeCardDatePickerCell.expandedHeight
     if let date = self.date {
-//      print("if needed: ", self.formatter.string(from: date))
       DispatchQueue.main.async {
         self.dateLabel.text = self.formatter.string(from: date)
       }
@@ -142,10 +142,6 @@ extension TimeCardDatePickerCell: CellObserver {
       hideDatePickerIfNeeded()
     }
   }
-  
-//  override func setSelected(_ selected: Bool, animated: Bool) {
-//    super.setSelected(selected, animated: animated)
-//  }
   
   func deinitCellObserver() {
     self.ignoreChanges()

@@ -8,13 +8,7 @@
 
 import UIKit
 
-//enum TimeCardSection: Int {
-//  case rate = 0
-//  case time
-//  case misc
-//  case note
-//}
-//
+
 enum TimeCardArrangement: Int {
   case rate = 0, time, misc, note, count
   enum rateRow: Int {
@@ -69,7 +63,7 @@ extension TimeCardViewController: UITableViewDataSource {
         if let work = self.work {
           cell.date = work.start
         }
-        cell.updateHandler = { date in
+        cell.updateHandler = { [unowned self] date in
           self.work?.start = date
         }
         return cell
@@ -86,7 +80,7 @@ extension TimeCardViewController: UITableViewDataSource {
             cell.date = Date()
           }
         }
-        cell.updateHandler = { date in
+        cell.updateHandler = { [unowned self] date in
           self.work?.stop = date
         }
         return cell
