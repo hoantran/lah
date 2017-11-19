@@ -12,15 +12,21 @@ class TimeCardViewController: UIViewController {
   var selectedIndexPath: IndexPath?
   var work: Work? {
     didSet {
-      DispatchQueue.main.async {
-        self.tableView.reloadData()
-      }
+//      startMax = work?.stop
+//      stopMin = work?.start
+//      DispatchQueue.main.async {
+//        self.tableView.reloadData()
+//      }
     }
   }
+  
+  var startMax:Date!
+  var stopMin:Date!
   
   lazy var tableView: UITableView = {
     let table = UITableView(frame: CGRect.zero, style: .grouped)
     table.translatesAutoresizingMaskIntoConstraints = false
+    table.separatorColor = table.backgroundColor
     table.dataSource = self
     table.delegate = self
     return table
@@ -35,6 +41,7 @@ class TimeCardViewController: UIViewController {
     
     tableView.register(TimeCardDatePickerCell.self, forCellReuseIdentifier: TimeCardDatePickerCell.cellID)
     tableView.register(TimeCardRateCell.self, forCellReuseIdentifier: TimeCardRateCell.cellID)
+    tableView.register(TimeCardTitleValueCell.self, forCellReuseIdentifier: TimeCardTitleValueCell.cellID)
     layoutTable()
   }
   
@@ -46,6 +53,14 @@ class TimeCardViewController: UIViewController {
       tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
       tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
       ])
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    if let work = self.work {
+      startMax = work.stop
+      stopMin = work.start
+    }
   }
   
 }

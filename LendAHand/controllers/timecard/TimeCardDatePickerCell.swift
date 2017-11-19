@@ -33,11 +33,31 @@ class TimeCardDatePickerCell: BaseCell {
     }
   }
   
+  var minDate:Date? {
+    didSet {
+      if let minDate = self.minDate {
+        picker.minimumDate = minDate
+      }
+    }
+  }
+  
+  var maxDate:Date? {
+    didSet {
+      if let maxDate = self.maxDate {
+        picker.maximumDate = maxDate
+      }
+    }
+  }
+
   override func prepareForReuse() {
     super.prepareForReuse()
     self.date = nil
     self.title = nil
     self.updateHandler = nil
+    self.minDate = nil
+    self.maxDate = nil
+    self.picker.minimumDate = nil
+    self.picker.maximumDate = nil
     print("PREPARE FOR REUSE")
   }
   
@@ -84,8 +104,8 @@ class TimeCardDatePickerCell: BaseCell {
     addSubview(picker)
     
     NSLayoutConstraint.activate([
-      titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-      titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
+      titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: Constants.margin.top),
+      titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: Constants.margin.left),
       titleLabel.rightAnchor.constraint(lessThanOrEqualTo: dateLabel.leftAnchor),
       titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: picker.topAnchor, constant: 0),
       ])
@@ -93,7 +113,7 @@ class TimeCardDatePickerCell: BaseCell {
     NSLayoutConstraint.activate([
       dateLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor),
       dateLabel.leftAnchor.constraint(lessThanOrEqualTo: titleLabel.rightAnchor, constant: 0),
-      dateLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
+      dateLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -Constants.margin.right),
       dateLabel.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor),
       ])
     
@@ -101,7 +121,7 @@ class TimeCardDatePickerCell: BaseCell {
       picker.topAnchor.constraint(lessThanOrEqualTo: dateLabel.bottomAnchor),
       picker.leftAnchor.constraint(equalTo: titleLabel.leftAnchor),
       picker.rightAnchor.constraint(equalTo: dateLabel.rightAnchor),
-      picker.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+      picker.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.margin.bottom),
       ])
   }
   

@@ -19,23 +19,19 @@ class BillableCell: BaseCell {
         }
         paid.isHidden = !work.isPaid
         
-        var seconds = 0
-        if let stop = work.stop {
-          seconds = Int(stop.timeIntervalSince(work.start))
-          let hrs = Int(seconds/(60 * 60))
-          let mins = Int((seconds - (hrs * 60 * 60))/60)
-          
-          duration.text = "\(hrs)" + "h " + "\(mins)" + "m"
+        if let duration = work.duration() {
+          self.duration.text = duration
         }
         
         let dayTimePeriodFormatter = DateFormatter()
         dayTimePeriodFormatter.dateFormat = "MMM dd, YYYY"
         self.date.text = dayTimePeriodFormatter.string(from: work.start)
         
-        let hours:Float = Float(Float(seconds) / Float(3600))
-        let payable: Float = work.rate * hours
-          
-        amount.text = payable.roundedTo(places: 2)
+        if let payable = work.payable() {
+          amount.text = payable
+        } else {
+          amount.text = ""
+        }
       }
     }
   }

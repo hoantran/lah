@@ -45,26 +45,26 @@ extension Work: DocumentSerializable {
 
 // UI Helper
 extension Work {
-//  static func getDuration(start: Int?, end: Int?) -> String {
-//    if let start = start, let end = end {
-//      let span = end - start;
-//      let hrs = Int(span/(60 * 60))
-//      let mins = Int((span - (hrs * 60 * 60))/60)
-//
-//      return "\(hrs)" + "h " + "\(mins)" + "m"
-//    } else {
-//      return ""
-//    }
-//  }
-//
-//  static func getTotal(start: Int, end: Int, rate: Float) -> String {
-//    let span = end - start;
-//    let hours:Float = Float(Float(span) / Float(3600))
-//    let payable: Float = rate * hours
-//
-//    return payable.roundedTo(places: 2)
-//  }
-//
+  func duration() -> String? {
+    if let stop = stop {
+        let seconds = Int(stop.timeIntervalSince(start))
+        let hrs = Int(seconds/(60 * 60))
+        let mins = Int((seconds - (hrs * 60 * 60))/60)
+        return "\(hrs)" + " hrs " + "\(mins)" + " mins"
+    }
+    return nil
+  }
+
+  func payable() -> String? {
+    if let stop = stop {
+      let seconds = Int(stop.timeIntervalSince(start))
+      let hours:Float = Float(Float(seconds) / Float(3600))
+      let payable: Float = rate * hours
+      return payable.roundedTo(places: 2)
+    }
+    return nil
+  }
+
 //  static func getDateStr(unixDate: Int?) -> String {
 //    if let date = unixDate {
 //      let epochDate = Date(timeIntervalSince1970: TimeInterval(date))

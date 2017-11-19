@@ -60,11 +60,19 @@ extension TimeCardViewController: UITableViewDataSource {
         print("start")
         let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardDatePickerCell.cellID, for: indexPath) as! TimeCardDatePickerCell
         cell.title = "START"
+        cell.maxDate = self.startMax
         if let work = self.work {
           cell.date = work.start
         }
         cell.updateHandler = { [unowned self] date in
           self.work?.start = date
+          self.stopMin = date
+          if let stop = self.work?.stop {
+            if stop < self.stopMin {
+              self.work?.stop = self.stopMin
+            }
+          }
+          self.reloadDuration()
         }
         return cell
 
@@ -72,6 +80,7 @@ extension TimeCardViewController: UITableViewDataSource {
         print("stop")
         let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardDatePickerCell.cellID, for: indexPath) as! TimeCardDatePickerCell
         cell.title = "STOP"
+        cell.minDate = self.stopMin
         if let work = self.work {
           if let stop = work.stop {
             cell.date = stop
@@ -82,12 +91,24 @@ extension TimeCardViewController: UITableViewDataSource {
         }
         cell.updateHandler = { [unowned self] date in
           self.work?.stop = date
+          self.startMax = date
+          if let start = self.work?.start {
+            if start > self.startMax {
+              self.work?.start = self.startMax
+            }
+          }
+          self.reloadDuration()
         }
         return cell
       default:
         print("duration")
-        let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardRateCell.cellID, for: indexPath) as! TimeCardRateCell
-        cell.textLabel?.text = "DURATION"
+        let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardTitleValueCell.cellID, for: indexPath) as! TimeCardTitleValueCell
+        cell.title = "DURATION"
+        if let duration = work?.duration() {
+          cell.value = duration
+        } else {
+          cell.value = "0h 0m"
+        }
         return cell
       }
     

@@ -39,5 +39,16 @@ struct Constants {
   public static var firestore: KFirestore {
     return KFirestore()
   }
+  
+  public struct Margin {
+    public let left:CGFloat = 20.0
+    public let right:CGFloat = 20.0
+    public let top:CGFloat = 8.0
+    public let bottom:CGFloat = 8.0
+  }
+  public static var margin: Margin {
+    return Margin()
+  }
+  
 }
 

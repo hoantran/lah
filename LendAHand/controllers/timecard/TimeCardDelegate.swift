@@ -46,11 +46,60 @@ extension TimeCardViewController: UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    ( cell as! CellObserver).observeChanges()
+    if let cell = cell as? CellObserver {
+      cell.observeChanges()
+    }
+    
+    // adding rounded corners
+    // https://medium.com/@jigarm/corner-radius-to-uitableview-grouped-461817ca5dc
+//    let cornerRadius: CGFloat = 8
+//    cell.backgroundColor = .clear
+//    
+//    let layer = CAShapeLayer()
+//    let pathRef = CGMutablePath()
+//    let bounds = cell.bounds.insetBy(dx: 14, dy: 0)
+//    var addLine = false
+//    
+//    if indexPath.row == 0 && indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1 {
+//      pathRef.__addRoundedRect(transform: nil, rect: bounds, cornerWidth: cornerRadius, cornerHeight: cornerRadius)
+//    } else if indexPath.row == 0 {
+//      pathRef.move(to: .init(x: bounds.minX, y: bounds.maxY))
+//      pathRef.addArc(tangent1End: .init(x: bounds.minX, y: bounds.minY), tangent2End: .init(x: bounds.midX, y: bounds.minY), radius: cornerRadius)
+//      pathRef.addArc(tangent1End: .init(x: bounds.maxX, y: bounds.minY), tangent2End: .init(x: bounds.maxX, y: bounds.midY), radius: cornerRadius)
+//      pathRef.addLine(to: .init(x: bounds.maxX, y: bounds.maxY))
+//      addLine = true
+//    } else if indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1 {
+//      pathRef.move(to: .init(x: bounds.minX, y: bounds.minY))
+//      pathRef.addArc(tangent1End: .init(x: bounds.minX, y: bounds.maxY), tangent2End: .init(x: bounds.midX, y: bounds.maxY), radius: cornerRadius)
+//      pathRef.addArc(tangent1End: .init(x: bounds.maxX, y: bounds.maxY), tangent2End: .init(x: bounds.maxX, y: bounds.midY), radius: cornerRadius)
+//      pathRef.addLine(to: .init(x: bounds.maxX, y: bounds.minY))
+//    } else {
+//      pathRef.addRect(bounds)
+//      addLine = true
+//    }
+//    
+//    layer.path = pathRef
+//    layer.fillColor = UIColor(white: 1, alpha: 0.8).cgColor
+//    
+//    if (addLine == true) {
+//      let lineLayer = CALayer()
+//      let lineHeight = 1.0 / UIScreen.main.scale
+//      lineLayer.frame = CGRect(x: bounds.minX + 10, y: bounds.size.height - lineHeight, width: bounds.size.width - 10, height: lineHeight)
+//      lineLayer.backgroundColor = tableView.separatorColor?.cgColor
+//      layer.addSublayer(lineLayer)
+//    }
+//    
+//    let testView = UIView(frame: bounds)
+//    testView.layer.insertSublayer(layer, at: 0)
+//    testView.backgroundColor = .clear
+//    cell.backgroundView = testView
+    
   }
   
   func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    ( cell as! CellObserver).ignoreChanges()
+    if let cell = cell as? CellObserver {
+      cell.ignoreChanges()
+    }
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -71,5 +120,10 @@ extension TimeCardViewController: UITableViewDelegate {
     }
     
     return TimeCardDatePickerCell.defaultHeight
+  }
+  
+  func reloadDuration() {
+    let indexPath = IndexPath(item: TimeCardArrangement.timeRow.duration.hashValue, section: TimeCardArrangement.time.hashValue)
+    tableView.reloadRows(at: [indexPath], with: .automatic)
   }
 }

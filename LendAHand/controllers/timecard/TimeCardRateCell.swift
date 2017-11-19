@@ -8,10 +8,9 @@
 
 import UIKit
 
-class TimeCardRateCell: BaseCell, CellObserver {
+class TimeCardRateCell: BaseCell {
   static let cellID = "TimeCardRateCell"
   
   override func setupViews() {
-    backgroundColor = UIColor.cyan
   }
 }
