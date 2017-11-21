@@ -13,6 +13,8 @@ class TimeCardNoteCell: BaseCell, UITextViewDelegate {
   static let PLACE_HOLDER = "NOTE"
   static var height: CGFloat { get { return 100 } }
   
+  var updateHandler: ((String)->())?
+  
   var noteText: String? {
     didSet {
       if let noteText = self.noteText {
@@ -36,6 +38,11 @@ class TimeCardNoteCell: BaseCell, UITextViewDelegate {
     return field
   } ()
   
+  override func prepareForReuse() {
+    noteText = nil
+    updateHandler = nil
+  }
+  
   func textViewDidBeginEditing(_ textView: UITextView) {
     if textView.textColor == UIColor.lightGray {
       textView.text = nil
@@ -47,6 +54,10 @@ class TimeCardNoteCell: BaseCell, UITextViewDelegate {
     if textView.text.isEmpty {
       textView.text = TimeCardNoteCell.PLACE_HOLDER
       textView.textColor = UIColor.lightGray
+    }
+    if let text = textView.text,
+      let handler = updateHandler{
+      handler(text)
     }
   }
   

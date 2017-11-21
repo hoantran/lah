@@ -131,11 +131,17 @@ extension TimeCardViewController: UITableViewDataSource {
       print("note")
       let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardNoteCell.cellID, for: indexPath) as! TimeCardNoteCell
       print("section: ", indexPath.section)
+      
       if let work = self.work {
         if let note = work.note {
           cell.noteText = note
         }
       }
+      
+      cell.updateHandler = { [unowned self] text in
+        self.work?.note = text
+      }
+      
       return cell
 
     }
