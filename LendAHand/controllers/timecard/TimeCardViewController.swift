@@ -43,6 +43,7 @@ class TimeCardViewController: UIViewController {
     tableView.register(TimeCardRateCell.self, forCellReuseIdentifier: TimeCardRateCell.cellID)
     tableView.register(TimeCardTitleValueCell.self, forCellReuseIdentifier: TimeCardTitleValueCell.cellID)
     tableView.register(TimeCardNoteCell.self, forCellReuseIdentifier: TimeCardNoteCell.cellID)
+    tableView.register(TimeCardPaidCell.self, forCellReuseIdentifier: TimeCardPaidCell.cellID)
     layoutTable()
   }
   

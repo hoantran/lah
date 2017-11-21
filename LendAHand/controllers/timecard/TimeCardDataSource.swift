@@ -121,8 +121,13 @@ extension TimeCardViewController: UITableViewDataSource {
         return cell
       default:
         print("paid")
-        let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardRateCell.cellID, for: indexPath) as! TimeCardRateCell
-        cell.textLabel?.text = "PAID"
+        let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardPaidCell.cellID, for: indexPath) as! TimeCardPaidCell
+        if let work = self.work {
+          cell.state = work.isPaid
+        }
+        cell.updateHandler = { [unowned self] state in
+          self.work?.isPaid = state
+        }
         return cell
 
       }
