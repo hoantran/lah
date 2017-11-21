@@ -10,7 +10,60 @@ import UIKit
 
 class TimeCardRateCell: BaseCell {
   static let cellID = "TimeCardRateCell"
+  var textfieldDelegate = CurrencyTextFieldDelegate()
+  
+  let rateLabel: UILabel = {
+    let label = UILabel()
+    label.text = "RATE ($/hr)"
+    label.textAlignment = .left
+    label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+  
+  lazy var rate: UITextField = {
+    let field = UITextField()
+    field.placeholder = "0.00"
+    field.translatesAutoresizingMaskIntoConstraints = false
+    field.becomeFirstResponder()
+    field.font = UIFont.systemFont(ofSize: 18, weight: .thin)
+    field.textAlignment = .right
+    field.autocorrectionType = .no
+//    field.delegate = CurrencyTextFieldDelegate()
+    return field
+  } ()
+  
+  func getRate()->Float {
+    if var rateStr = self.rate.text {
+      if rateStr.first == "$" {
+        rateStr.remove(at: rateStr.startIndex)
+      }
+      if let rate = Float(rateStr) {
+        return rate
+      }
+    }
+    
+    return 0.00
+  }
   
   override func setupViews() {
+    rate.delegate = textfieldDelegate
+    
+    addSubview(rateLabel)
+    addSubview(rate)
+    
+    NSLayoutConstraint.activate([
+      rateLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+      rateLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: Constants.margin.left),
+      rateLabel.widthAnchor.constraint(equalToConstant: 110),
+      rateLabel.heightAnchor.constraint(equalTo: heightAnchor),
+      ])
+    
+    NSLayoutConstraint.activate([
+      rate.centerYAnchor.constraint(equalTo: centerYAnchor),
+      rate.leftAnchor.constraint(equalTo: rateLabel.rightAnchor, constant: 4),
+      rate.rightAnchor.constraint(equalTo: rightAnchor, constant: -Constants.margin.right),
+      rate.heightAnchor.constraint(equalTo: heightAnchor),
+      ])
   }
 }

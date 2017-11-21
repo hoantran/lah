@@ -50,7 +50,7 @@ extension TimeCardViewController: UITableViewDataSource {
       print("rate")
       let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardRateCell.cellID, for: indexPath) as! TimeCardRateCell
       if let work = self.work {
-        cell.textLabel?.text = String(work.rate)
+        cell.rate.text = work.rate.roundedTo(places: 2)
       }
       return cell
     
