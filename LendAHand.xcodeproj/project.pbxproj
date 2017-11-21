@@ -43,6 +43,7 @@
 		3B5697001F9E7018000CE7F5 /* Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5696FF1F9E7018000CE7F5 /* Current.swift */; };
 		3B5697041F9E94DE000CE7F5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5697031F9E94DE000CE7F5 /* LoginViewController.swift */; };
 		3B5DBA981FBF74B300D3E81F /* TimeCardTitleValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DBA971FBF74B300D3E81F /* TimeCardTitleValueCell.swift */; };
+		3B6BED701FC41585009CF39F /* TimeCardNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BED6F1FC41585009CF39F /* TimeCardNoteCell.swift */; };
 		3B7468861FB0F1EC00ED77B1 /* AddNewWorkertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7468851FB0F1EC00ED77B1 /* AddNewWorkertViewController.swift */; };
 		3B7468881FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7468871FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift */; };
 		3B74688A1FB12E8D00ED77B1 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7468891FB12E8D00ED77B1 /* ContactsViewController.swift */; };
@@ -115,6 +116,7 @@
 		3B5696FF1F9E7018000CE7F5 /* Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Current.swift; sourceTree = "<group>"; };
 		3B5697031F9E94DE000CE7F5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3B5DBA971FBF74B300D3E81F /* TimeCardTitleValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardTitleValueCell.swift; sourceTree = "<group>"; };
+		3B6BED6F1FC41585009CF39F /* TimeCardNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardNoteCell.swift; sourceTree = "<group>"; };
 		3B7468851FB0F1EC00ED77B1 /* AddNewWorkertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewWorkertViewController.swift; sourceTree = "<group>"; };
 		3B7468871FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTextFieldDelegate.swift; sourceTree = "<group>"; };
 		3B7468891FB12E8D00ED77B1 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				3B321DBE1FBC26290053A4B8 /* TimeCardDatePickerCell.swift */,
 				3B321DC21FBC27AE0053A4B8 /* TimeCardRateCell.swift */,
 				3B5DBA971FBF74B300D3E81F /* TimeCardTitleValueCell.swift */,
+				3B6BED6F1FC41585009CF39F /* TimeCardNoteCell.swift */,
 			);
 			path = timecard;
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 				3B321DBF1FBC26290053A4B8 /* TimeCardDatePickerCell.swift in Sources */,
 				3B7468881FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift in Sources */,
 				3B321DBD1FBAD8EA0053A4B8 /* TimeCardDelegate.swift in Sources */,
+				3B6BED701FC41585009CF39F /* TimeCardNoteCell.swift in Sources */,
 				3B0BBE0C1FB28A05004821D7 /* BillableViewController.swift in Sources */,
 				3B04FD0F1F9A9E2E0044A857 /* LocalCollection.swift in Sources */,
 				3B8AF7031FB682B100C79016 /* ClockView.swift in Sources */,

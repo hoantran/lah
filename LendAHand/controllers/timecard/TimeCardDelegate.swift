@@ -119,6 +119,10 @@ extension TimeCardViewController: UITableViewDelegate {
       }
     }
     
+    if indexPath.section == TimeCardArrangement.note.rawValue {
+      return TimeCardNoteCell.height
+    }
+    
     return TimeCardDatePickerCell.defaultHeight
   }
   
