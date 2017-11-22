@@ -52,6 +52,9 @@ extension TimeCardViewController: UITableViewDataSource {
       if let work = self.work {
         cell.rate.text = work.rate.roundedTo(places: 2)
       }
+      cell.updateHandler = { [unowned self] rate in
+        self.work?.rate = rate
+      }
       return cell
     
     case TimeCardArrangement.time.rawValue:

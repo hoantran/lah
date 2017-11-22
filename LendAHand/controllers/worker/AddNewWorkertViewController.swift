@@ -83,11 +83,6 @@ class AddNewWorkertViewController: UIViewController, ContactSelectionDelegate {
       ])
   }
   
-  lazy var rateDelegate:CurrencyTextFieldDelegate = {
-    let delegate =  CurrencyTextFieldDelegate()
-    return delegate
-  }()
-  
   let rate: UITextField = {
     let field = UITextField()
     field.placeholder = "rate"
@@ -156,7 +151,7 @@ class AddNewWorkertViewController: UIViewController, ContactSelectionDelegate {
     setupName()
     setupRateUnitLabel()
     setupRate()
-    rate.delegate = rateDelegate
+    rate.delegate = self
 //    print("--- INIT ---")
   }
   
@@ -167,6 +162,12 @@ class AddNewWorkertViewController: UIViewController, ContactSelectionDelegate {
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
-  
 }
+
+extension AddNewWorkertViewController: UITextFieldDelegate {
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    return textField.shouldChangeCharactersInRateField(textField, shouldChangeCharactersIn: range, replacementString: string)
+  }
+}
+
+

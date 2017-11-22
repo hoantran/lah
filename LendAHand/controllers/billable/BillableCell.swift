@@ -95,7 +95,7 @@ class BillableCell: BaseCell {
       amount.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
       amount.widthAnchor.constraint(equalToConstant: 80),
       duration.rightAnchor.constraint(equalTo: amount.leftAnchor, constant: -2),
-      duration.widthAnchor.constraint(equalToConstant: 60),
+      duration.widthAnchor.constraint(equalToConstant: 70),
       paid.rightAnchor.constraint(equalTo: duration.leftAnchor, constant: -4),
       paid.widthAnchor.constraint(equalToConstant: 50),
       project.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),

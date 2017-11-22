@@ -8,9 +8,9 @@
 
 import UIKit
 
-class CurrencyTextFieldDelegate: NSObject, UITextFieldDelegate {
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+extension UITextField {
+    func shouldChangeCharactersInRateField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if string.count < 1 {
             return true
         }
@@ -29,6 +29,5 @@ class CurrencyTextFieldDelegate: NSObject, UITextFieldDelegate {
             print(error)
         }
         return true
-
     }
 }

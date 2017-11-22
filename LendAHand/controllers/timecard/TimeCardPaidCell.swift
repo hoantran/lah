@@ -43,7 +43,7 @@ class TimeCardPaidCell: BaseCell {
     return label
   }()
   
-  let switchControl: UISwitch = {
+  lazy var switchControl: UISwitch = {
     let control = UISwitch()
     control.isOn = false
     control.setOn(false, animated: true)

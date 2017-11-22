@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol TimeCardDelegate {
+  func save(workID: String, work: Work)
+}
+
+
 class TimeCardViewController: UIViewController {
   var selectedIndexPath: IndexPath?
+  var workID: String?
   var work: Work? {
     didSet {
 //      startMax = work?.stop
@@ -24,6 +30,7 @@ class TimeCardViewController: UIViewController {
   var stopMin:Date!
   
   var observerToken: NSObjectProtocol?
+  var timecardDelegate: TimeCardDelegate?
   
   lazy var tableView: UITableView = {
     let table = UITableView(frame: CGRect.zero, style: .grouped)
@@ -48,6 +55,7 @@ class TimeCardViewController: UIViewController {
     tableView.register(TimeCardPaidCell.self, forCellReuseIdentifier: TimeCardPaidCell.cellID)
     tableView.register(TimeCardProjectCell.self, forCellReuseIdentifier: TimeCardProjectCell.cellID)
     layoutTable()
+    setupSaveTimeCard()
   }
   
   fileprivate func layoutTable() {
@@ -68,5 +76,21 @@ class TimeCardViewController: UIViewController {
     }
     observeProject()
   }
-  
 }
+
+
+extension TimeCardViewController {
+  fileprivate func setupSaveTimeCard() {
+    let barButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(handleSave))
+    navigationItem.rightBarButtonItem = barButton
+  }
+  
+  @objc func handleSave() {
+    print("save")
+    if let workID = self.workID, let work = self.work {
+      timecardDelegate?.save(workID: workID, work: work)
+    }
+    navigationController?.popViewController(animated: true)
+  }
+}
+

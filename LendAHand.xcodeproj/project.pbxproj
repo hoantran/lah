@@ -19,6 +19,11 @@
 		3B0BBE101FB30594004821D7 /* BillableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BBE0F1FB30594004821D7 /* BillableCell.swift */; };
 		3B0BBE121FB3C289004821D7 /* ProjectProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BBE111FB3C289004821D7 /* ProjectProxy.swift */; };
 		3B0BBE141FB45141004821D7 /* ClockControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BBE131FB45141004821D7 /* ClockControlView.swift */; };
+		3B10AF2F1FC53D0A00958877 /* BillableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10AF2E1FC53D0A00958877 /* BillableDataSource.swift */; };
+		3B10AF311FC53D2F00958877 /* BillableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10AF301FC53D2F00958877 /* BillableDelegate.swift */; };
+		3B10AF331FC53D6F00958877 /* BillableClockDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10AF321FC53D6F00958877 /* BillableClockDelegate.swift */; };
+		3B10AF351FC53E0000958877 /* BillableTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10AF341FC53E0000958877 /* BillableTimer.swift */; };
+		3B10AF371FC53F7600958877 /* BillableTimeCardDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10AF361FC53F7600958877 /* BillableTimeCardDelegate.swift */; };
 		3B29BC141F99767900E66F21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B29BC131F99767900E66F21 /* AppDelegate.swift */; };
 		3B29BC161F99767900E66F21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B29BC151F99767900E66F21 /* ViewController.swift */; };
 		3B29BC1B1F99767900E66F21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B29BC1A1F99767900E66F21 /* Assets.xcassets */; };
@@ -90,6 +95,11 @@
 		3B0BBE0F1FB30594004821D7 /* BillableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillableCell.swift; sourceTree = "<group>"; };
 		3B0BBE111FB3C289004821D7 /* ProjectProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectProxy.swift; sourceTree = "<group>"; };
 		3B0BBE131FB45141004821D7 /* ClockControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockControlView.swift; sourceTree = "<group>"; };
+		3B10AF2E1FC53D0A00958877 /* BillableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillableDataSource.swift; sourceTree = "<group>"; };
+		3B10AF301FC53D2F00958877 /* BillableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillableDelegate.swift; sourceTree = "<group>"; };
+		3B10AF321FC53D6F00958877 /* BillableClockDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillableClockDelegate.swift; sourceTree = "<group>"; };
+		3B10AF341FC53E0000958877 /* BillableTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillableTimer.swift; sourceTree = "<group>"; };
+		3B10AF361FC53F7600958877 /* BillableTimeCardDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillableTimeCardDelegate.swift; sourceTree = "<group>"; };
 		3B29BC101F99767900E66F21 /* LendAHand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LendAHand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B29BC131F99767900E66F21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B29BC151F99767900E66F21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +234,7 @@
 				3B8436041FAB0ABB000B1EF2 /* BurgerButton.swift */,
 				3B7468871FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift */,
 				3B0BBE0D1FB304BB004821D7 /* BaseCell.swift */,
+				3BC077A21FB82F3A008D5F94 /* DummyVC.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -243,9 +254,13 @@
 			isa = PBXGroup;
 			children = (
 				3B0BBE0B1FB28A05004821D7 /* BillableViewController.swift */,
-				3BC077A21FB82F3A008D5F94 /* DummyVC.swift */,
+				3B10AF301FC53D2F00958877 /* BillableDelegate.swift */,
 				3B0BBE0F1FB30594004821D7 /* BillableCell.swift */,
 				3B0BBE131FB45141004821D7 /* ClockControlView.swift */,
+				3B10AF2E1FC53D0A00958877 /* BillableDataSource.swift */,
+				3B10AF321FC53D6F00958877 /* BillableClockDelegate.swift */,
+				3B10AF341FC53E0000958877 /* BillableTimer.swift */,
+				3B10AF361FC53F7600958877 /* BillableTimeCardDelegate.swift */,
 			);
 			path = billable;
 			sourceTree = "<group>";
@@ -707,6 +722,7 @@
 				3B74688A1FB12E8D00ED77B1 /* ContactsViewController.swift in Sources */,
 				3B5697041F9E94DE000CE7F5 /* LoginViewController.swift in Sources */,
 				3B6BED741FC4CB51009CF39F /* TimeCardProjectCell.swift in Sources */,
+				3B10AF351FC53E0000958877 /* BillableTimer.swift in Sources */,
 				3B04FD111F9AA29C0044A857 /* Constants.swift in Sources */,
 				3B0BBE0E1FB304BB004821D7 /* BaseCell.swift in Sources */,
 				3B8436071FAB94D3000B1EF2 /* AddNewProjectViewController.swift in Sources */,
@@ -731,7 +747,11 @@
 				3B84360C1FABE621000B1EF2 /* ProjectNameValidation.swift in Sources */,
 				3B29BC141F99767900E66F21 /* AppDelegate.swift in Sources */,
 				3B321DBF1FBC26290053A4B8 /* TimeCardDatePickerCell.swift in Sources */,
+				3B10AF331FC53D6F00958877 /* BillableClockDelegate.swift in Sources */,
+				3B10AF371FC53F7600958877 /* BillableTimeCardDelegate.swift in Sources */,
 				3B7468881FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift in Sources */,
+				3B10AF2F1FC53D0A00958877 /* BillableDataSource.swift in Sources */,
+				3B10AF311FC53D2F00958877 /* BillableDelegate.swift in Sources */,
 				3B321DBD1FBAD8EA0053A4B8 /* TimeCardDelegate.swift in Sources */,
 				3B6BED701FC41585009CF39F /* TimeCardNoteCell.swift in Sources */,
 				3B0BBE0C1FB28A05004821D7 /* BillableViewController.swift in Sources */,

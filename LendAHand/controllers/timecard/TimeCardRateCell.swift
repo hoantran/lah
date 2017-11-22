@@ -10,7 +10,8 @@ import UIKit
 
 class TimeCardRateCell: BaseCell {
   static let cellID = "TimeCardRateCell"
-  var textfieldDelegate = CurrencyTextFieldDelegate()
+  
+  var updateHandler: ((Float)->())?
   
   let rateLabel: UILabel = {
     let label = UILabel()
@@ -29,6 +30,7 @@ class TimeCardRateCell: BaseCell {
     field.font = UIFont.systemFont(ofSize: 18, weight: .thin)
     field.textAlignment = .right
     field.autocorrectionType = .no
+    field.delegate = self
 //    field.delegate = CurrencyTextFieldDelegate()
     return field
   } ()
@@ -47,7 +49,6 @@ class TimeCardRateCell: BaseCell {
   }
   
   override func setupViews() {
-    rate.delegate = textfieldDelegate
     
     addSubview(rateLabel)
     addSubview(rate)
@@ -67,3 +68,19 @@ class TimeCardRateCell: BaseCell {
       ])
   }
 }
+
+
+extension TimeCardRateCell: UITextFieldDelegate {
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    return textField.shouldChangeCharactersInRateField(textField, shouldChangeCharactersIn: range, replacementString: string)
+  }
+  
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    self.updateHandler?(getRate())
+  }
+}
+
+
+
+
+
