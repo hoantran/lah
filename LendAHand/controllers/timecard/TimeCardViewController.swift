@@ -23,6 +23,8 @@ class TimeCardViewController: UIViewController {
   var startMax:Date!
   var stopMin:Date!
   
+  var observerToken: NSObjectProtocol?
+  
   lazy var tableView: UITableView = {
     let table = UITableView(frame: CGRect.zero, style: .grouped)
     table.translatesAutoresizingMaskIntoConstraints = false
@@ -44,6 +46,7 @@ class TimeCardViewController: UIViewController {
     tableView.register(TimeCardTitleValueCell.self, forCellReuseIdentifier: TimeCardTitleValueCell.cellID)
     tableView.register(TimeCardNoteCell.self, forCellReuseIdentifier: TimeCardNoteCell.cellID)
     tableView.register(TimeCardPaidCell.self, forCellReuseIdentifier: TimeCardPaidCell.cellID)
+    tableView.register(TimeCardProjectCell.self, forCellReuseIdentifier: TimeCardProjectCell.cellID)
     layoutTable()
   }
   
@@ -63,6 +66,7 @@ class TimeCardViewController: UIViewController {
       startMax = work.stop
       stopMin = work.start
     }
+    observeProject()
   }
   
 }

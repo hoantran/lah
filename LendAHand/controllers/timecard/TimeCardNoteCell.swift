@@ -65,7 +65,7 @@ class TimeCardNoteCell: BaseCell, UITextViewDelegate {
     addSubview(note)
     NSLayoutConstraint.activate([
       note.centerYAnchor.constraint(equalTo: centerYAnchor),
-      note.leftAnchor.constraint(equalTo: leftAnchor, constant: Constants.margin.left),
+      note.leftAnchor.constraint(equalTo: leftAnchor, constant: Constants.margin.left-4),
       note.rightAnchor.constraint(equalTo: rightAnchor, constant: -Constants.margin.right),
       note.heightAnchor.constraint(equalTo: heightAnchor),
       ])

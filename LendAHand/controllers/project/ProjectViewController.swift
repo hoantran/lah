@@ -8,17 +8,22 @@
 
 import UIKit
 
-class ProjectViewController: UITableViewController, BurgerButton, NewProjectDelegate {
+protocol ProjectControllerDelegate {
+  func projectSelected(_ id: String)
+}
+
+
+class ProjectViewController: UITableViewController, NewProjectDelegate {
   static let cellID = "cellID"
   var projects: LocalCollection<Project>!
-  var sortedProjects = Array<Project>()
+  var sortedProjectIndexes = Array<Int>()
+  var projectControllerDelegate: ProjectControllerDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: ProjectViewController.cellID)
     navigationItem.title = "Projects"
     
-    setupBurgerButton()
     setupAddNewProject()
     
     setupProjectObservation()
@@ -31,12 +36,14 @@ class ProjectViewController: UITableViewController, BurgerButton, NewProjectDele
 //    print("--- DEINIT ---")
   }
   
-  func addTarget(_ btn: UIButton) {
-    btn.addTarget(self, action: #selector(handleBugerButtonTap), for: .touchUpInside)
-  }
-  
-  @objc func handleBugerButtonTap() {
-    postMenuTapped()
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    if projectControllerDelegate == nil {
+      setupBurgerButton()
+    }else {
+//      self.navigationController?.navigationItem.largeTitleDisplayMode = .never
+      self.navigationController?.navigationBar.prefersLargeTitles = false
+    }
   }
   
   fileprivate func setupAddNewProject() {
@@ -67,8 +74,10 @@ class ProjectViewController: UITableViewController, BurgerButton, NewProjectDele
   }
 
   private func sort() {
-    self.sortedProjects = self.projects.sorted() { prj1, prj2 in
-      return prj1.name < prj2.name
+    if let sorted = self.projects.sorted(by: { prj1Index, prj2Index in
+      return self.projects[prj1Index].name < self.projects[prj2Index].name
+    }) {
+      self.sortedProjectIndexes = sorted
     }
   }
   
@@ -78,15 +87,56 @@ class ProjectViewController: UITableViewController, BurgerButton, NewProjectDele
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.sortedProjects.count
+    return self.sortedProjectIndexes.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViewController.cellID, for: indexPath)
-    
-    cell.textLabel?.text = self.sortedProjects[indexPath.row].name //  "Project \(indexPath.row)"
-//    cell.detailTextLabel?.text = "\(indexPath.row)"
-    
+    cell.textLabel?.text = self.projects[sortedProjectIndexes[indexPath.row]].name  //  sortedProjects[indexPath.row].name //  "Project \(indexPath.row)"
     return cell
   }
 }
+
+extension ProjectViewController {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if let delegate = projectControllerDelegate {
+      if let id = self.projects.id(sortedProjectIndexes[indexPath.row]) {
+        delegate.projectSelected(id)
+      }
+      self.navigationController?.popViewController(animated: true)
+    }
+  }
+}
+
+extension ProjectViewController {
+  
+  func setupBurgerButton() {
+    let button = UIButton()
+    button.setImage(UIImage(named: "menu.png"), for: .normal)
+    addTarget(button)
+    let barItem = UIBarButtonItem(customView: button)
+    
+    if  let width = barItem.customView?.widthAnchor.constraint(equalToConstant: 22),
+      let height = barItem.customView?.heightAnchor.constraint(equalToConstant: 22) {
+      width.isActive = true
+      height.isActive = true
+    }
+    
+    navigationItem.leftBarButtonItem = barItem
+  }
+  
+  func addTarget(_ btn: UIButton) {
+    btn.addTarget(self, action: #selector(handleBugerButtonTap), for: .touchUpInside)
+  }
+  
+  @objc func handleBugerButtonTap() {
+    postMenuTapped()
+  }
+  
+  func postMenuTapped() {
+    NotificationCenter.default.post(name: .menuTapped, object: nil)
+  }
+}
+
+
+

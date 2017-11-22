@@ -116,8 +116,19 @@ extension TimeCardViewController: UITableViewDataSource {
       switch indexPath.row {
       case TimeCardArrangement.miscRow.project.rawValue:
         print("project")
-        let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardRateCell.cellID, for: indexPath) as! TimeCardRateCell
-        cell.textLabel?.text = "PROJECT"
+        let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardProjectCell.cellID, for: indexPath) as! TimeCardProjectCell
+        if let work = self.work {
+          if let prj = work.project {
+            cell.project = ProjectProxy.shared.getName(prj)
+          }
+        }
+        cell.tapHandler = { [unowned self] in
+          let controller = ProjectViewController()
+          let cancelBtn = UIBarButtonItem(title: "Cancel", style: .plain, target: nil, action: nil)
+          self.navigationItem.backBarButtonItem = cancelBtn
+          controller.projectControllerDelegate = self
+          self.navigationController?.pushViewController(controller, animated: true)
+        }
         return cell
       default:
         print("paid")
@@ -158,4 +169,32 @@ extension TimeCardViewController {
     self.work?.start = date
   }
 }
+
+extension TimeCardViewController {
+  func observeProject() {
+    self.observerToken = NotificationCenter.default.addObserver(forName: .projectChanged, object: nil, queue: nil, using: {notif in
+      DispatchQueue.main.async {
+        self.tableView.reloadData()
+      }
+    })
+  }
+  
+  func unObserveProject() {
+    if let token = self.observerToken {
+      NotificationCenter.default.removeObserver(token)
+      self.observerToken = nil
+    }
+  }
+}
+
+extension TimeCardViewController: ProjectControllerDelegate {
+  func projectSelected(_ id: String) {
+    self.work?.project = id
+    self.navigationController?.navigationBar.prefersLargeTitles = true
+    self.tableView.reloadData()
+  }
+  
+  
+}
+
 

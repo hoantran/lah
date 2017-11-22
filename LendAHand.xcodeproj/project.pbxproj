@@ -45,6 +45,7 @@
 		3B5DBA981FBF74B300D3E81F /* TimeCardTitleValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DBA971FBF74B300D3E81F /* TimeCardTitleValueCell.swift */; };
 		3B6BED701FC41585009CF39F /* TimeCardNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BED6F1FC41585009CF39F /* TimeCardNoteCell.swift */; };
 		3B6BED721FC4BD08009CF39F /* TimeCardPaidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BED711FC4BD08009CF39F /* TimeCardPaidCell.swift */; };
+		3B6BED741FC4CB51009CF39F /* TimeCardProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BED731FC4CB51009CF39F /* TimeCardProjectCell.swift */; };
 		3B7468861FB0F1EC00ED77B1 /* AddNewWorkertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7468851FB0F1EC00ED77B1 /* AddNewWorkertViewController.swift */; };
 		3B7468881FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7468871FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift */; };
 		3B74688A1FB12E8D00ED77B1 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7468891FB12E8D00ED77B1 /* ContactsViewController.swift */; };
@@ -119,6 +120,7 @@
 		3B5DBA971FBF74B300D3E81F /* TimeCardTitleValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardTitleValueCell.swift; sourceTree = "<group>"; };
 		3B6BED6F1FC41585009CF39F /* TimeCardNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardNoteCell.swift; sourceTree = "<group>"; };
 		3B6BED711FC4BD08009CF39F /* TimeCardPaidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardPaidCell.swift; sourceTree = "<group>"; };
+		3B6BED731FC4CB51009CF39F /* TimeCardProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardProjectCell.swift; sourceTree = "<group>"; };
 		3B7468851FB0F1EC00ED77B1 /* AddNewWorkertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewWorkertViewController.swift; sourceTree = "<group>"; };
 		3B7468871FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTextFieldDelegate.swift; sourceTree = "<group>"; };
 		3B7468891FB12E8D00ED77B1 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				3B5DBA971FBF74B300D3E81F /* TimeCardTitleValueCell.swift */,
 				3B6BED6F1FC41585009CF39F /* TimeCardNoteCell.swift */,
 				3B6BED711FC4BD08009CF39F /* TimeCardPaidCell.swift */,
+				3B6BED731FC4CB51009CF39F /* TimeCardProjectCell.swift */,
 			);
 			path = timecard;
 			sourceTree = "<group>";
@@ -703,6 +706,7 @@
 				3B8436051FAB0ABB000B1EF2 /* BurgerButton.swift in Sources */,
 				3B74688A1FB12E8D00ED77B1 /* ContactsViewController.swift in Sources */,
 				3B5697041F9E94DE000CE7F5 /* LoginViewController.swift in Sources */,
+				3B6BED741FC4CB51009CF39F /* TimeCardProjectCell.swift in Sources */,
 				3B04FD111F9AA29C0044A857 /* Constants.swift in Sources */,
 				3B0BBE0E1FB304BB004821D7 /* BaseCell.swift in Sources */,
 				3B8436071FAB94D3000B1EF2 /* AddNewProjectViewController.swift in Sources */,

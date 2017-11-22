@@ -22,17 +22,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     FirebaseApp.configure()
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
-//    window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+    
+    window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+    
 //    window?.rootViewController = UINavigationController(rootViewController: ContainerViewController())
 //    window?.rootViewController = ContainerViewController()
-    let project = "0VXsIC8d14Q1x79F3H7y"
-    let start = Date()
-    let stop = Date(timeInterval: 3723, since: start)
-    let work = Work(rate: 7.8, isPaid: true, start: start, project: project, stop: stop, note: "One note to bring")
-    let controller = TimeCardViewController()
-    controller.work = work
     
-    window?.rootViewController = UINavigationController(rootViewController: controller)
+//    let project = "6FfLhliNYkD4QMztpp7n"
+//    let start = Date()
+//    let stop = Date(timeInterval: 3723, since: start)
+//    let work = Work(rate: 7.8, isPaid: true, start: start, project: project, stop: stop, note: "One note to bring")
+//    let controller = TimeCardViewController()
+//    controller.work = work
+//    window?.rootViewController = UINavigationController(rootViewController: controller)
+    
 //    window?.rootViewController = UINavigationController(rootViewController: DummyVC())
 
     

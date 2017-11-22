@@ -111,8 +111,22 @@ extension LocalCollection {
 
 
 extension LocalCollection {
-  func sorted(by areInIncreasingOrder: (T, T) -> Bool) -> [T] {
-    return items.sorted(by: areInIncreasingOrder)
+  
+  func sorted(by areInIncreasingOrder: (Int, Int) -> Bool) -> [Int]? {
+    if self.count > 0 {
+      let itemsToOrder = (0...self.count-1).map(){ index in
+        return index
+      }
+      return itemsToOrder.sorted(by: areInIncreasingOrder)
+    } else {
+      return nil
+    }
   }
+  
 }
+
+
+
+
+
 

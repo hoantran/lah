@@ -109,6 +109,7 @@ extension TimeCardViewController: UITableViewDelegate {
         cell.ignoreChanges()
       }
     }
+    unObserveProject()
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -93,7 +93,7 @@ class TimeCardDatePickerCell: BaseCell {
     let label = UILabel()
     label.text = "[12/12/12 long"
     label.textAlignment = .right
-    label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+    label.font = UIFont.systemFont(ofSize: 18, weight: .light)
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()

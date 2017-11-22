@@ -45,7 +45,7 @@ class TimeCardTitleValueCell: BaseCell {
     let label = UILabel()
     label.text = "0 hrs 0 mins"
     label.textAlignment = .right
-    label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+    label.font = UIFont.systemFont(ofSize: 18, weight: .light)
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()

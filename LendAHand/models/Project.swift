@@ -18,7 +18,7 @@ struct Project {
     return [
       "contact": contact == nil ? NSNull() : contact as Any,
       "name": name,
-      "completed": completed
+      "completed": completed,
     ]
   }
 }
