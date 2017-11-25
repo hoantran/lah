@@ -161,6 +161,13 @@ extension TimeCardViewController: UITableViewDataSource {
         self.work?.note = text
       }
       
+      cell.keyboardHandler = { [unowned self] isEditing in
+        self.isEditingNote = isEditing
+        DispatchQueue.main.async {
+          self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
+      }
+      
       return cell
 
     }

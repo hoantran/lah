@@ -25,6 +25,7 @@ class TimeCardViewController: UIViewController {
 //      }
     }
   }
+  var isEditingNote: Bool = false
   
   var startMax:Date!
   var stopMin:Date!
@@ -38,6 +39,7 @@ class TimeCardViewController: UIViewController {
     table.separatorColor = table.backgroundColor
     table.dataSource = self
     table.delegate = self
+    table.keyboardDismissMode = .interactive
     return table
   }()
   
@@ -56,15 +58,45 @@ class TimeCardViewController: UIViewController {
     tableView.register(TimeCardProjectCell.self, forCellReuseIdentifier: TimeCardProjectCell.cellID)
     layoutTable()
     setupSaveTimeCard()
+    
+    let tap = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+    tap.cancelsTouchesInView = false
+    self.view.addGestureRecognizer(tap)
+    
+  }
+  
+  @objc func keyboardWillShow(notification: NSNotification) {
+    print("keyboardWill SHOW")
+    if isEditingNote {
+      let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+      let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
+      
+      let insets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame!.height, right: 0)
+      tableView.contentInset = insets
+      UIView.animate(withDuration: keyboardDuration!, animations: {
+        self.view.layoutIfNeeded()
+      })
+    }
+  }
+  
+  @objc func keyboardWillHide(_ notification: Notification) {
+     print("keyboardWill HIDE")
+    let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
+    
+    tableView.contentInset = UIEdgeInsets.zero
+    UIView.animate(withDuration: keyboardDuration!, animations: {
+      self.view.layoutIfNeeded()
+    })
   }
   
   fileprivate func layoutTable() {
     view.addSubview(tableView)
+    
     NSLayoutConstraint.activate([
       tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
       tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
-      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+      tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
       ])
   }
   
@@ -75,7 +107,12 @@ class TimeCardViewController: UIViewController {
       stopMin = work.start
     }
     observeProject()
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+
   }
+  
 }
 
 
@@ -91,6 +128,13 @@ extension TimeCardViewController {
       timecardDelegate?.save(workID: workID, work: work)
     }
     navigationController?.popViewController(animated: true)
+  }
+}
+
+
+extension TimeCardViewController {
+  @objc func endEditing() {
+    self.view.endEditing(true)
   }
 }
 

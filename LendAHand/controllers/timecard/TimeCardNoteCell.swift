@@ -13,7 +13,8 @@ class TimeCardNoteCell: BaseCell, UITextViewDelegate {
   static let PLACE_HOLDER = "NOTE"
   static var height: CGFloat { get { return 100 } }
   
-  var updateHandler: ((String)->())?
+  var updateHandler: ( (String)->() )?
+  var keyboardHandler: ( (Bool)->() )?
   
   var noteText: String? {
     didSet {
@@ -59,6 +60,18 @@ class TimeCardNoteCell: BaseCell, UITextViewDelegate {
       let handler = updateHandler{
       handler(text)
     }
+  }
+  
+  func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+    print("should BEGIN")
+    self.keyboardHandler?(true)
+    return true
+  }
+  
+  func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+    print("should END")
+    self.keyboardHandler?(false)
+    return true
   }
   
   override func setupViews() {

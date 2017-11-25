@@ -26,7 +26,7 @@ class TimeCardRateCell: BaseCell {
     let field = UITextField()
     field.placeholder = "0.00"
     field.translatesAutoresizingMaskIntoConstraints = false
-    field.becomeFirstResponder()
+//    field.becomeFirstResponder()
     field.font = UIFont.systemFont(ofSize: 18, weight: .thin)
     field.textAlignment = .right
     field.autocorrectionType = .no
@@ -77,6 +77,11 @@ extension TimeCardRateCell: UITextFieldDelegate {
   
   func textFieldDidEndEditing(_ textField: UITextField) {
     self.updateHandler?(getRate())
+  }
+  
+  func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    rate.keyboardType = .decimalPad
+    return true
   }
 }
 

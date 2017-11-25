@@ -110,6 +110,8 @@ extension TimeCardViewController: UITableViewDelegate {
       }
     }
     unObserveProject()
+    
+    NotificationCenter.default.removeObserver(self)
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
