@@ -19,6 +19,7 @@
 		3B0BBE101FB30594004821D7 /* BillableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BBE0F1FB30594004821D7 /* BillableCell.swift */; };
 		3B0BBE121FB3C289004821D7 /* ProjectProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BBE111FB3C289004821D7 /* ProjectProxy.swift */; };
 		3B0BBE141FB45141004821D7 /* ClockControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BBE131FB45141004821D7 /* ClockControlView.swift */; };
+		3B0E94011FCCB25200C26454 /* CreateUpdateWorkerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0E94001FCCB25200C26454 /* CreateUpdateWorkerViewController.swift */; };
 		3B10AF2F1FC53D0A00958877 /* BillableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10AF2E1FC53D0A00958877 /* BillableDataSource.swift */; };
 		3B10AF311FC53D2F00958877 /* BillableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10AF301FC53D2F00958877 /* BillableDelegate.swift */; };
 		3B10AF331FC53D6F00958877 /* BillableClockDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10AF321FC53D6F00958877 /* BillableClockDelegate.swift */; };
@@ -95,6 +96,7 @@
 		3B0BBE0F1FB30594004821D7 /* BillableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillableCell.swift; sourceTree = "<group>"; };
 		3B0BBE111FB3C289004821D7 /* ProjectProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectProxy.swift; sourceTree = "<group>"; };
 		3B0BBE131FB45141004821D7 /* ClockControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockControlView.swift; sourceTree = "<group>"; };
+		3B0E94001FCCB25200C26454 /* CreateUpdateWorkerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateWorkerViewController.swift; sourceTree = "<group>"; };
 		3B10AF2E1FC53D0A00958877 /* BillableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillableDataSource.swift; sourceTree = "<group>"; };
 		3B10AF301FC53D2F00958877 /* BillableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillableDelegate.swift; sourceTree = "<group>"; };
 		3B10AF321FC53D6F00958877 /* BillableClockDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillableClockDelegate.swift; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				3B8AF7041FB6833900C79016 /* StatsView.swift */,
 				3B7468851FB0F1EC00ED77B1 /* AddNewWorkertViewController.swift */,
 				3B7468891FB12E8D00ED77B1 /* ContactsViewController.swift */,
+				3B0E94001FCCB25200C26454 /* CreateUpdateWorkerViewController.swift */,
 			);
 			path = worker;
 			sourceTree = "<group>";
@@ -748,6 +751,7 @@
 				3B29BC141F99767900E66F21 /* AppDelegate.swift in Sources */,
 				3B321DBF1FBC26290053A4B8 /* TimeCardDatePickerCell.swift in Sources */,
 				3B10AF331FC53D6F00958877 /* BillableClockDelegate.swift in Sources */,
+				3B0E94011FCCB25200C26454 /* CreateUpdateWorkerViewController.swift in Sources */,
 				3B10AF371FC53F7600958877 /* BillableTimeCardDelegate.swift in Sources */,
 				3B7468881FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift in Sources */,
 				3B10AF2F1FC53D0A00958877 /* BillableDataSource.swift in Sources */,

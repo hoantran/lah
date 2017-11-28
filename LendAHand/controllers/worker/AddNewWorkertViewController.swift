@@ -9,9 +9,6 @@
 import UIKit
 import Contacts
 
-protocol NewWorkerDelegate: class {
-  func observeNewWorker(_ worker: Worker)
-}
 
 class AddNewWorkertViewController: UIViewController, ContactSelectionDelegate {
   
@@ -24,7 +21,7 @@ class AddNewWorkertViewController: UIViewController, ContactSelectionDelegate {
     }
   }
   
-  weak var workerDelegate: NewWorkerDelegate?
+  weak var workerDelegate: WorkerDelegate?
   weak var workerDataSourceDelegate: WorkerDataSourceDelegate?
   
   var name:UIButton = {

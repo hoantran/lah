@@ -63,13 +63,15 @@ extension BillableViewController: ClockControlDelegate {
   
   func clockIn() {
     self.control.showClockOut()
-    if let workerID = self.workerID {
+    if let workerID = self.workerID, let worker = self.worker {
       let current = Current(
         worker: workerID,
-        start: Date())
+        start: Date(),
+        rate: worker.rate
+        )
       Constants.firestore.collection.currents.addDocument(data: current.dictionary)
     } else {
-      print ("Err: workerID is not set")
+      print ("Err: worker identity attributes are not set")
     }
   }
   

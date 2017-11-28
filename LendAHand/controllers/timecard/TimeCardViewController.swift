@@ -108,6 +108,7 @@ class TimeCardViewController: UIViewController {
     }
     observeProject()
     
+    // http://kingscocoa.com/tutorials/keyboard-content-offset/
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
@@ -123,7 +124,6 @@ extension TimeCardViewController {
   }
   
   @objc func handleSave() {
-    print("save")
     if let workID = self.workID, let work = self.work {
       timecardDelegate?.save(workID: workID, work: work)
     }

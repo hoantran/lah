@@ -31,7 +31,6 @@ class TimeCardRateCell: BaseCell {
     field.textAlignment = .right
     field.autocorrectionType = .no
     field.delegate = self
-//    field.delegate = CurrencyTextFieldDelegate()
     return field
   } ()
   

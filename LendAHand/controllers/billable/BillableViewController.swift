@@ -97,9 +97,13 @@ class BillableViewController: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    print("viewWillDisappear")
+    print("viewWillAppear")
     observe()
     updateControl()
+    
+    // toggling the button's state so that EDIT button is shown in enabled state
+    self.navigationItem.rightBarButtonItem?.isEnabled = false
+    self.navigationItem.rightBarButtonItem?.isEnabled = true
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -117,11 +121,11 @@ class BillableViewController: UIViewController {
     setupTable()
     setupCurrents()
     setupWorks()
-    print("--- INIT ---")
+//    print("--- INIT ---")
   }
   
   deinit {
-    print("--- DEINIT ---")
+//    print("--- DEINIT ---")
     deinitCurrents()
     deinitWorks()
     self.worker = nil
@@ -158,8 +162,32 @@ extension BillableViewController {
   }
   
   @objc func handleEditWorker() {
-    print("work on me!!!!")
+    if let workerContactID = self.worker?.contact {
+      let cancelBtn = UIBarButtonItem(title: "Cancel", style: .plain, target: nil, action: nil)
+      navigationItem.backBarButtonItem = cancelBtn
+      let controller = CreateUpdateWorkerViewController()
+      controller.workerDelegate = self
+      controller.isCreateNewWorker = false
+      controller.heading = "Edit Worker"
+      controller.initialRate = self.worker?.rate
+      ContactMgr.shared.fetch(workerContactID) { contact in
+        if let contact = contact {
+          controller.contact = contact
+        }
+      }
+      navigationController?.pushViewController(controller, animated: true)
+    }
   }
+}
+
+extension BillableViewController: WorkerDelegate {
+  func observeNewWorker(_ worker: Worker) {
+    if let workerID = self.workerID {
+      Constants.firestore.collection.workers.document(workerID).updateData([Constants.rate: worker.rate])
+    }
+  }
+  
+  
 }
 
 

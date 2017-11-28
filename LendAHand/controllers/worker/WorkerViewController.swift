@@ -75,11 +75,10 @@ class WorkerViewController: UITableViewController {
   }
   
   @objc func handleAddNewWorker() {
-    let cancelBtn = UIBarButtonItem(title: "Cancel", style: .plain, target: nil, action: nil)
-    navigationItem.backBarButtonItem = cancelBtn
-    let controller = AddNewWorkertViewController()
+    let controller = CreateUpdateWorkerViewController()
     controller.workerDelegate = self
     controller.workerDataSourceDelegate = self
+    controller.heading = "Create New Worker"
     navigationController?.pushViewController(controller, animated: true)
   }
   
@@ -96,9 +95,9 @@ class WorkerViewController: UITableViewController {
       let cell = tableView.dequeueReusableCell(withIdentifier: HighlightedWorkerCell.cellID, for: indexPath) as! HighlightedWorkerCell
       let indexRow = self.indexOrder[indexPath.row]
       let worker = self.workers[indexRow]
-      if let start = getStart(self.workers.id(indexRow)) {
-        cell.start = start
-        cell.rate = worker.rate
+      if let current = getWorkerInCurrents(self.workers.id(indexRow)) {
+        cell.start = current.start
+        cell.rate = current.rate
         cell.clock.restartAnimation()
         cell.update()
         let contactID = worker.contact
@@ -173,14 +172,14 @@ extension WorkerViewController {
 
 
 extension WorkerViewController {
-  
-  func getStart(_ workerID: String?) -> Date? {
+
+  func getWorkerInCurrents(_ workerID: String?) -> Current? {
     guard let workerID = workerID else { return nil }
     if self.currents != nil && self.currents.count > 0{
       for i in 0..<self.currents.count {
         let worker = self.currents[i]
         if workerID == worker.worker {
-          return worker.start
+          return worker
         }
       }
     }
@@ -227,10 +226,15 @@ extension WorkerViewController {
     return row < self.currents.count
   }
   
+  fileprivate func listingCounts() {
+    print("Currents:[\(self.currents.count)], Workers:[\(self.workers.count)]")
+  }
+  
   func setupCurrents() {
     let query = Constants.firestore.collection.currents
     self.currents = LocalCollection(query: query) { [unowned self] (changes) in
       self.sort()
+      self.listingCounts()
       DispatchQueue.main.async {
         self.tableView.reloadData()
       }
@@ -267,6 +271,7 @@ extension WorkerViewController {
     let query = Constants.firestore.collection.workers
     self.workers = LocalCollection(query: query) { [unowned self] (changes) in
       self.sort()
+      self.listingCounts()
       DispatchQueue.main.async {
         self.tableView.reloadData()
       }
@@ -290,7 +295,7 @@ extension WorkerViewController:BurgerButton {
   }
 }
 
-extension WorkerViewController:NewWorkerDelegate {
+extension WorkerViewController:WorkerDelegate {
   func observeNewWorker(_ worker: Worker) {
     Constants.firestore.collection.workers.addDocument(data: worker.dictionary)
   }

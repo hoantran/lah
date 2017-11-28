@@ -119,7 +119,8 @@ class ViewController: UIViewController, LoginButtonDelegate {
           }
           let current = Current(
               worker: self.workers.documents[0].reference.documentID,
-              start: Date())
+              start: Date(),
+              rate: 12.0)
           Constants.firestore.collection.currents.addDocument(data: current.dictionary)
         }
       }

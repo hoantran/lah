@@ -12,11 +12,13 @@ struct Current {
   
   var worker: String
   var start: Date
+  var rate: Float
   
   var dictionary: [String: Any] {
     return [
       "worker": worker,
-      "start": start
+      "start": start,
+      "rate": rate
     ]
   }
 }
@@ -26,8 +28,9 @@ extension Current: DocumentSerializable {
   init?(dictionary: [String : Any]) {
     guard
       let worker = dictionary["worker"] as? String,
-      let start = dictionary["start"] as? Date else { return nil }
+      let start = dictionary["start"] as? Date,
+      let rate = dictionary["rate"] as? Float else { return nil }
     
-    self.init(worker: worker, start: start)
+    self.init(worker: worker, start: start, rate: rate)
   }
 }
