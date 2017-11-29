@@ -8,10 +8,12 @@
 
 import UIKit
 import FirebaseFirestore
+import Firebase
 
 struct Constants {
   static let works = "works"
   static let rate = "rate"
+  static let users = "users"
   
   public struct Color {
     public let base = UIColor(hex: "0x89CFF0")
@@ -28,9 +30,22 @@ struct Constants {
     public let root = Firestore.firestore()
 
     public struct KCollection {
-      public let workers = Constants.firestore.root.collection("workers")
-      public let projects = Constants.firestore.root.collection("projects")
-      public let currents = Constants.firestore.root.collection("currents")
+      public var workers:CollectionReference? {
+        return Constants.firestore.collection.getCollection("workers")
+      }
+      public var projects:CollectionReference? {
+        return Constants.firestore.collection.getCollection("projects")
+      }
+      public var currents:CollectionReference? {
+        return Constants.firestore.collection.getCollection("currents")
+      }
+      
+      public func getCollection(_ name: String)->CollectionReference? {
+        if let id = Auth.auth().currentUser?.uid {
+          return Constants.firestore.root.collection(Constants.users).document(id).collection(name)
+        }
+        return nil
+      }
     }
     
     public var collection: KCollection {

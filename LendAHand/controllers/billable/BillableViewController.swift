@@ -136,14 +136,16 @@ class BillableViewController: UIViewController {
 
 extension BillableViewController {
   func setupWorks() {
-    if let workerID = self.workerID {
-      let query = Constants.firestore.collection.workers.document(workerID).collection(Constants.works)
+    if let workerID = self.workerID,
+      let query = Constants.firestore.collection.workers?.document(workerID).collection(Constants.works) {
+      
       self.works = LocalCollection(query: query) { [unowned self] (changes) in
         DispatchQueue.main.async {
           self.tableView.reloadData()
         }
       }
       self.works.listen()
+      
     }
   }
   
@@ -183,7 +185,7 @@ extension BillableViewController {
 extension BillableViewController: WorkerDelegate {
   func observeNewWorker(_ worker: Worker) {
     if let workerID = self.workerID {
-      Constants.firestore.collection.workers.document(workerID).updateData([Constants.rate: worker.rate])
+      Constants.firestore.collection.workers?.document(workerID).updateData([Constants.rate: worker.rate])
     }
   }
   

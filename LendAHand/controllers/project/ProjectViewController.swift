@@ -60,15 +60,16 @@ class ProjectViewController: UITableViewController, NewProjectDelegate {
   }
   
   func observeNewProject(_ prj: Project) {
-    Constants.firestore.collection.projects.addDocument(data: prj.dictionary)
+    Constants.firestore.collection.projects?.addDocument(data: prj.dictionary)
   }
   
   func setupProjectObservation() {
-    let query = Constants.firestore.collection.projects
-    self.projects = LocalCollection(query: query) { [unowned self] (changes) in
-      self.sort()
-      DispatchQueue.main.async {
-        self.tableView.reloadData()
+    if let query = Constants.firestore.collection.projects {
+      self.projects = LocalCollection(query: query) { [unowned self] (changes) in
+        self.sort()
+        DispatchQueue.main.async {
+          self.tableView.reloadData()
+        }
       }
     }
   }

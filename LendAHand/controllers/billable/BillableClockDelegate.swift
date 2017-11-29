@@ -69,7 +69,7 @@ extension BillableViewController: ClockControlDelegate {
         start: Date(),
         rate: worker.rate
         )
-      Constants.firestore.collection.currents.addDocument(data: current.dictionary)
+      Constants.firestore.collection.currents?.addDocument(data: current.dictionary)
     } else {
       print ("Err: worker identity attributes are not set")
     }
@@ -81,7 +81,7 @@ extension BillableViewController: ClockControlDelegate {
       if let currentID = self.currents.id(index) {
         let current = self.currents[index]
         //
-        Constants.firestore.collection.currents.document(currentID).delete() { err in
+        Constants.firestore.collection.currents?.document(currentID).delete() { err in
           if let err = err {
             print("Err while deleting \(currentID): \(err)")
           }
@@ -90,7 +90,7 @@ extension BillableViewController: ClockControlDelegate {
         //
         if let worker = self.worker {
           let work = Work(rate: worker.rate, isPaid: false, start: current.start, project: nil, stop: Date(), note: nil)
-          Constants.firestore.collection.workers.document(current.worker).collection(Constants.works).addDocument(data: work.dictionary)
+          Constants.firestore.collection.workers?.document(current.worker).collection(Constants.works).addDocument(data: work.dictionary)
         } else {
           print ("Err: worker is not set; can save this work period")
         }
@@ -102,12 +102,13 @@ extension BillableViewController: ClockControlDelegate {
   }
   
   func setupCurrents() {
-    let query = Constants.firestore.collection.currents
-    self.currents = LocalCollection(query: query) { [unowned self] (changes) in
-      //      changes.forEach(){ print ("[", $0.type, "]", $0) }
-      self.updateControl()
+    if let query = Constants.firestore.collection.currents {
+      self.currents = LocalCollection(query: query) { [unowned self] (changes) in
+        //      changes.forEach(){ print ("[", $0.type, "]", $0) }
+        self.updateControl()
+      }
+      self.currents.listen()
     }
-    self.currents.listen()
   }
   
   func deinitCurrents() {

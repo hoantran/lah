@@ -231,15 +231,16 @@ extension WorkerViewController {
   }
   
   func setupCurrents() {
-    let query = Constants.firestore.collection.currents
-    self.currents = LocalCollection(query: query) { [unowned self] (changes) in
-      self.sort()
-      self.listingCounts()
-      DispatchQueue.main.async {
-        self.tableView.reloadData()
+    if let query = Constants.firestore.collection.currents {
+      self.currents = LocalCollection(query: query) { [unowned self] (changes) in
+        self.sort()
+        self.listingCounts()
+        DispatchQueue.main.async {
+          self.tableView.reloadData()
+        }
       }
+      self.currents.listen()
     }
-    self.currents.listen()
   }
 
   func deinitCurrents() {
@@ -268,15 +269,16 @@ extension WorkerViewController {
 
 extension WorkerViewController {
   func setupWorkers() {
-    let query = Constants.firestore.collection.workers
-    self.workers = LocalCollection(query: query) { [unowned self] (changes) in
-      self.sort()
-      self.listingCounts()
-      DispatchQueue.main.async {
-        self.tableView.reloadData()
+    if let query = Constants.firestore.collection.workers {
+      self.workers = LocalCollection(query: query) { [unowned self] (changes) in
+        self.sort()
+        self.listingCounts()
+        DispatchQueue.main.async {
+          self.tableView.reloadData()
+        }
       }
+      self.workers.listen()
     }
-    self.workers.listen()
   }
   
   func deinitWorkers() {
@@ -297,7 +299,7 @@ extension WorkerViewController:BurgerButton {
 
 extension WorkerViewController:WorkerDelegate {
   func observeNewWorker(_ worker: Worker) {
-    Constants.firestore.collection.workers.addDocument(data: worker.dictionary)
+    Constants.firestore.collection.workers?.addDocument(data: worker.dictionary)
   }
 }
 
