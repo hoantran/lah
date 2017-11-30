@@ -88,9 +88,9 @@ extension BillableViewController: ClockControlDelegate {
         }
         
         //
-        if let worker = self.worker {
-          let work = Work(rate: worker.rate, isPaid: false, start: current.start, project: nil, stop: Date(), note: nil)
-          Constants.firestore.collection.workers?.document(current.worker).collection(Constants.works).addDocument(data: work.dictionary)
+        if let worker = self.worker, let workerID = self.workerID {
+          let work = Work(rate: worker.rate, isPaid: false, start: current.start, worker: workerID, project: nil, stop: Date(), note: nil)
+          Constants.firestore.collection.works?.addDocument(data: work.dictionary)
         } else {
           print ("Err: worker is not set; can save this work period")
         }

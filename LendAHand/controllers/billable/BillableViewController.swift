@@ -137,7 +137,8 @@ class BillableViewController: UIViewController {
 extension BillableViewController {
   func setupWorks() {
     if let workerID = self.workerID,
-      let query = Constants.firestore.collection.workers?.document(workerID).collection(Constants.works) {
+//      let query = Constants.firestore.collection.workers?.document(workerID).collection(Constants.works) {
+      let query = Constants.firestore.collection.works?.whereField("worker", isEqualTo: workerID) {
       
       self.works = LocalCollection(query: query) { [unowned self] (changes) in
         DispatchQueue.main.async {

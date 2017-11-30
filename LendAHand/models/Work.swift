@@ -13,6 +13,7 @@ struct Work {
   var rate: Float
   var isPaid: Bool
   var start: Date
+  var worker: String
   var project: String?
   var stop: Date?
   var note: String?
@@ -22,6 +23,7 @@ struct Work {
       "rate": rate,
       "isPaid": isPaid,
       "start": start,
+      "worker": worker,
       "project": project == nil ? NSNull() : project as Any,
       "stop": stop == nil ? NSNull() : stop as Any,
       "note": note == nil ? NSNull() : note as Any
@@ -34,12 +36,13 @@ extension Work: DocumentSerializable {
     guard
       let rate = dictionary["rate"] as? Float,
       let isPaid = dictionary["isPaid"] as? Bool,
-      let start = dictionary["start"] as? Date else { return nil }
+      let start = dictionary["start"] as? Date,
+      let worker = dictionary["worker"] as? String else { return nil }
     let project = dictionary["project"] == nil ? nil : dictionary["project"] as? String
     let stop = dictionary["stop"] == nil ? nil : dictionary["stop"] as? Date
     let note = dictionary["note"] == nil ? nil : dictionary["note"] as? String
     
-    self.init(rate: rate, isPaid: isPaid, start: start, project: project, stop: stop, note: note)
+    self.init(rate: rate, isPaid: isPaid, start: start, worker: worker, project: project, stop: stop, note: note)
   }
 }
 

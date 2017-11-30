@@ -102,32 +102,32 @@ class ViewController: UIViewController, LoginButtonDelegate {
   }
   
   func setupWorkerObservation() {
-    if let query = Constants.firestore.collection.workers {
-      self.workers = LocalCollection(query: query) { [unowned self] (changes) in
-        print("..............: Workers")
-        changes.forEach(){ print ("[", $0.type, "]", $0) }
-        if self.projects != nil && self.projects.count > 0 {
-          let projectID = self.projects.documents[0].reference.documentID
-          let worker = self.workers[0]
-          let start = Date()
-          let work = Work(rate: worker.rate, isPaid: false, start: start, project: projectID, stop: nil, note: nil)
-          let collection = self.workers.documents[0].reference.collection(Constants.works)
-          let newWork = collection.document()
-          newWork.setData(work.dictionary)
-          newWork.setData(work.dictionary) { error in
-            if let error = error {
-              print("Couldn't set new work:", error)
-              return
-            }
-            let current = Current(
-                worker: self.workers.documents[0].reference.documentID,
-                start: Date(),
-                rate: 12.0)
-            Constants.firestore.collection.currents?.addDocument(data: current.dictionary)
-          }
-        }
-      }
-    }
+//    if let query = Constants.firestore.collection.workers {
+//      self.workers = LocalCollection(query: query) { [unowned self] (changes) in
+//        print("..............: Workers")
+//        changes.forEach(){ print ("[", $0.type, "]", $0) }
+//        if self.projects != nil && self.projects.count > 0 {
+//          let projectID = self.projects.documents[0].reference.documentID
+//          let worker = self.workers[0]
+//          let start = Date()
+//          let work = Work(rate: worker.rate, isPaid: false, start: start, project: projectID, stop: nil, note: nil)
+//          let collection = self.workers.documents[0].reference.collection(Constants.works)
+//          let newWork = collection.document()
+//          newWork.setData(work.dictionary)
+//          newWork.setData(work.dictionary) { error in
+//            if let error = error {
+//              print("Couldn't set new work:", error)
+//              return
+//            }
+//            let current = Current(
+//                worker: self.workers.documents[0].reference.documentID,
+//                start: Date(),
+//                rate: 12.0)
+//            Constants.firestore.collection.currents?.addDocument(data: current.dictionary)
+//          }
+//        }
+//      }
+//    }
   }
   
   func setupProjectObservation() {

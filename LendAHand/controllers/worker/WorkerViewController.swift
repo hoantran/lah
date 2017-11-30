@@ -122,10 +122,12 @@ class WorkerViewController: UITableViewController {
 
       let contactID = self.workers[indexRow].contact
       ContactMgr.shared.fetchName(contactID) { name in
-        if let name = name {
-          cell.textLabel?.text = name
-        } else {
-          cell.textLabel?.text = "Can not get name"
+        DispatchQueue.main.async {
+          if let name = name {
+            cell.textLabel?.text = name
+          } else {
+            cell.textLabel?.text = "Can not get name"
+          }
         }
       }
       

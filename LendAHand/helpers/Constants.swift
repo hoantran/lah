@@ -11,7 +11,6 @@ import FirebaseFirestore
 import Firebase
 
 struct Constants {
-  static let works = "works"
   static let rate = "rate"
   static let users = "users"
   
@@ -38,6 +37,9 @@ struct Constants {
       }
       public var currents:CollectionReference? {
         return Constants.firestore.collection.getCollection("currents")
+      }
+      public var works:CollectionReference? {
+        return Constants.firestore.collection.getCollection("works")
       }
       
       public func getCollection(_ name: String)->CollectionReference? {
