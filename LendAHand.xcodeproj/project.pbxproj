@@ -25,6 +25,12 @@
 		3B10AF331FC53D6F00958877 /* BillableClockDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10AF321FC53D6F00958877 /* BillableClockDelegate.swift */; };
 		3B10AF351FC53E0000958877 /* BillableTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10AF341FC53E0000958877 /* BillableTimer.swift */; };
 		3B10AF371FC53F7600958877 /* BillableTimeCardDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10AF361FC53F7600958877 /* BillableTimeCardDelegate.swift */; };
+		3B22949E1FD0B59F009ECAEF /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22949D1FD0B59F009ECAEF /* SummaryViewController.swift */; };
+		3B2294A01FD0B72A009ECAEF /* ProjectNewProjectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22949F1FD0B72A009ECAEF /* ProjectNewProjectDelegate.swift */; };
+		3B2294A21FD0B7D2009ECAEF /* ProjectBurgerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2294A11FD0B7D2009ECAEF /* ProjectBurgerMenu.swift */; };
+		3B2294A41FD0B872009ECAEF /* ProjectTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2294A31FD0B872009ECAEF /* ProjectTableViewDataSource.swift */; };
+		3B2294A61FD0B8B5009ECAEF /* ProjectNewProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2294A51FD0B8B5009ECAEF /* ProjectNewProject.swift */; };
+		3B2294A81FD0B905009ECAEF /* ProjectTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2294A71FD0B905009ECAEF /* ProjectTableViewDelegate.swift */; };
 		3B29BC141F99767900E66F21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B29BC131F99767900E66F21 /* AppDelegate.swift */; };
 		3B29BC161F99767900E66F21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B29BC151F99767900E66F21 /* ViewController.swift */; };
 		3B29BC1B1F99767900E66F21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B29BC1A1F99767900E66F21 /* Assets.xcassets */; };
@@ -102,6 +108,12 @@
 		3B10AF321FC53D6F00958877 /* BillableClockDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillableClockDelegate.swift; sourceTree = "<group>"; };
 		3B10AF341FC53E0000958877 /* BillableTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillableTimer.swift; sourceTree = "<group>"; };
 		3B10AF361FC53F7600958877 /* BillableTimeCardDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillableTimeCardDelegate.swift; sourceTree = "<group>"; };
+		3B22949D1FD0B59F009ECAEF /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		3B22949F1FD0B72A009ECAEF /* ProjectNewProjectDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNewProjectDelegate.swift; sourceTree = "<group>"; };
+		3B2294A11FD0B7D2009ECAEF /* ProjectBurgerMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectBurgerMenu.swift; sourceTree = "<group>"; };
+		3B2294A31FD0B872009ECAEF /* ProjectTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewDataSource.swift; sourceTree = "<group>"; };
+		3B2294A51FD0B8B5009ECAEF /* ProjectNewProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNewProject.swift; sourceTree = "<group>"; };
+		3B2294A71FD0B905009ECAEF /* ProjectTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewDelegate.swift; sourceTree = "<group>"; };
 		3B29BC101F99767900E66F21 /* LendAHand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LendAHand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B29BC131F99767900E66F21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B29BC151F99767900E66F21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -214,6 +226,7 @@
 				3B84360A1FAB9871000B1EF2 /* login */,
 				3B8436091FAB9845000B1EF2 /* worker */,
 				3B8436081FAB981F000B1EF2 /* project */,
+				3B22949C1FD0B347009ECAEF /* summary */,
 				3B4FF5771FA861AB007DBB6A /* MenuViewController.swift */,
 				3B4FF57B1FA9ACB2007DBB6A /* NavigationViewController.swift */,
 				3B4FF5791FA94407007DBB6A /* ContainerViewController.swift */,
@@ -265,6 +278,14 @@
 				3B10AF361FC53F7600958877 /* BillableTimeCardDelegate.swift */,
 			);
 			path = billable;
+			sourceTree = "<group>";
+		};
+		3B22949C1FD0B347009ECAEF /* summary */ = {
+			isa = PBXGroup;
+			children = (
+				3B22949D1FD0B59F009ECAEF /* SummaryViewController.swift */,
+			);
+			path = summary;
 			sourceTree = "<group>";
 		};
 		3B29BC071F99767900E66F21 = {
@@ -345,6 +366,11 @@
 			isa = PBXGroup;
 			children = (
 				3B4FF5731FA84666007DBB6A /* ProjectViewController.swift */,
+				3B2294A71FD0B905009ECAEF /* ProjectTableViewDelegate.swift */,
+				3B2294A51FD0B8B5009ECAEF /* ProjectNewProject.swift */,
+				3B2294A31FD0B872009ECAEF /* ProjectTableViewDataSource.swift */,
+				3B22949F1FD0B72A009ECAEF /* ProjectNewProjectDelegate.swift */,
+				3B2294A11FD0B7D2009ECAEF /* ProjectBurgerMenu.swift */,
 				3B8436061FAB94D3000B1EF2 /* AddNewProjectViewController.swift */,
 				3B84360B1FABE621000B1EF2 /* ProjectNameValidation.swift */,
 				3B0BBE111FB3C289004821D7 /* ProjectProxy.swift */,
@@ -726,7 +752,10 @@
 				3B5697041F9E94DE000CE7F5 /* LoginViewController.swift in Sources */,
 				3B6BED741FC4CB51009CF39F /* TimeCardProjectCell.swift in Sources */,
 				3B10AF351FC53E0000958877 /* BillableTimer.swift in Sources */,
+				3B2294A81FD0B905009ECAEF /* ProjectTableViewDelegate.swift in Sources */,
+				3B2294A41FD0B872009ECAEF /* ProjectTableViewDataSource.swift in Sources */,
 				3B04FD111F9AA29C0044A857 /* Constants.swift in Sources */,
+				3B2294A01FD0B72A009ECAEF /* ProjectNewProjectDelegate.swift in Sources */,
 				3B0BBE0E1FB304BB004821D7 /* BaseCell.swift in Sources */,
 				3B8436071FAB94D3000B1EF2 /* AddNewProjectViewController.swift in Sources */,
 				3B4FF57A1FA94407007DBB6A /* ContainerViewController.swift in Sources */,
@@ -749,6 +778,7 @@
 				3B5DBA981FBF74B300D3E81F /* TimeCardTitleValueCell.swift in Sources */,
 				3B84360C1FABE621000B1EF2 /* ProjectNameValidation.swift in Sources */,
 				3B29BC141F99767900E66F21 /* AppDelegate.swift in Sources */,
+				3B2294A61FD0B8B5009ECAEF /* ProjectNewProject.swift in Sources */,
 				3B321DBF1FBC26290053A4B8 /* TimeCardDatePickerCell.swift in Sources */,
 				3B10AF331FC53D6F00958877 /* BillableClockDelegate.swift in Sources */,
 				3B0E94011FCCB25200C26454 /* CreateUpdateWorkerViewController.swift in Sources */,
@@ -756,6 +786,8 @@
 				3B7468881FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift in Sources */,
 				3B10AF2F1FC53D0A00958877 /* BillableDataSource.swift in Sources */,
 				3B10AF311FC53D2F00958877 /* BillableDelegate.swift in Sources */,
+				3B22949E1FD0B59F009ECAEF /* SummaryViewController.swift in Sources */,
+				3B2294A21FD0B7D2009ECAEF /* ProjectBurgerMenu.swift in Sources */,
 				3B321DBD1FBAD8EA0053A4B8 /* TimeCardDelegate.swift in Sources */,
 				3B6BED701FC41585009CF39F /* TimeCardNoteCell.swift in Sources */,
 				3B0BBE0C1FB28A05004821D7 /* BillableViewController.swift in Sources */,
