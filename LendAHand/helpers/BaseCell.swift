@@ -9,6 +9,7 @@
 import UIKit
 
 class BaseCell: UITableViewCell {
+  var didSelectHandler: (()->())?
   
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)

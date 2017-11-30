@@ -89,5 +89,7 @@ class TimeCardProjectCell: BaseCell {
       button.leftAnchor.constraint(equalTo: titleLabel.rightAnchor, constant: 8),
       button.heightAnchor.constraint(equalTo: titleLabel.heightAnchor),
       ])
+    
+    didSelectHandler = handleTap
   }
 }

@@ -41,8 +41,18 @@ extension TimeCardViewController: UITableViewDelegate {
       tableView.reloadRows(at: indexPathArray, with: .automatic)
     }
     
-////    tableView.beginUpdates()
-////    tableView.endUpdates()
+    let didSelectDelegate = tableView.cellForRow(at: indexPath) as? BaseCell
+    didSelectDelegate?.didSelectHandler?()
+    
+  }
+  
+  func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+    if indexPath.section == TimeCardArrangement.time.rawValue &&
+      indexPath.row == TimeCardArrangement.timeRow.duration.rawValue {
+      return false
+    } else {
+      return true
+    }
   }
   
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

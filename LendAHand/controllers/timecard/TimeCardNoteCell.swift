@@ -56,6 +56,11 @@ class TimeCardNoteCell: BaseCell, UITextViewDelegate {
       textView.text = TimeCardNoteCell.PLACE_HOLDER
       textView.textColor = UIColor.lightGray
     }
+
+    textViewDidChange(textView)
+  }
+  
+  func textViewDidChange(_ textView: UITextView) {
     if let text = textView.text,
       let handler = updateHandler{
       handler(text)

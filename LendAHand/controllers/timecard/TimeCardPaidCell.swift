@@ -62,6 +62,11 @@ class TimeCardPaidCell: BaseCell {
     }
   }
   
+  func toggleSwitch() {
+    self.switchControl.isOn = !self.switchControl.isOn
+    handleSwitchChange()
+  }
+  
   override func setupViews() {
     addSubview(titleLabel)
     addSubview(switchControl)
@@ -79,5 +84,7 @@ class TimeCardPaidCell: BaseCell {
       switchControl.widthAnchor.constraint(equalToConstant: 55),
       switchControl.heightAnchor.constraint(equalTo: titleLabel.heightAnchor),
       ])
+    
+    didSelectHandler = toggleSwitch
   }
 }

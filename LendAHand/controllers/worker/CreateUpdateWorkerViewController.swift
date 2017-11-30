@@ -31,7 +31,7 @@ class CreateUpdateWorkerViewController: UIViewController {
   weak var workerDataSourceDelegate: WorkerDataSourceDelegate?
   var isCreateNewWorker = true {
     didSet {
-      name.isUserInteractionEnabled = self.isCreateNewWorker
+      nameContainter.isUserInteractionEnabled = self.isCreateNewWorker
     }
   }
   
@@ -62,10 +62,14 @@ class CreateUpdateWorkerViewController: UIViewController {
     setupContainers()
   }
   
-  var nameContainter:UIView = {
+  lazy var nameContainter:UIView = {
     let v = UIView()
     v.backgroundColor = UIColor.white
     v.translatesAutoresizingMaskIntoConstraints = false
+    let gesture = UITapGestureRecognizer(target: self, action: #selector(handleNameTap))
+    gesture.numberOfTapsRequired = 1
+    v.isUserInteractionEnabled = true
+    v.addGestureRecognizer(gesture)
     return v
   }()
   
@@ -84,11 +88,6 @@ class CreateUpdateWorkerViewController: UIViewController {
     label.textAlignment = .right
     label.font = UIFont.systemFont(ofSize: 18, weight: .light)
     label.translatesAutoresizingMaskIntoConstraints = false
-    
-    let gesture = UITapGestureRecognizer(target: self, action: #selector(handleNameTap))
-    gesture.numberOfTapsRequired = 1
-    label.isUserInteractionEnabled = true
-    label.addGestureRecognizer(gesture)
     return label
   }()
   
@@ -101,12 +100,20 @@ class CreateUpdateWorkerViewController: UIViewController {
     navigationController?.pushViewController(controller, animated: true)
   }
   
-  var rateContainter:UIView = {
+  lazy var rateContainter:UIView = {
     let v = UIView()
     v.backgroundColor = UIColor.white
     v.translatesAutoresizingMaskIntoConstraints = false
+    let gesture = UITapGestureRecognizer(target: self, action: #selector(handleRateTap))
+    gesture.numberOfTapsRequired = 1
+    v.isUserInteractionEnabled = true
+    v.addGestureRecognizer(gesture)
     return v
   }()
+  
+  @objc func handleRateTap(){
+    rate.becomeFirstResponder()
+  }
   
   let rateLabel: UILabel = {
     let label = UILabel()
@@ -232,18 +239,6 @@ extension CreateUpdateWorkerViewController: ContactSelectionDelegate {
         navigationItem.rightBarButtonItem?.isEnabled = rate.count > 0
       }
     }
-    
-    
-//    if  let rate = rate.text,
-//      let delegate = workerDataSourceDelegate,
-//      let identifier = self.worker?.identifier
-//    {
-//      let worker = Worker(contact: identifier, rate: 0.0)
-//      navigationItem.rightBarButtonItem?.isEnabled =
-//        rate.count > 0 &&
-//        self.worker != nil &&
-//        !delegate.exists(worker)
-//    }
   }
 }
 

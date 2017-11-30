@@ -31,6 +31,7 @@ class TimeCardRateCell: BaseCell {
     field.textAlignment = .right
     field.autocorrectionType = .no
     field.delegate = self
+    field.addTarget(self, action: #selector(rateDidChange), for: .editingChanged)
     return field
   } ()
   
@@ -65,6 +66,8 @@ class TimeCardRateCell: BaseCell {
       rate.rightAnchor.constraint(equalTo: rightAnchor, constant: -Constants.margin.right),
       rate.heightAnchor.constraint(equalTo: heightAnchor),
       ])
+    
+    didSelectHandler = didSelectRow
   }
 }
 
@@ -81,6 +84,16 @@ extension TimeCardRateCell: UITextFieldDelegate {
   func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
     rate.keyboardType = .decimalPad
     return true
+  }
+  
+  @objc func rateDidChange(){
+    self.updateHandler?(getRate())
+  }
+}
+
+extension TimeCardRateCell {
+  func didSelectRow() {
+    rate.becomeFirstResponder()
   }
 }
 
