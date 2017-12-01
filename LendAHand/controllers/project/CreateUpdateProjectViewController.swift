@@ -1,5 +1,5 @@
 //
-//  AddNewProjectViewController.swift
+//  CreateUpdateProjectViewController.swift
 //  LendAHand
 //
 //  Created by Hoan Tran on 11/2/17.
@@ -8,12 +8,27 @@
 
 import UIKit
 
-protocol NewProjectDelegate: class {
-  func observeNewProject(_ prj: Project)
+protocol CreateUpdateProjectDelegate: class {
+  func observeCreateUpdateProject(_ prj: Project)
 }
 
-class AddNewProjectViewController: UIViewController {
-  weak var projectDelegate: NewProjectDelegate?
+class CreateUpdateProjectViewController: UIViewController {
+  weak var projectDelegate: CreateUpdateProjectDelegate?
+  var heading: String? {
+    didSet {
+      DispatchQueue.main.async {
+        self.navigationItem.title = self.heading
+      }
+    }
+  }
+  
+  var projectName: String? {
+    didSet {
+      DispatchQueue.main.async {
+        self.name.text = self.projectName
+      }
+    }
+  }
   
   let inputsContainerView: UIView = {
     let v = UIView()
@@ -26,7 +41,7 @@ class AddNewProjectViewController: UIViewController {
   
   let name: UITextField = {
     let field = UITextField()
-    field.placeholder = "name"
+    field.placeholder = "Enter Project Name"
     field.translatesAutoresizingMaskIntoConstraints = false
     field.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
     field.becomeFirstResponder()
@@ -38,9 +53,6 @@ class AddNewProjectViewController: UIViewController {
     let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(handleSave))
     navigationItem.rightBarButtonItem = saveButton
     navigationItem.rightBarButtonItem?.isEnabled = false
-//    let prjNameValidator = ProjectNameValidation()
-//    prjNameValidator.barItem = saveButton
-//    name.delegate = prjNameValidator
   }
   
   fileprivate func setupTextFields() {
@@ -70,7 +82,6 @@ class AddNewProjectViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationItem.title = "New Project"
     setupSaveButton()
     
     view.backgroundColor = Constants.color.bkg
@@ -82,7 +93,7 @@ class AddNewProjectViewController: UIViewController {
   @objc func handleSave() {
     if let projectName = name.text {
       let project = Project(contact: nil, name: projectName, completed: false)
-      projectDelegate?.observeNewProject(project)
+      projectDelegate?.observeCreateUpdateProject(project)
     }
     navigationController?.popViewController(animated: true)
   }

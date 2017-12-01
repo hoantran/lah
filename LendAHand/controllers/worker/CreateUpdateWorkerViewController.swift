@@ -9,8 +9,8 @@
 import UIKit
 import Contacts
 
-protocol WorkerDelegate: class {
-  func observeNewWorker(_ worker: Worker)
+protocol CreateUpdateWorkerDelegate: class {
+  func observeCreateUpdateWorker(_ worker: Worker)
 }
 
 class CreateUpdateWorkerViewController: UIViewController {
@@ -27,7 +27,7 @@ class CreateUpdateWorkerViewController: UIViewController {
     }
   }
   
-  weak var workerDelegate: WorkerDelegate?
+  weak var workerDelegate: CreateUpdateWorkerDelegate?
   weak var workerDataSourceDelegate: WorkerDataSourceDelegate?
   var isCreateNewWorker = true {
     didSet {
@@ -210,7 +210,7 @@ class CreateUpdateWorkerViewController: UIViewController {
       let contact = self.contact {
       if let rate = Float(rateText) {
         let newWorker = Worker(contact: contact.identifier, rate: rate)
-        workerDelegate?.observeNewWorker(newWorker)
+        workerDelegate?.observeCreateUpdateWorker(newWorker)
       }
     }
 

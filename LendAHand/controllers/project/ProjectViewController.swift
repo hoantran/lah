@@ -43,7 +43,9 @@ class ProjectViewController: UITableViewController {
       self.navigationController?.navigationBar.prefersLargeTitles = false
     }
   }
+  
 }
+
 
 
 

@@ -28,9 +28,13 @@
 		3B22949E1FD0B59F009ECAEF /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22949D1FD0B59F009ECAEF /* SummaryViewController.swift */; };
 		3B2294A01FD0B72A009ECAEF /* ProjectNewProjectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22949F1FD0B72A009ECAEF /* ProjectNewProjectDelegate.swift */; };
 		3B2294A21FD0B7D2009ECAEF /* ProjectBurgerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2294A11FD0B7D2009ECAEF /* ProjectBurgerMenu.swift */; };
-		3B2294A41FD0B872009ECAEF /* ProjectTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2294A31FD0B872009ECAEF /* ProjectTableViewDataSource.swift */; };
+		3B2294A41FD0B872009ECAEF /* ProjectDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2294A31FD0B872009ECAEF /* ProjectDataSource.swift */; };
 		3B2294A61FD0B8B5009ECAEF /* ProjectNewProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2294A51FD0B8B5009ECAEF /* ProjectNewProject.swift */; };
-		3B2294A81FD0B905009ECAEF /* ProjectTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2294A71FD0B905009ECAEF /* ProjectTableViewDelegate.swift */; };
+		3B2294A81FD0B905009ECAEF /* ProjectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2294A71FD0B905009ECAEF /* ProjectDelegate.swift */; };
+		3B2294AB1FD156A6009ECAEF /* SummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2294AA1FD156A6009ECAEF /* SummaryCell.swift */; };
+		3B2294AD1FD15752009ECAEF /* SummaryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2294AC1FD15752009ECAEF /* SummaryDataSource.swift */; };
+		3B2294AF1FD15957009ECAEF /* SummaryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2294AE1FD15957009ECAEF /* SummaryDelegate.swift */; };
+		3B2294B11FD164D6009ECAEF /* SummaryEditProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2294B01FD164D6009ECAEF /* SummaryEditProject.swift */; };
 		3B29BC141F99767900E66F21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B29BC131F99767900E66F21 /* AppDelegate.swift */; };
 		3B29BC161F99767900E66F21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B29BC151F99767900E66F21 /* ViewController.swift */; };
 		3B29BC1B1F99767900E66F21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B29BC1A1F99767900E66F21 /* Assets.xcassets */; };
@@ -58,12 +62,11 @@
 		3B6BED701FC41585009CF39F /* TimeCardNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BED6F1FC41585009CF39F /* TimeCardNoteCell.swift */; };
 		3B6BED721FC4BD08009CF39F /* TimeCardPaidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BED711FC4BD08009CF39F /* TimeCardPaidCell.swift */; };
 		3B6BED741FC4CB51009CF39F /* TimeCardProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BED731FC4CB51009CF39F /* TimeCardProjectCell.swift */; };
-		3B7468861FB0F1EC00ED77B1 /* AddNewWorkertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7468851FB0F1EC00ED77B1 /* AddNewWorkertViewController.swift */; };
 		3B7468881FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7468871FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift */; };
 		3B74688A1FB12E8D00ED77B1 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7468891FB12E8D00ED77B1 /* ContactsViewController.swift */; };
 		3B8436031FAA6D6C000B1EF2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8436021FAA6D6C000B1EF2 /* Extensions.swift */; };
 		3B8436051FAB0ABB000B1EF2 /* BurgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8436041FAB0ABB000B1EF2 /* BurgerButton.swift */; };
-		3B8436071FAB94D3000B1EF2 /* AddNewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8436061FAB94D3000B1EF2 /* AddNewProjectViewController.swift */; };
+		3B8436071FAB94D3000B1EF2 /* CreateUpdateProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8436061FAB94D3000B1EF2 /* CreateUpdateProjectViewController.swift */; };
 		3B84360C1FABE621000B1EF2 /* ProjectNameValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84360B1FABE621000B1EF2 /* ProjectNameValidation.swift */; };
 		3B84360F1FAD8F32000B1EF2 /* ContactMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84360E1FAD8F32000B1EF2 /* ContactMgr.swift */; };
 		3B8AF7011FB6778900C79016 /* HighlightedWorkerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8AF7001FB6778900C79016 /* HighlightedWorkerCell.swift */; };
@@ -111,9 +114,13 @@
 		3B22949D1FD0B59F009ECAEF /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		3B22949F1FD0B72A009ECAEF /* ProjectNewProjectDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNewProjectDelegate.swift; sourceTree = "<group>"; };
 		3B2294A11FD0B7D2009ECAEF /* ProjectBurgerMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectBurgerMenu.swift; sourceTree = "<group>"; };
-		3B2294A31FD0B872009ECAEF /* ProjectTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewDataSource.swift; sourceTree = "<group>"; };
+		3B2294A31FD0B872009ECAEF /* ProjectDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDataSource.swift; sourceTree = "<group>"; };
 		3B2294A51FD0B8B5009ECAEF /* ProjectNewProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNewProject.swift; sourceTree = "<group>"; };
-		3B2294A71FD0B905009ECAEF /* ProjectTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewDelegate.swift; sourceTree = "<group>"; };
+		3B2294A71FD0B905009ECAEF /* ProjectDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDelegate.swift; sourceTree = "<group>"; };
+		3B2294AA1FD156A6009ECAEF /* SummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCell.swift; sourceTree = "<group>"; };
+		3B2294AC1FD15752009ECAEF /* SummaryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDataSource.swift; sourceTree = "<group>"; };
+		3B2294AE1FD15957009ECAEF /* SummaryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDelegate.swift; sourceTree = "<group>"; };
+		3B2294B01FD164D6009ECAEF /* SummaryEditProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryEditProject.swift; sourceTree = "<group>"; };
 		3B29BC101F99767900E66F21 /* LendAHand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LendAHand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B29BC131F99767900E66F21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B29BC151F99767900E66F21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -145,12 +152,11 @@
 		3B6BED6F1FC41585009CF39F /* TimeCardNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardNoteCell.swift; sourceTree = "<group>"; };
 		3B6BED711FC4BD08009CF39F /* TimeCardPaidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardPaidCell.swift; sourceTree = "<group>"; };
 		3B6BED731FC4CB51009CF39F /* TimeCardProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardProjectCell.swift; sourceTree = "<group>"; };
-		3B7468851FB0F1EC00ED77B1 /* AddNewWorkertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewWorkertViewController.swift; sourceTree = "<group>"; };
 		3B7468871FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTextFieldDelegate.swift; sourceTree = "<group>"; };
 		3B7468891FB12E8D00ED77B1 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		3B8436021FAA6D6C000B1EF2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3B8436041FAB0ABB000B1EF2 /* BurgerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BurgerButton.swift; sourceTree = "<group>"; };
-		3B8436061FAB94D3000B1EF2 /* AddNewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewProjectViewController.swift; sourceTree = "<group>"; };
+		3B8436061FAB94D3000B1EF2 /* CreateUpdateProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateProjectViewController.swift; sourceTree = "<group>"; };
 		3B84360B1FABE621000B1EF2 /* ProjectNameValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNameValidation.swift; sourceTree = "<group>"; };
 		3B84360E1FAD8F32000B1EF2 /* ContactMgr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMgr.swift; sourceTree = "<group>"; };
 		3B8AF7001FB6778900C79016 /* HighlightedWorkerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightedWorkerCell.swift; sourceTree = "<group>"; };
@@ -220,25 +226,15 @@
 		3B04FD081F9A85830044A857 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3B2294A91FD0BFD9009ECAEF /* main */,
 				3B321DB71FBAD4920053A4B8 /* timecard */,
 				3B0BBE0A1FB289EA004821D7 /* billable */,
-				3B84360D1FAD8F16000B1EF2 /* Contact */,
 				3B84360A1FAB9871000B1EF2 /* login */,
 				3B8436091FAB9845000B1EF2 /* worker */,
 				3B8436081FAB981F000B1EF2 /* project */,
 				3B22949C1FD0B347009ECAEF /* summary */,
-				3B4FF5771FA861AB007DBB6A /* MenuViewController.swift */,
-				3B4FF57B1FA9ACB2007DBB6A /* NavigationViewController.swift */,
-				3B4FF5791FA94407007DBB6A /* ContainerViewController.swift */,
 			);
 			path = controllers;
-			sourceTree = "<group>";
-		};
-		3B04FD091F9A858B0044A857 /* views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = views;
 			sourceTree = "<group>";
 		};
 		3B04FD0A1F9A85930044A857 /* helpers */ = {
@@ -284,8 +280,22 @@
 			isa = PBXGroup;
 			children = (
 				3B22949D1FD0B59F009ECAEF /* SummaryViewController.swift */,
+				3B2294B01FD164D6009ECAEF /* SummaryEditProject.swift */,
+				3B2294AA1FD156A6009ECAEF /* SummaryCell.swift */,
+				3B2294AE1FD15957009ECAEF /* SummaryDelegate.swift */,
+				3B2294AC1FD15752009ECAEF /* SummaryDataSource.swift */,
 			);
 			path = summary;
+			sourceTree = "<group>";
+		};
+		3B2294A91FD0BFD9009ECAEF /* main */ = {
+			isa = PBXGroup;
+			children = (
+				3B4FF5771FA861AB007DBB6A /* MenuViewController.swift */,
+				3B4FF57B1FA9ACB2007DBB6A /* NavigationViewController.swift */,
+				3B4FF5791FA94407007DBB6A /* ContainerViewController.swift */,
+			);
+			path = main;
 			sourceTree = "<group>";
 		};
 		3B29BC071F99767900E66F21 = {
@@ -315,8 +325,8 @@
 			isa = PBXGroup;
 			children = (
 				3B04FD0B1F9A85BC0044A857 /* models */,
+				3B84360D1FAD8F16000B1EF2 /* contact */,
 				3B04FD0A1F9A85930044A857 /* helpers */,
-				3B04FD091F9A858B0044A857 /* views */,
 				3B04FD081F9A85830044A857 /* controllers */,
 				3B04FD071F9A85700044A857 /* networks */,
 				3B29BC131F99767900E66F21 /* AppDelegate.swift */,
@@ -366,12 +376,12 @@
 			isa = PBXGroup;
 			children = (
 				3B4FF5731FA84666007DBB6A /* ProjectViewController.swift */,
-				3B2294A71FD0B905009ECAEF /* ProjectTableViewDelegate.swift */,
+				3B2294A71FD0B905009ECAEF /* ProjectDelegate.swift */,
+				3B2294A31FD0B872009ECAEF /* ProjectDataSource.swift */,
 				3B2294A51FD0B8B5009ECAEF /* ProjectNewProject.swift */,
-				3B2294A31FD0B872009ECAEF /* ProjectTableViewDataSource.swift */,
 				3B22949F1FD0B72A009ECAEF /* ProjectNewProjectDelegate.swift */,
 				3B2294A11FD0B7D2009ECAEF /* ProjectBurgerMenu.swift */,
-				3B8436061FAB94D3000B1EF2 /* AddNewProjectViewController.swift */,
+				3B8436061FAB94D3000B1EF2 /* CreateUpdateProjectViewController.swift */,
 				3B84360B1FABE621000B1EF2 /* ProjectNameValidation.swift */,
 				3B0BBE111FB3C289004821D7 /* ProjectProxy.swift */,
 			);
@@ -385,7 +395,6 @@
 				3B8AF7001FB6778900C79016 /* HighlightedWorkerCell.swift */,
 				3B8AF7021FB682B100C79016 /* ClockView.swift */,
 				3B8AF7041FB6833900C79016 /* StatsView.swift */,
-				3B7468851FB0F1EC00ED77B1 /* AddNewWorkertViewController.swift */,
 				3B7468891FB12E8D00ED77B1 /* ContactsViewController.swift */,
 				3B0E94001FCCB25200C26454 /* CreateUpdateWorkerViewController.swift */,
 			);
@@ -401,12 +410,12 @@
 			path = login;
 			sourceTree = "<group>";
 		};
-		3B84360D1FAD8F16000B1EF2 /* Contact */ = {
+		3B84360D1FAD8F16000B1EF2 /* contact */ = {
 			isa = PBXGroup;
 			children = (
 				3B84360E1FAD8F32000B1EF2 /* ContactMgr.swift */,
 			);
-			path = Contact;
+			path = contact;
 			sourceTree = "<group>";
 		};
 		4C3402DF2A3E98FB4ADB2878 /* Frameworks */ = {
@@ -748,16 +757,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B8436051FAB0ABB000B1EF2 /* BurgerButton.swift in Sources */,
+				3B2294AF1FD15957009ECAEF /* SummaryDelegate.swift in Sources */,
 				3B74688A1FB12E8D00ED77B1 /* ContactsViewController.swift in Sources */,
 				3B5697041F9E94DE000CE7F5 /* LoginViewController.swift in Sources */,
 				3B6BED741FC4CB51009CF39F /* TimeCardProjectCell.swift in Sources */,
 				3B10AF351FC53E0000958877 /* BillableTimer.swift in Sources */,
-				3B2294A81FD0B905009ECAEF /* ProjectTableViewDelegate.swift in Sources */,
-				3B2294A41FD0B872009ECAEF /* ProjectTableViewDataSource.swift in Sources */,
+				3B2294A81FD0B905009ECAEF /* ProjectDelegate.swift in Sources */,
+				3B2294A41FD0B872009ECAEF /* ProjectDataSource.swift in Sources */,
 				3B04FD111F9AA29C0044A857 /* Constants.swift in Sources */,
 				3B2294A01FD0B72A009ECAEF /* ProjectNewProjectDelegate.swift in Sources */,
 				3B0BBE0E1FB304BB004821D7 /* BaseCell.swift in Sources */,
-				3B8436071FAB94D3000B1EF2 /* AddNewProjectViewController.swift in Sources */,
+				3B8436071FAB94D3000B1EF2 /* CreateUpdateProjectViewController.swift in Sources */,
 				3B4FF57A1FA94407007DBB6A /* ContainerViewController.swift in Sources */,
 				3B5696FE1F9DD6C2000CE7F5 /* Work.swift in Sources */,
 				3B4FF5761FA84ACB007DBB6A /* WorkerViewController.swift in Sources */,
@@ -769,12 +779,14 @@
 				3B4FF5781FA861AB007DBB6A /* MenuViewController.swift in Sources */,
 				3B8AF7011FB6778900C79016 /* HighlightedWorkerCell.swift in Sources */,
 				3B6BED721FC4BD08009CF39F /* TimeCardPaidCell.swift in Sources */,
+				3B2294AB1FD156A6009ECAEF /* SummaryCell.swift in Sources */,
 				3B4FF5741FA84666007DBB6A /* ProjectViewController.swift in Sources */,
 				3B0BBE141FB45141004821D7 /* ClockControlView.swift in Sources */,
 				3B321DC11FBC272D0053A4B8 /* CellObserver.swift in Sources */,
 				3B321DBB1FBAD5450053A4B8 /* TimeCardDataSource.swift in Sources */,
 				3B8436031FAA6D6C000B1EF2 /* Extensions.swift in Sources */,
 				3B0BBE101FB30594004821D7 /* BillableCell.swift in Sources */,
+				3B2294B11FD164D6009ECAEF /* SummaryEditProject.swift in Sources */,
 				3B5DBA981FBF74B300D3E81F /* TimeCardTitleValueCell.swift in Sources */,
 				3B84360C1FABE621000B1EF2 /* ProjectNameValidation.swift in Sources */,
 				3B29BC141F99767900E66F21 /* AppDelegate.swift in Sources */,
@@ -787,13 +799,13 @@
 				3B10AF2F1FC53D0A00958877 /* BillableDataSource.swift in Sources */,
 				3B10AF311FC53D2F00958877 /* BillableDelegate.swift in Sources */,
 				3B22949E1FD0B59F009ECAEF /* SummaryViewController.swift in Sources */,
+				3B2294AD1FD15752009ECAEF /* SummaryDataSource.swift in Sources */,
 				3B2294A21FD0B7D2009ECAEF /* ProjectBurgerMenu.swift in Sources */,
 				3B321DBD1FBAD8EA0053A4B8 /* TimeCardDelegate.swift in Sources */,
 				3B6BED701FC41585009CF39F /* TimeCardNoteCell.swift in Sources */,
 				3B0BBE0C1FB28A05004821D7 /* BillableViewController.swift in Sources */,
 				3B04FD0F1F9A9E2E0044A857 /* LocalCollection.swift in Sources */,
 				3B8AF7031FB682B100C79016 /* ClockView.swift in Sources */,
-				3B7468861FB0F1EC00ED77B1 /* AddNewWorkertViewController.swift in Sources */,
 				3B4FF57C1FA9ACB2007DBB6A /* NavigationViewController.swift in Sources */,
 				3B8AF7051FB6833900C79016 /* StatsView.swift in Sources */,
 				3B84360F1FAD8F32000B1EF2 /* ContactMgr.swift in Sources */,

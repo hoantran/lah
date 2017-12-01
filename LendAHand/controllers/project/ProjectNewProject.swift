@@ -17,7 +17,8 @@ extension ProjectViewController {
   @objc func handleAddNewProject() {
     let cancelBtn = UIBarButtonItem(title: "Cancel", style: .plain, target: nil, action: nil)
     navigationItem.backBarButtonItem = cancelBtn
-    let controller = AddNewProjectViewController()
+    let controller = CreateUpdateProjectViewController()
+    controller.heading = "Create New Project"
     controller.projectDelegate = self
     navigationController?.pushViewController(controller, animated: true)
   }

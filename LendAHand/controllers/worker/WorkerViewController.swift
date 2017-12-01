@@ -299,8 +299,8 @@ extension WorkerViewController:BurgerButton {
   }
 }
 
-extension WorkerViewController:WorkerDelegate {
-  func observeNewWorker(_ worker: Worker) {
+extension WorkerViewController:CreateUpdateWorkerDelegate {
+  func observeCreateUpdateWorker(_ worker: Worker) {
     Constants.firestore.collection.workers?.addDocument(data: worker.dictionary)
   }
 }

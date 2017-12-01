@@ -13,6 +13,8 @@ import Firebase
 struct Constants {
   static let rate = "rate"
   static let users = "users"
+  static let project = "project"
+  static let name = "name"
   
   public struct Color {
     public let base = UIColor(hex: "0x89CFF0")

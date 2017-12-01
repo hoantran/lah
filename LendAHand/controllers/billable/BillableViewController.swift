@@ -183,8 +183,8 @@ extension BillableViewController {
   }
 }
 
-extension BillableViewController: WorkerDelegate {
-  func observeNewWorker(_ worker: Worker) {
+extension BillableViewController: CreateUpdateWorkerDelegate {
+  func observeCreateUpdateWorker(_ worker: Worker) {
     if let workerID = self.workerID {
       Constants.firestore.collection.workers?.document(workerID).updateData([Constants.rate: worker.rate])
     }

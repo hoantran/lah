@@ -8,8 +8,8 @@
 
 import Foundation
 
-extension ProjectViewController: NewProjectDelegate {
-  func observeNewProject(_ prj: Project) {
+extension ProjectViewController: CreateUpdateProjectDelegate {
+  func observeCreateUpdateProject(_ prj: Project) {
     Constants.firestore.collection.projects?.addDocument(data: prj.dictionary)
   }
 }

@@ -39,7 +39,7 @@ extension ProjectViewController {
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViewController.cellID, for: indexPath)
-    cell.textLabel?.text = self.projects[sortedProjectIndexes[indexPath.row]].name  //  sortedProjects[indexPath.row].name //  "Project \(indexPath.row)"
+    cell.textLabel?.text = self.projects[sortedProjectIndexes[indexPath.row]].name 
     return cell
   }
   
