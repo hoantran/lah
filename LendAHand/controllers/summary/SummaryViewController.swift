@@ -12,11 +12,24 @@ import FirebaseFirestore
 class SummaryViewController: UIViewController {
   var project: LocalCollection<Project>?
   var works: LocalCollection<Work>?
+  var workers: LocalCollection<Worker>?
+  var collapsibles = [WorkCollapsible]()
   
 
   deinit {
     self.project?.stopListening()
     self.works?.stopListening()
+    self.workers?.stopListening()
+  }
+  
+  var contactAccessPermission = false {
+    didSet {
+      if contactAccessPermission {
+        DispatchQueue.main.async {
+          self.tableView.reloadData()
+        }
+      }
+    }
   }
   
   var projectID: String? {
@@ -45,14 +58,35 @@ class SummaryViewController: UIViewController {
   
   fileprivate func setupWorksObservation(_ projectID: String) {
     if  self.works == nil,
-      let query = Constants.firestore.collection.works?.whereField(Constants.project, isEqualTo: projectID)
+      let query = Constants.firestore.collection.works?
+        .whereField(Constants.project, isEqualTo: projectID)
     {
       self.works = LocalCollection(query: query) { [unowned self] (changes) in
+        self.sort()
         DispatchQueue.main.async {
           self.tableView.reloadData()
         }
       }
       self.works?.listen()
+    }
+  }
+  
+  fileprivate func setupWorkersObservation() {
+    if  self.workers == nil,
+      let query = Constants.firestore.collection.workers
+    {
+      self.workers = LocalCollection(query: query) { [unowned self] (changes) in
+        DispatchQueue.main.async {
+          self.tableView.reloadData()
+        }
+      }
+      self.workers?.listen()
+    }
+  }
+  
+  fileprivate func requestContactAccess() {
+    ContactMgr.shared.requestContactAccess() { permission in
+      self.contactAccessPermission = permission
     }
   }
   
@@ -83,6 +117,8 @@ class SummaryViewController: UIViewController {
     super.viewDidLoad()
     view.backgroundColor = UIColor.cyan
     
+    requestContactAccess()
+    setupWorkersObservation()
     setupEditProject()
     setupTable()
   }

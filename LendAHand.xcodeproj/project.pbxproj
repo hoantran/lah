@@ -35,6 +35,7 @@
 		3B2294AD1FD15752009ECAEF /* SummaryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2294AC1FD15752009ECAEF /* SummaryDataSource.swift */; };
 		3B2294AF1FD15957009ECAEF /* SummaryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2294AE1FD15957009ECAEF /* SummaryDelegate.swift */; };
 		3B2294B11FD164D6009ECAEF /* SummaryEditProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2294B01FD164D6009ECAEF /* SummaryEditProject.swift */; };
+		3B2294B31FD23B8C009ECAEF /* WorkCollapsible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2294B21FD23B8C009ECAEF /* WorkCollapsible.swift */; };
 		3B29BC141F99767900E66F21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B29BC131F99767900E66F21 /* AppDelegate.swift */; };
 		3B29BC161F99767900E66F21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B29BC151F99767900E66F21 /* ViewController.swift */; };
 		3B29BC1B1F99767900E66F21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B29BC1A1F99767900E66F21 /* Assets.xcassets */; };
@@ -121,6 +122,7 @@
 		3B2294AC1FD15752009ECAEF /* SummaryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDataSource.swift; sourceTree = "<group>"; };
 		3B2294AE1FD15957009ECAEF /* SummaryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDelegate.swift; sourceTree = "<group>"; };
 		3B2294B01FD164D6009ECAEF /* SummaryEditProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryEditProject.swift; sourceTree = "<group>"; };
+		3B2294B21FD23B8C009ECAEF /* WorkCollapsible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkCollapsible.swift; sourceTree = "<group>"; };
 		3B29BC101F99767900E66F21 /* LendAHand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LendAHand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B29BC131F99767900E66F21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B29BC151F99767900E66F21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -282,8 +284,9 @@
 				3B22949D1FD0B59F009ECAEF /* SummaryViewController.swift */,
 				3B2294B01FD164D6009ECAEF /* SummaryEditProject.swift */,
 				3B2294AA1FD156A6009ECAEF /* SummaryCell.swift */,
-				3B2294AE1FD15957009ECAEF /* SummaryDelegate.swift */,
+				3B2294B21FD23B8C009ECAEF /* WorkCollapsible.swift */,
 				3B2294AC1FD15752009ECAEF /* SummaryDataSource.swift */,
+				3B2294AE1FD15957009ECAEF /* SummaryDelegate.swift */,
 			);
 			path = summary;
 			sourceTree = "<group>";
@@ -761,6 +764,7 @@
 				3B74688A1FB12E8D00ED77B1 /* ContactsViewController.swift in Sources */,
 				3B5697041F9E94DE000CE7F5 /* LoginViewController.swift in Sources */,
 				3B6BED741FC4CB51009CF39F /* TimeCardProjectCell.swift in Sources */,
+				3B2294B31FD23B8C009ECAEF /* WorkCollapsible.swift in Sources */,
 				3B10AF351FC53E0000958877 /* BillableTimer.swift in Sources */,
 				3B2294A81FD0B905009ECAEF /* ProjectDelegate.swift in Sources */,
 				3B2294A41FD0B872009ECAEF /* ProjectDataSource.swift in Sources */,

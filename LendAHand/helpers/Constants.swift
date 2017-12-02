@@ -15,6 +15,7 @@ struct Constants {
   static let users = "users"
   static let project = "project"
   static let name = "name"
+  static let worker = "worker"
   
   public struct Color {
     public let base = UIColor(hex: "0x89CFF0")

@@ -57,6 +57,16 @@ extension Work {
     }
     return nil
   }
+  
+  func durationCompact() -> String? {
+    if let stop = stop {
+      let seconds = Int(stop.timeIntervalSince(start))
+      let hrs = Int(seconds/(60 * 60))
+      let mins = Int((seconds - (hrs * 60 * 60))/60)
+      return String(format: "%d h %02d", hrs, mins)
+    }
+    return nil
+  }
 
   func payable() -> String? {
     if let stop = stop {
@@ -67,32 +77,19 @@ extension Work {
     }
     return nil
   }
-
-//  static func getDateStr(unixDate: Int?) -> String {
-//    if let date = unixDate {
-//      let epochDate = Date(timeIntervalSince1970: TimeInterval(date))
-//      let dayTimePeriodFormatter = DateFormatter()
-//      dayTimePeriodFormatter.dateFormat = "MMM dd, YYYY  hh:mm a"
-//
-//      return dayTimePeriodFormatter.string(from: epochDate)
-//    } else {
-//      return ""
-//    }
-//  }
-//
-//  static func getDate(unixDate: Int?) -> Date {
-//    if let date = unixDate {
-//      return Date(timeIntervalSince1970: TimeInterval(date))
-//    } else {
-//      return Date()
-//    }
-//  }
-//
-//  static func getSpan(start: Int?, end: Int?) -> TimeInterval {
-//    if let start = start, let end = end {
-//      return TimeInterval(end - start)
-//    } else {
-//      return 0
-//    }
-//  }
+  
+  func span() -> Int? {
+    if let stop = stop {
+      return Int(stop.timeIntervalSince(start))
+    }
+    return nil
+  }
+  
+  func gross() -> Float? {
+    if let seconds = self.span() {
+      let hours = Float(Float(seconds) / Float(3600))
+      return rate * hours
+    }
+    return nil
+  }
 }
