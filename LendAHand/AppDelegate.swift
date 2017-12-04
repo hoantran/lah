@@ -41,8 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 //    window?.rootViewController = UINavigationController(rootViewController: DummyVC())
 
-    
-
+//      let controller = SummaryViewController()
+//      window?.rootViewController = UINavigationController(rootViewController: controller)
     
     return true
   }

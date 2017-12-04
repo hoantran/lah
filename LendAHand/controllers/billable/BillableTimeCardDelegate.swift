@@ -9,7 +9,4 @@
 import UIKit
 
 extension BillableViewController: TimeCardDelegate {
-  func save(workID: String, work: Work) {
-    Constants.firestore.collection.works?.document(workID).setData(work.dictionary)
-  }
 }

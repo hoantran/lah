@@ -8,6 +8,10 @@
 
 import UIKit
 
+// http://alisoftware.github.io/swift/generics/2016/01/06/generic-tableviewcells/
+// https://cocoapods.org/pods/Reusable
+//import Resusable
+
 class SummaryCell: BaseCell {
   static let cellID = "SummaryCell"
   
@@ -23,16 +27,35 @@ class SummaryCell: BaseCell {
     }
   }
   
+  var isPaid: Bool? {
+    didSet {
+      if let isPaid = isPaid {
+        paidLabel.isHidden = !isPaid
+      }
+    }
+  }
+  
   override func prepareForReuse() {
     duration = nil
     amount = nil
+    isPaid = nil
   }
-
+  
   
   private let container: UIView = {
     let v = UIView()
     v.translatesAutoresizingMaskIntoConstraints = false
     return v
+  }()
+  
+  let paidLabel: UILabel = {
+    let label = UILabel()
+    label.text = "PAID"
+    label.textColor = UIColor(hex: "0xff474a")
+    label.textAlignment = .right
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.isHidden = true
+    return label
   }()
   
   private let durationLabel: UILabel = {
@@ -42,6 +65,7 @@ class SummaryCell: BaseCell {
     label.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .ultraLight)
     label.translatesAutoresizingMaskIntoConstraints = false
     label.textAlignment = .right
+    label.textColor = UIColor.gray
     return label
   }()
   
@@ -57,7 +81,7 @@ class SummaryCell: BaseCell {
     label.text = "00.00"
     label.translatesAutoresizingMaskIntoConstraints = false
     label.textColor = UIColor.orange
-    label.font = UIFont.boldSystemFont(ofSize: 18)
+    label.font = UIFont.systemFont(ofSize: 18)
     label.textAlignment = .right
     return label
   }()
@@ -68,21 +92,22 @@ class SummaryCell: BaseCell {
     
     addSubview(container)
     NSLayoutConstraint.activate([
-      container.rightAnchor.constraint(equalTo: rightAnchor, constant: -12),
+      container.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
       container.centerYAnchor.constraint(equalTo: centerYAnchor),
-      container.widthAnchor.constraint(equalToConstant: 180),
+      container.widthAnchor.constraint(equalTo: widthAnchor),
       container.heightAnchor.constraint(equalTo: heightAnchor)
       ])
     
     container.addSubview(durationLabel)
     container.addSubview(separator)
     container.addSubview(amountLabel)
+    container.addSubview(paidLabel)
     
     NSLayoutConstraint.activate([
       amountLabel.rightAnchor.constraint(equalTo: container.rightAnchor),
       amountLabel.centerYAnchor.constraint(equalTo: container.centerYAnchor),
       amountLabel.heightAnchor.constraint(equalTo: container.heightAnchor),
-      amountLabel.widthAnchor.constraint(equalToConstant: 100),
+      amountLabel.widthAnchor.constraint(equalToConstant: 80),
       
       separator.rightAnchor.constraint(equalTo: amountLabel.leftAnchor, constant: -1),
       separator.centerYAnchor.constraint(equalTo: container.centerYAnchor),
@@ -92,7 +117,12 @@ class SummaryCell: BaseCell {
       durationLabel.rightAnchor.constraint(equalTo: separator.leftAnchor, constant: -3),
       durationLabel.centerYAnchor.constraint(equalTo: container.centerYAnchor),
       durationLabel.heightAnchor.constraint(equalTo: container.heightAnchor),
-      durationLabel.leftAnchor.constraint(equalTo: container.leftAnchor),
+      durationLabel.widthAnchor.constraint(equalToConstant: 70),
+      
+      paidLabel.rightAnchor.constraint(equalTo: durationLabel.leftAnchor, constant: -3),
+      paidLabel.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+      paidLabel.heightAnchor.constraint(equalTo: container.heightAnchor),
+      paidLabel.widthAnchor.constraint(equalToConstant: 50),
       ])
     
   }

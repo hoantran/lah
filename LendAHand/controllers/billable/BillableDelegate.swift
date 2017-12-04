@@ -14,7 +14,6 @@ extension BillableViewController: UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    print("row [\(indexPath.row)] selected")
     let controller = TimeCardViewController()
     
     controller.work = self.works[indexPath.row]

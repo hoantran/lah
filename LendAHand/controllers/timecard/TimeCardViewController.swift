@@ -12,6 +12,12 @@ protocol TimeCardDelegate {
   func save(workID: String, work: Work)
 }
 
+extension TimeCardDelegate {
+  func save(workID: String, work: Work) {
+    Constants.firestore.collection.works?.document(workID).setData(work.dictionary)
+  }
+}
+
 
 class TimeCardViewController: UIViewController {
   var selectedIndexPath: IndexPath?
