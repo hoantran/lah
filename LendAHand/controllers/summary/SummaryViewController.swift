@@ -190,7 +190,16 @@ class SummaryViewController: UIViewController {
     v.translatesAutoresizingMaskIntoConstraints = false
     return v
   }()
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.navigationItem.largeTitleDisplayMode = .never
+    self.navigationController?.navigationBar.prefersLargeTitles = false
     
+    // toggling the button's state so that EDIT button is shown in enabled state (simulator)
+    self.navigationItem.rightBarButtonItem?.isEnabled = false
+    self.navigationItem.rightBarButtonItem?.isEnabled = true
+  }
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = UIColor.cyan

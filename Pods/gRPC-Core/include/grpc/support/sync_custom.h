@@ -1,6 +1,6 @@
 /*
  *
- * Copyright 2015 gRPC authors.
+ * Copyright 2017 gRPC authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,10 +16,9 @@
  *
  */
 
-#ifndef GRPC_BYTE_BUFFER_H
-#define GRPC_BYTE_BUFFER_H
+#ifndef GRPC_SUPPORT_SYNC_CUSTOM_H
+#define GRPC_SUPPORT_SYNC_CUSTOM_H
 
-#include <grpc/impl/codegen/byte_buffer.h>
-#include <grpc/slice_buffer.h>
+#include <grpc/impl/codegen/sync_custom.h>
 
-#endif /* GRPC_BYTE_BUFFER_H */
+#endif /* GRPC_SUPPORT_SYNC_CUSTOM_H */
