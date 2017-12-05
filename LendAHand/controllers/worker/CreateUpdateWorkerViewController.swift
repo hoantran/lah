@@ -58,8 +58,14 @@ class CreateUpdateWorkerViewController: UIViewController {
 //    navigationItem.title = "Create New Worker"
     view.backgroundColor = UIColor(hex: "0Xefefef")
     
+    print("WKR.CR --- INIT ---")
+    
     setupSaveButton()
     setupContainers()
+  }
+  
+  deinit {
+    print("WKR.CR --- DE-INIT ---")
   }
   
   lazy var nameContainter:UIView = {
@@ -92,7 +98,6 @@ class CreateUpdateWorkerViewController: UIViewController {
   }()
   
   @objc func handleNameTap() {
-    print("handle Name Tap")
     let controller = ContactsViewController()
     let cancelBtn = UIBarButtonItem(title: "Cancel", style: .plain, target: nil, action: nil)
     navigationItem.backBarButtonItem = cancelBtn

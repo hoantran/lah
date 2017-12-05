@@ -87,7 +87,7 @@ class CreateUpdateProjectViewController: UIViewController {
     view.backgroundColor = Constants.color.bkg
     setupTextFields()
     
-//    print("--- INIT ---")
+    print("PRJ.CR --- INIT ---")
   }
   
   @objc func handleSave() {
@@ -99,7 +99,7 @@ class CreateUpdateProjectViewController: UIViewController {
   }
   
   deinit {
-//    print("--- DEINIT ---")
+    print("PRJ.CR --- DEINIT ---")
   }
   
 }
