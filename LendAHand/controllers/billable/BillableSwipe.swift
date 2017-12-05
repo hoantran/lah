@@ -10,7 +10,7 @@ import UIKit
 
 extension BillableViewController {
   fileprivate func deleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
-    let action = UIContextualAction(style: .destructive, title: "Delete") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool)->Void) in
+    let action = UIContextualAction(style: .destructive, title: "Delete") { [unowned self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool)->Void) in
       print("Deleting ...")
       
       if let workID = self.works.id(indexPath.row) {

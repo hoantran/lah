@@ -51,6 +51,7 @@
 		3B321DC31FBC27AE0053A4B8 /* TimeCardRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B321DC21FBC27AE0053A4B8 /* TimeCardRateCell.swift */; };
 		3B3C23E81FD604C200EFB0FF /* SummarySwipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C23E71FD604C200EFB0FF /* SummarySwipe.swift */; };
 		3B3C23EA1FD634EF00EFB0FF /* BillableSwipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C23E91FD634EF00EFB0FF /* BillableSwipe.swift */; };
+		3B3C23EC1FD6932500EFB0FF /* ProjectSwipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C23EB1FD6932500EFB0FF /* ProjectSwipe.swift */; };
 		3B4DCD651F9978BB00B29F83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B4DCD641F9978BB00B29F83 /* GoogleService-Info.plist */; };
 		3B4DCD661F9978BB00B29F83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B4DCD641F9978BB00B29F83 /* GoogleService-Info.plist */; };
 		3B4DCD671F9978BB00B29F83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B4DCD641F9978BB00B29F83 /* GoogleService-Info.plist */; };
@@ -149,6 +150,7 @@
 		3B321DC21FBC27AE0053A4B8 /* TimeCardRateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardRateCell.swift; sourceTree = "<group>"; };
 		3B3C23E71FD604C200EFB0FF /* SummarySwipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarySwipe.swift; sourceTree = "<group>"; };
 		3B3C23E91FD634EF00EFB0FF /* BillableSwipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillableSwipe.swift; sourceTree = "<group>"; };
+		3B3C23EB1FD6932500EFB0FF /* ProjectSwipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSwipe.swift; sourceTree = "<group>"; };
 		3B4DCD641F9978BB00B29F83 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3B4FF5731FA84666007DBB6A /* ProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewController.swift; sourceTree = "<group>"; };
 		3B4FF5751FA84ACB007DBB6A /* WorkerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerViewController.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				3B4FF5731FA84666007DBB6A /* ProjectViewController.swift */,
+				3B3C23EB1FD6932500EFB0FF /* ProjectSwipe.swift */,
 				3B2294A71FD0B905009ECAEF /* ProjectDelegate.swift */,
 				3B2294A31FD0B872009ECAEF /* ProjectDataSource.swift */,
 				3B2294A51FD0B8B5009ECAEF /* ProjectNewProject.swift */,
@@ -792,6 +795,7 @@
 				3B5696FE1F9DD6C2000CE7F5 /* Work.swift in Sources */,
 				3B4FF5761FA84ACB007DBB6A /* WorkerViewController.swift in Sources */,
 				3BC077A31FB82F3A008D5F94 /* DummyVC.swift in Sources */,
+				3B3C23EC1FD6932500EFB0FF /* ProjectSwipe.swift in Sources */,
 				3B29BC161F99767900E66F21 /* ViewController.swift in Sources */,
 				3B5697001F9E7018000CE7F5 /* Current.swift in Sources */,
 				3B321DC31FBC27AE0053A4B8 /* TimeCardRateCell.swift in Sources */,

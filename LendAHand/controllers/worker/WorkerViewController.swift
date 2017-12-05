@@ -43,13 +43,13 @@ class WorkerViewController: UITableViewController {
     setupAddNewWorker()
     requestContactAccess()
     setupCurrents()
-//    print("--- INIT ---")
+    print("WKR--- INIT ---")
   }
   
   deinit {
     deinitWorkers()
     deinitCurrents()
-//    print("--- DEINIT ---")
+    print("WKR--- DEINIT ---")
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -228,15 +228,11 @@ extension WorkerViewController {
     return row < self.currents.count
   }
   
-  fileprivate func listingCounts() {
-    print("Currents:[\(self.currents.count)], Workers:[\(self.workers.count)]")
-  }
   
   func setupCurrents() {
     if let query = Constants.firestore.collection.currents {
       self.currents = LocalCollection(query: query) { [unowned self] (changes) in
         self.sort()
-        self.listingCounts()
         DispatchQueue.main.async {
           self.tableView.reloadData()
         }
@@ -274,7 +270,6 @@ extension WorkerViewController {
     if let query = Constants.firestore.collection.workers {
       self.workers = LocalCollection(query: query) { [unowned self] (changes) in
         self.sort()
-        self.listingCounts()
         DispatchQueue.main.async {
           self.tableView.reloadData()
         }

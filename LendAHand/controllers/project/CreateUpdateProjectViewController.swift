@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CreateUpdateProjectDelegate: class {
+protocol CreateUpdateProjectDelegate: NSObjectProtocol {
   func observeCreateUpdateProject(_ prj: Project)
 }
 

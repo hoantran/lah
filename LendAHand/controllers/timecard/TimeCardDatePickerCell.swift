@@ -58,7 +58,6 @@ class TimeCardDatePickerCell: BaseCell {
     self.maxDate = nil
     self.picker.minimumDate = nil
     self.picker.maximumDate = nil
-    print("PREPARE FOR REUSE")
   }
   
   let formatter: DateFormatter = {

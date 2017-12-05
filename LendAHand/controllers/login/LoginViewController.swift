@@ -77,6 +77,8 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
     super.viewDidLoad()
     navigationItem.title = "Logging On"
     view.backgroundColor = UIColor.cyan
+    
+    print("LG---INIT---")
 
     if isFirebaseLoggedIn() {
       userLoggedIn()
@@ -87,6 +89,10 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
         showFBLoginButton()
       }
     }
+  }
+  
+  deinit{
+    print("LG---DE-INIT---")
   }
 }
 

@@ -27,12 +27,12 @@ class ProjectViewController: UITableViewController {
     setupAddNewProject()
     setupProjectObservation()
     self.projects.listen()
-//    print("--- INIT ---")
+    print("PRJ--- INIT ---")
   }
   
   deinit {
     self.projects.stopListening()
-//    print("--- DEINIT ---")
+    print("PRJ--- DEINIT ---")
   }
   
   override func viewWillAppear(_ animated: Bool) {

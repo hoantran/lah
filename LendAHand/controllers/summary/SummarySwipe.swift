@@ -13,7 +13,7 @@ import FirebaseFirestore
 extension SummaryViewController: PreReloadDelegate {
   
   fileprivate func deleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
-    let action = UIContextualAction(style: .destructive, title: "Delete") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool)->Void) in
+    let action = UIContextualAction(style: .destructive, title: "Delete") { [unowned self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool)->Void) in
       
       let workID = self.collapsibles[indexPath.section].workIDs[indexPath.row]
       if let workRef = Constants.firestore.collection.works?.document(workID) {
@@ -40,7 +40,6 @@ extension SummaryViewController: PreReloadDelegate {
   }
   
   func willReload() {
-    print("Pre Reload")
     executeDeletes()
   }
   

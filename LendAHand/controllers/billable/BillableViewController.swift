@@ -97,7 +97,6 @@ class BillableViewController: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    print("viewWillAppear")
     observe()
     updateControl()
     
@@ -108,7 +107,6 @@ class BillableViewController: UIViewController {
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    print("viewWillDisappear")
     clearTimer()
     unObserve()
   }
@@ -121,11 +119,11 @@ class BillableViewController: UIViewController {
     setupTable()
     setupCurrents()
     setupWorks()
-//    print("--- INIT ---")
+    print("BLL--- INIT ---")
   }
   
   deinit {
-//    print("--- DEINIT ---")
+    print("BLL--- DEINIT ---")
     deinitCurrents()
     deinitWorks()
     self.worker = nil

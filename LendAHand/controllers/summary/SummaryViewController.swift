@@ -10,12 +10,12 @@ import UIKit
 import FirebaseFirestore
 //import Reusable
 
-protocol PreReloadDelegate {
+protocol PreReloadDelegate: NSObjectProtocol {
   func willReload()
 }
 
 class SummaryTableView: UITableView {
-  var preReloadDelegate: PreReloadDelegate?
+  weak var preReloadDelegate: PreReloadDelegate?
   
   override func reloadData() {
     preReloadDelegate?.willReload()
@@ -32,20 +32,12 @@ class SummaryViewController: UIViewController {
   var workDeleteSet = [String]()
   
   static let cellID = "SummaryViewControllerCellID"
-
-  var datax = [  Section(id: "colors", cells: ["blue", "white"]),
-                Section(id: "numbers", cells: ["one", "two", "three"]),
-                Section(id: "apples", cells: ["iPhone", "iPad", "iMac", "iBook"]),
-                Section(id: "tennis", cells: ["Babolat"]),
-                Section(id: "drinks", cells: ["water", "wine", "tea", "liquor", "juice"]),
-                Section(id: "phases", cells: ["solid", "liquid", "steam", "plasma"]),
-                Section(id: "planets", cells: ["venus", "mercury", "earth", "mars", "jupiter", "saturn", "uranus", "neptune"]),
-              ]
   
   deinit {
     self.project?.stopListening()
     self.works?.stopListening()
     self.workers?.stopListening()
+    print("SUM---DE-INIT---")
   }
   
   var contactAccessPermission = false {
@@ -91,18 +83,18 @@ class SummaryViewController: UIViewController {
         
         self.executeDeletes()
         self.sort()
-        
+
         let duration: Int = self.collapsibles.reduce(0, { acc, next in
           acc + next.duration
         })
-        
+
         let amount: Float = self.collapsibles.reduce(0.00, { acc, next in
           acc + next.amount
         })
-        
+
         let earliest = self.earliestDate()
         let latest = self.latestDate()
-        
+
         DispatchQueue.main.async {
           self.summaryBox.duration = duration
           self.summaryBox.amount = amount
@@ -227,13 +219,14 @@ class SummaryViewController: UIViewController {
     super.viewDidLoad()
     view.backgroundColor = UIColor.cyan
     
+    print("SUM---INIT---")
+    
     requestContactAccess()
     setupWorkersObservation()
     setupEditProject()
     layout()
     setupTable()
 
-//    tableView.register(cellType: SummaryWorkCell.self)
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: SummaryViewController.cellID)
     tableView.register(SummaryHeaderView.self, forHeaderFooterViewReuseIdentifier: SummaryHeaderView.headerID)
   }

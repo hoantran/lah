@@ -36,7 +36,27 @@ extension SummaryViewController: UITableViewDelegate {
     }
     
     header?.section = section
-    header?.tapHandler = tapHandler
+    
+//    header?.tapHandler = tapHandler // <--- this causes mem leak
+    
+    header?.tapHandler = { [unowned self] (section) in
+      var indexPaths = [IndexPath]()
+      for row in self.collapsibles[section].works.indices {
+        let indexPath = IndexPath(row: row, section: section)
+        indexPaths.append(indexPath)
+      }
+      
+      let isOpen = self.collapsibles[section].isOpen
+      self.collapsibles[section].isOpen = !isOpen
+      
+      if isOpen {
+        tableView.deleteRows(at: indexPaths, with: .fade)
+      } else {
+        tableView.insertRows(at: indexPaths, with: .fade)
+      }
+
+    }
+    
     
     return header
   }

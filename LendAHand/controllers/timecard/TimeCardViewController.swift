@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol TimeCardDelegate {
+protocol TimeCardDelegate: NSObjectProtocol {
   func save(workID: String, work: Work)
 }
 
@@ -37,7 +37,7 @@ class TimeCardViewController: UIViewController {
   var stopMin:Date!
   
   var observerToken: NSObjectProtocol?
-  var timecardDelegate: TimeCardDelegate?
+  weak var timecardDelegate: TimeCardDelegate?
   
   lazy var tableView: UITableView = {
     let table = UITableView(frame: CGRect.zero, style: .grouped)
@@ -69,6 +69,11 @@ class TimeCardViewController: UIViewController {
     tap.cancelsTouchesInView = false
     self.view.addGestureRecognizer(tap)
     
+    print("TC---INIT---")
+  }
+  
+  deinit{
+    print("TC---DE-INIT---")
   }
   
   @objc func keyboardWillShow(notification: NSNotification) {

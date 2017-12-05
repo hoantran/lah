@@ -30,7 +30,6 @@ final class ProjectProxy: NSObject {
     if let query = Constants.firestore.collection.projects {
       self.projects = LocalCollection(query: query) { [unowned self] (changes) in
         NotificationCenter.default.post(name: .projectChanged, object: nil, userInfo: nil)
-        print("CHANGED")
       }
     }
   }

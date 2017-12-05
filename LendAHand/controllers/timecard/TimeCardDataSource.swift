@@ -47,7 +47,6 @@ extension TimeCardViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     switch indexPath.section {
     case TimeCardArrangement.rate.rawValue:
-      print("rate")
       let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardRateCell.cellID, for: indexPath) as! TimeCardRateCell
       if let work = self.work {
         cell.rate.text = work.rate.roundedTo(places: 2)
@@ -60,7 +59,6 @@ extension TimeCardViewController: UITableViewDataSource {
     case TimeCardArrangement.time.rawValue:
       switch indexPath.row {
       case TimeCardArrangement.timeRow.start.rawValue:
-        print("start")
         let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardDatePickerCell.cellID, for: indexPath) as! TimeCardDatePickerCell
         cell.title = "START"
         cell.maxDate = self.startMax
@@ -80,7 +78,6 @@ extension TimeCardViewController: UITableViewDataSource {
         return cell
 
       case TimeCardArrangement.timeRow.stop.rawValue:
-        print("stop")
         let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardDatePickerCell.cellID, for: indexPath) as! TimeCardDatePickerCell
         cell.title = "STOP"
         cell.minDate = self.stopMin
@@ -104,7 +101,6 @@ extension TimeCardViewController: UITableViewDataSource {
         }
         return cell
       default:
-        print("duration")
         let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardTitleValueCell.cellID, for: indexPath) as! TimeCardTitleValueCell
         cell.title = "DURATION"
         if let duration = work?.duration() {
@@ -118,7 +114,6 @@ extension TimeCardViewController: UITableViewDataSource {
     case TimeCardArrangement.misc.rawValue:
       switch indexPath.row {
       case TimeCardArrangement.miscRow.project.rawValue:
-        print("project")
         let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardProjectCell.cellID, for: indexPath) as! TimeCardProjectCell
         if let work = self.work {
           if let prj = work.project {
@@ -134,7 +129,6 @@ extension TimeCardViewController: UITableViewDataSource {
         }
         return cell
       default:
-        print("paid")
         let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardPaidCell.cellID, for: indexPath) as! TimeCardPaidCell
         if let work = self.work {
           cell.state = work.isPaid
@@ -147,10 +141,7 @@ extension TimeCardViewController: UITableViewDataSource {
       }
 
     default:
-      print("note")
       let cell = tableView.dequeueReusableCell(withIdentifier: TimeCardNoteCell.cellID, for: indexPath) as! TimeCardNoteCell
-      print("section: ", indexPath.section)
-      
       if let work = self.work {
         if let note = work.note {
           cell.noteText = note
