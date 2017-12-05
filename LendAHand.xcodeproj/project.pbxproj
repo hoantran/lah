@@ -49,6 +49,8 @@
 		3B321DBF1FBC26290053A4B8 /* TimeCardDatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B321DBE1FBC26290053A4B8 /* TimeCardDatePickerCell.swift */; };
 		3B321DC11FBC272D0053A4B8 /* CellObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B321DC01FBC272D0053A4B8 /* CellObserver.swift */; };
 		3B321DC31FBC27AE0053A4B8 /* TimeCardRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B321DC21FBC27AE0053A4B8 /* TimeCardRateCell.swift */; };
+		3B3C23E81FD604C200EFB0FF /* SummarySwipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C23E71FD604C200EFB0FF /* SummarySwipe.swift */; };
+		3B3C23EA1FD634EF00EFB0FF /* BillableSwipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C23E91FD634EF00EFB0FF /* BillableSwipe.swift */; };
 		3B4DCD651F9978BB00B29F83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B4DCD641F9978BB00B29F83 /* GoogleService-Info.plist */; };
 		3B4DCD661F9978BB00B29F83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B4DCD641F9978BB00B29F83 /* GoogleService-Info.plist */; };
 		3B4DCD671F9978BB00B29F83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B4DCD641F9978BB00B29F83 /* GoogleService-Info.plist */; };
@@ -145,6 +147,8 @@
 		3B321DBE1FBC26290053A4B8 /* TimeCardDatePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardDatePickerCell.swift; sourceTree = "<group>"; };
 		3B321DC01FBC272D0053A4B8 /* CellObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellObserver.swift; sourceTree = "<group>"; };
 		3B321DC21FBC27AE0053A4B8 /* TimeCardRateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCardRateCell.swift; sourceTree = "<group>"; };
+		3B3C23E71FD604C200EFB0FF /* SummarySwipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarySwipe.swift; sourceTree = "<group>"; };
+		3B3C23E91FD634EF00EFB0FF /* BillableSwipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillableSwipe.swift; sourceTree = "<group>"; };
 		3B4DCD641F9978BB00B29F83 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3B4FF5731FA84666007DBB6A /* ProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewController.swift; sourceTree = "<group>"; };
 		3B4FF5751FA84ACB007DBB6A /* WorkerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerViewController.swift; sourceTree = "<group>"; };
@@ -280,6 +284,7 @@
 				3B10AF321FC53D6F00958877 /* BillableClockDelegate.swift */,
 				3B10AF341FC53E0000958877 /* BillableTimer.swift */,
 				3B10AF361FC53F7600958877 /* BillableTimeCardDelegate.swift */,
+				3B3C23E91FD634EF00EFB0FF /* BillableSwipe.swift */,
 			);
 			path = billable;
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 				3B2294B21FD23B8C009ECAEF /* WorkCollapsible.swift */,
 				3B2294AC1FD15752009ECAEF /* SummaryDataSource.swift */,
 				3B2294AE1FD15957009ECAEF /* SummaryDelegate.swift */,
+				3B3C23E71FD604C200EFB0FF /* SummarySwipe.swift */,
 				3BF044161FD3E95C004A9884 /* SummaryWorkCell.swift */,
 				3BF044181FD40290004A9884 /* SummaryHeaderView.swift */,
 				3B09AF521FD546E500048C09 /* SummaryBoxView.swift */,
@@ -773,6 +779,7 @@
 				3B74688A1FB12E8D00ED77B1 /* ContactsViewController.swift in Sources */,
 				3B5697041F9E94DE000CE7F5 /* LoginViewController.swift in Sources */,
 				3B6BED741FC4CB51009CF39F /* TimeCardProjectCell.swift in Sources */,
+				3B3C23EA1FD634EF00EFB0FF /* BillableSwipe.swift in Sources */,
 				3B2294B31FD23B8C009ECAEF /* WorkCollapsible.swift in Sources */,
 				3B10AF351FC53E0000958877 /* BillableTimer.swift in Sources */,
 				3B2294A81FD0B905009ECAEF /* ProjectDelegate.swift in Sources */,
@@ -810,6 +817,7 @@
 				3B0E94011FCCB25200C26454 /* CreateUpdateWorkerViewController.swift in Sources */,
 				3BF044171FD3E95C004A9884 /* SummaryWorkCell.swift in Sources */,
 				3B10AF371FC53F7600958877 /* BillableTimeCardDelegate.swift in Sources */,
+				3B3C23E81FD604C200EFB0FF /* SummarySwipe.swift in Sources */,
 				3B7468881FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift in Sources */,
 				3B10AF2F1FC53D0A00958877 /* BillableDataSource.swift in Sources */,
 				3B10AF311FC53D2F00958877 /* BillableDelegate.swift in Sources */,

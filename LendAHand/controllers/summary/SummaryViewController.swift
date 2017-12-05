@@ -10,11 +10,26 @@ import UIKit
 import FirebaseFirestore
 //import Reusable
 
+protocol PreReloadDelegate {
+  func willReload()
+}
+
+class SummaryTableView: UITableView {
+  var preReloadDelegate: PreReloadDelegate?
+  
+  override func reloadData() {
+    preReloadDelegate?.willReload()
+    super.reloadData()
+  }
+}
+
+
 class SummaryViewController: UIViewController {
   var project: LocalCollection<Project>?
   var works: LocalCollection<Work>?
   var workers: LocalCollection<Worker>?
   var collapsibles = [WorkCollapsible]()
+  var workDeleteSet = [String]()
   
   static let cellID = "SummaryViewControllerCellID"
 
@@ -74,6 +89,7 @@ class SummaryViewController: UIViewController {
     {
       self.works = LocalCollection(query: query) { [unowned self] (changes) in
         
+        self.executeDeletes()
         self.sort()
         
         let duration: Int = self.collapsibles.reduce(0, { acc, next in
@@ -143,11 +159,12 @@ class SummaryViewController: UIViewController {
     }
   }
   
-  lazy var tableView: UITableView = {
-    let table = UITableView(frame: CGRect.zero, style: .grouped)
+  lazy var tableView: SummaryTableView = {
+    let table = SummaryTableView(frame: CGRect.zero, style: .grouped)
     table.translatesAutoresizingMaskIntoConstraints = false
     table.dataSource = self
     table.delegate = self
+    table.preReloadDelegate = self
     return table
   }()
   
@@ -200,6 +217,12 @@ class SummaryViewController: UIViewController {
     self.navigationItem.rightBarButtonItem?.isEnabled = false
     self.navigationItem.rightBarButtonItem?.isEnabled = true
   }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    executeDeletes()
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = UIColor.cyan
