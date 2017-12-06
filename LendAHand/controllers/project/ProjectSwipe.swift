@@ -28,7 +28,7 @@ extension ProjectViewController {
           }
         }
         
-        if let worksRef = Constants.firestore.collection.works?.whereField("project", isEqualTo: projectID) {
+        if let worksRef = Constants.firestore.collection.works?.whereField(Constants.project, isEqualTo: projectID) {
           
           worksRef.limit(to: 200).getDocuments { (docset, error) in
             guard let docset = docset else {

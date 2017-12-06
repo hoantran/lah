@@ -29,9 +29,9 @@ class NavigationViewController: UINavigationController {
   override func viewDidLoad() {
     super.viewDidLoad()
     navigationBar.barTintColor = Constants.color.base
-//    let controller = WorkerViewController()
-    let controller = ProjectViewController()
-    self.setViewControllers([controller], animated: true)    
+    let controller = WorkerViewController()
+//    let controller = ProjectViewController()
+    self.setViewControllers([controller], animated: true)
   }
   
   override func viewWillAppear(_ animated: Bool) {

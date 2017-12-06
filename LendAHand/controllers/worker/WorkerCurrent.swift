@@ -83,15 +83,19 @@ extension WorkerViewController {
     }
   }
   
-  func isInCurrents(_ id: String)->Bool {
+  func currentID(_ workerID: String)->String? {
     if self.currents.count > 0 {
       for i in 0...self.currents.count-1 {
-        if id == self.currents[i].worker {
-          return true
+        if workerID == self.currents[i].worker {
+          return self.currents.id(i)
         }
       }
     }
-    return false
+    return nil
+  }
+  
+  func isInCurrents(_ workerID: String)->Bool {
+    return currentID(workerID) != nil
   }
 }
 

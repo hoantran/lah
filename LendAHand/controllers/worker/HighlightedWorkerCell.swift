@@ -62,7 +62,6 @@ class HighlightedWorkerCell: BaseCell {
     rate = 0
     name = "Francisco Roy"
     start = Date()
-    print("Called prepareForReuse()")
   }
   
   override func setupViews() {
