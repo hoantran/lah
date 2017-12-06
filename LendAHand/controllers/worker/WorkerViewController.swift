@@ -39,14 +39,26 @@ class WorkerViewController: UITableViewController {
     setupAddNewWorker()
     requestContactAccess()
     setupCurrents()
+    
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+    
     print("WKR--- INIT ---")
   }
   
   deinit {
     deinitWorkers()
     deinitCurrents()
+    NotificationCenter.default.removeObserver(self)
     print("WKR--- DEINIT ---")
   }
+  
+  @objc private func willEnterForeground() {
+    DispatchQueue.main.async {
+      self.tableView.reloadData()
+    }
+  }
+
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
