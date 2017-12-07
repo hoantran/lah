@@ -30,10 +30,12 @@ extension WorkerViewController {
         cell.update()
         let contactID = worker.contact
         ContactMgr.shared.fetchName(contactID) { name in
-          if let name = name {
-            cell.name = name
-          } else {
-            cell.name = "Can not get name"
+          DispatchQueue.main.async {
+            if let name = name {
+              cell.name = name
+            } else {
+              cell.name = "Can not get name"
+            }
           }
         }
       } else {

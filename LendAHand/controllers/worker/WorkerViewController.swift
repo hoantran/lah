@@ -20,8 +20,8 @@ class WorkerViewController: UITableViewController {
   
   var contactAccessPermission = false {
     didSet {
+      self.sort()
       DispatchQueue.main.async {
-        self.sort()
         self.tableView.reloadData()
       }
     }
