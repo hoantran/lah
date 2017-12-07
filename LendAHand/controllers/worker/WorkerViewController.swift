@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Crashlytics
 
 class WorkerViewController: UITableViewController {
   var workers: LocalCollection<Worker>!
@@ -29,6 +30,8 @@ class WorkerViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+//    timer.fire()
+    
     navigationController?.navigationBar.prefersLargeTitles = true
     
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: WorkerViewController.cellID)
@@ -39,6 +42,10 @@ class WorkerViewController: UITableViewController {
     setupAddNewWorker()
     requestContactAccess()
     setupCurrents()
+    
+    //    Crashlytics.sharedInstance().crash()
+    
+
     
     
     NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)

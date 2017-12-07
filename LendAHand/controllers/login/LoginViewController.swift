@@ -11,6 +11,8 @@ import FacebookLogin
 import FacebookCore
 import Firebase
 
+import Fabric
+import Crashlytics
 
 class LoginViewController: UIViewController, LoginButtonDelegate {
 
@@ -51,6 +53,9 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
   func userLoggedIn() {
     if let user = Auth.auth().currentUser {
       print("[\(user.displayName ?? "" )] is logged into Firebase")
+      Crashlytics.sharedInstance().setUserName(user.displayName)
+      Crashlytics.sharedInstance().setUserIdentifier(user.uid)
+      Crashlytics.sharedInstance().setUserEmail(user.email)
     }
     
     let container = ContainerViewController()

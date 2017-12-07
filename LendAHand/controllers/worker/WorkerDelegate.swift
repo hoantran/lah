@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import Crashlytics
+
 
 extension WorkerViewController {
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
     let indexRow = self.indexOrder[indexPath.row]
     
     let controller = BillableViewController()

@@ -483,6 +483,7 @@
 				3B29BC0E1F99767900E66F21 /* Resources */,
 				984EACC9B1B80C19179C624C /* [CP] Embed Pods Frameworks */,
 				CB905DE3746F0D20F9A91444 /* [CP] Copy Pods Resources */,
+				3B65F1191FD94010008E5223 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -626,6 +627,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LendAHandTests/Pods-LendAHandTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		3B65F1191FD94010008E5223 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 18253563ef812e96d068b969b60a5ad92ae0cc1e ff366fda207cd900c9bb3f4e2579f9e4635f4106c3e9c5ddab71f6cf4ad8477c";
 		};
 		6059A8EA097C5D1C08214F51 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -945,7 +959,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1027,6 +1041,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2473KE85XF;
 				INFOPLIST_FILE = LendAHand/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
