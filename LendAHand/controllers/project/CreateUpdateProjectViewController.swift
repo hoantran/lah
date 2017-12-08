@@ -39,7 +39,7 @@ class CreateUpdateProjectViewController: UIViewController {
     return v
   }()
   
-  let name: UITextField = {
+  lazy var name: UITextField = {
     let field = UITextField()
     field.placeholder = "Enter Project Name"
     field.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +48,7 @@ class CreateUpdateProjectViewController: UIViewController {
     field.autocorrectionType = .no
     field.textAlignment = .center
     field.font = UIFont.systemFont(ofSize: 22, weight: .thin)
+    field.delegate = self
     return field
   } ()
   
@@ -104,10 +105,15 @@ class CreateUpdateProjectViewController: UIViewController {
   }
   
   @objc func handleTextChange() {
+    save.isEnabled = isSavable()
+    updateSaveAlpha()
+  }
+  
+  private func isSavable() -> Bool{
     if let text = name.text {
-      save.isEnabled = text.count > 0
-      updateSaveAlpha()
+      return text.count > 0 && !text.trimmingCharacters(in: .whitespaces).isEmpty
     }
+    return false
   }
   
   override func viewDidLoad() {
@@ -133,3 +139,19 @@ class CreateUpdateProjectViewController: UIViewController {
   }
   
 }
+
+extension CreateUpdateProjectViewController: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    if isSavable() {
+      name.resignFirstResponder()
+      handleSave()
+      return true
+    } else {
+      return false
+    }
+  }
+}
+
+
+
+
