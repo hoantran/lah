@@ -49,6 +49,7 @@ extension WorkerViewController {
       let cell = tableView.dequeueReusableCell(withIdentifier: WorkerViewController.cellID, for: indexPath)
       let indexRow = self.indexOrder[indexPath.row]
       cell.backgroundColor = UIColor.white
+      cell.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
       
       let contactID = self.workers[indexRow].contact
       ContactMgr.shared.fetchName(contactID) { name in

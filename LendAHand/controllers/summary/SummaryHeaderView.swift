@@ -39,6 +39,13 @@ class SummaryHeaderView: UITableViewHeaderFooterView {
     worker = nil
   }
   
+  let separatorTop: UIView = {
+    let s = UIView()
+    s.translatesAutoresizingMaskIntoConstraints = false
+    s.backgroundColor = UIColor(hex: "0xd6d6d6")
+    return s
+  }()
+  
   lazy var container: UIView = {
     let v = UIView()
     v.translatesAutoresizingMaskIntoConstraints = false
@@ -94,6 +101,14 @@ class SummaryHeaderView: UITableViewHeaderFooterView {
   
   override init(reuseIdentifier: String?) {
     super.init(reuseIdentifier: reuseIdentifier)
+    
+    addSubview(separatorTop)
+    NSLayoutConstraint.activate([
+      separatorTop.centerXAnchor.constraint(equalTo: centerXAnchor),
+      separatorTop.topAnchor.constraint(equalTo: topAnchor, constant: -1),
+      separatorTop.widthAnchor.constraint(equalTo: widthAnchor),
+      separatorTop.heightAnchor.constraint(equalToConstant: 1),
+      ])
     
     addSubview(container)
     NSLayoutConstraint.activate([

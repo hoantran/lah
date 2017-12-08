@@ -24,9 +24,9 @@ extension WorkerViewController {
   
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     if isHighlightedRow(indexPath.row) {
-      return 70
+      return 75
     } else {
-      return 35
+      return 44
     }
   }
   

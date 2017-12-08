@@ -53,7 +53,6 @@ class TimeCardViewController: UIViewController {
     super.viewDidLoad()
     
     navigationItem.title = "Edit Timecard"
-    view.backgroundColor = UIColor.brown
     navigationController?.navigationBar.prefersLargeTitles = true
     
     tableView.register(TimeCardDatePickerCell.self, forCellReuseIdentifier: TimeCardDatePickerCell.cellID)

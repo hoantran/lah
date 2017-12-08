@@ -154,6 +154,7 @@ class SummaryViewController: UIViewController {
   lazy var tableView: SummaryTableView = {
     let table = SummaryTableView(frame: CGRect.zero, style: .grouped)
     table.translatesAutoresizingMaskIntoConstraints = false
+//    table.separatorColor = UIColor.darkGray
     table.dataSource = self
     table.delegate = self
     table.preReloadDelegate = self

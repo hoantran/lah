@@ -37,8 +37,6 @@ class StatsView: UIView {
     let elapsed = Float(now.timeIntervalSince(start))
     let earned = (elapsed/3600) * rate
     amount.text = earned.roundedTo(places: 2)
-//    print(".......")
-//    print("[\(name)]-[rt:\(rate) ]:[\(earned)]")
   }
   
   var dollar: UILabel = {
@@ -66,7 +64,7 @@ class StatsView: UIView {
   var nameLabel: UILabel = {
     let label = UILabel()
     label.text = "Francisca Do"
-    label.font = UIFont.systemFont(ofSize: 10, weight: .light)
+    label.font = UIFont.systemFont(ofSize: 14, weight: .light)
     label.textColor = UIColor.black
     label.backgroundColor = UIColor.clear
     label.textAlignment = .right
@@ -115,7 +113,7 @@ class StatsView: UIView {
       nameLabel.widthAnchor.constraint(equalTo: widthAnchor),
       nameLabel.heightAnchor.constraint(equalToConstant: 10),
 
-      rateLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 0),
+      rateLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
       rateLabel.rightAnchor.constraint(equalTo: rightAnchor),
       rateLabel.widthAnchor.constraint(equalTo: widthAnchor),
       rateLabel.heightAnchor.constraint(equalToConstant: 10),

@@ -33,9 +33,9 @@ class CreateUpdateProjectViewController: UIViewController {
   let inputsContainerView: UIView = {
     let v = UIView()
     v.translatesAutoresizingMaskIntoConstraints = false
-    v.backgroundColor = Constants.color.fieldBkg
     v.layer.cornerRadius = 5
     v.layer.masksToBounds = true
+    v.backgroundColor = UIColor.white
     return v
   }()
   
@@ -46,21 +46,43 @@ class CreateUpdateProjectViewController: UIViewController {
     field.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
     field.becomeFirstResponder()
     field.autocorrectionType = .no
+    field.textAlignment = .center
+    field.font = UIFont.systemFont(ofSize: 22, weight: .thin)
     return field
   } ()
   
-  fileprivate func setupSaveButton() {
-    let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(handleSave))
-    navigationItem.rightBarButtonItem = saveButton
-    navigationItem.rightBarButtonItem?.isEnabled = false
+  lazy var save: UIButton = {
+    let b = UIButton()
+    b.translatesAutoresizingMaskIntoConstraints = false
+    b.setTitle("SAVE", for: .normal)
+    b.backgroundColor = UIColor(hex: "0X5dff5b")
+    b.setTitleColor(UIColor.white, for: .normal)
+    b.addTarget(self, action: #selector(handleSave), for: .touchUpInside)
+    b.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+    b.contentHorizontalAlignment = .center
+    b.layer.cornerRadius = 5
+    b.layer.borderWidth = 1
+    b.layer.borderColor = UIColor.clear.cgColor
+    b.isEnabled = false
+    return b
+  }()
+  
+  fileprivate func updateSaveAlpha() {
+    if save.isEnabled {
+      save.alpha = 1.0
+    } else {
+      save.alpha = 0.3
+    }
   }
   
   fileprivate func setupTextFields() {
     view.addSubview(inputsContainerView)
+    view.addSubview(save)
+    
     NSLayoutConstraint.activate([
-      inputsContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
-      inputsContainerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8),
-      inputsContainerView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8),
+      inputsContainerView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -115),
+      inputsContainerView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+      inputsContainerView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
       inputsContainerView.heightAnchor.constraint(equalToConstant: 50)
       ])
     
@@ -72,20 +94,28 @@ class CreateUpdateProjectViewController: UIViewController {
       name.heightAnchor.constraint(equalToConstant: 25)
       ])
     
+    NSLayoutConstraint.activate([
+      save.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor),
+      save.topAnchor.constraint(equalTo: inputsContainerView.bottomAnchor, constant: 25),
+      save.heightAnchor.constraint(equalToConstant: 40),
+      save.widthAnchor.constraint(equalToConstant: 170),
+      ])
+    
   }
   
   @objc func handleTextChange() {
     if let text = name.text {
-      navigationItem.rightBarButtonItem?.isEnabled = text.count > 0
+      save.isEnabled = text.count > 0
+      updateSaveAlpha()
     }
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupSaveButton()
+    view.backgroundColor = UIColor(hex: "0Xefefef")
     
-    view.backgroundColor = Constants.color.bkg
     setupTextFields()
+    updateSaveAlpha()
     
     print("PRJ.CR --- INIT ---")
   }

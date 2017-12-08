@@ -23,7 +23,7 @@ extension BurgerButton where Self: UIViewController {
 //    button.addTarget(self, action: #selector(handleBugerButtonTap), for: .touchUpInside)
     let barItem = UIBarButtonItem(customView: button)
     
-    if  let width = barItem.customView?.widthAnchor.constraint(equalToConstant: 22),
+    if  let width = barItem.customView?.widthAnchor.constraint(equalToConstant: 50),
       let height = barItem.customView?.heightAnchor.constraint(equalToConstant: 22) {
       width.isActive = true
       height.isActive = true

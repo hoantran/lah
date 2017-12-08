@@ -32,6 +32,9 @@ class CreateUpdateWorkerViewController: UIViewController {
   var isCreateNewWorker = true {
     didSet {
       nameContainter.isUserInteractionEnabled = self.isCreateNewWorker
+      if !self.isCreateNewWorker {
+        nameContainter.alpha = 0.5
+      }
     }
   }
   
@@ -55,13 +58,12 @@ class CreateUpdateWorkerViewController: UIViewController {
     super.viewDidLoad()
     
     navigationItem.largeTitleDisplayMode = .never
-//    navigationItem.title = "Create New Worker"
     view.backgroundColor = UIColor(hex: "0Xefefef")
     
     print("WKR.CR --- INIT ---")
     
-    setupSaveButton()
     setupContainers()
+    checkSavability()
   }
   
   deinit {
@@ -102,6 +104,7 @@ class CreateUpdateWorkerViewController: UIViewController {
     let cancelBtn = UIBarButtonItem(title: "Cancel", style: .plain, target: nil, action: nil)
     navigationItem.backBarButtonItem = cancelBtn
     controller.selectDelegate = self
+    rate.resignFirstResponder()
     navigationController?.pushViewController(controller, animated: true)
   }
   
@@ -146,16 +149,55 @@ class CreateUpdateWorkerViewController: UIViewController {
   @objc func handleRateTextChange() {
     checkSavability()
   }
+  
+  lazy var save: UIButton = {
+    let b = UIButton()
+    b.translatesAutoresizingMaskIntoConstraints = false
+    b.setTitle("SAVE", for: .normal)
+    b.backgroundColor = UIColor(hex: "0X5dff5b")
+    b.setTitleColor(UIColor.white, for: .normal)
+    b.addTarget(self, action: #selector(handleSave), for: .touchUpInside)
+    b.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+    b.contentHorizontalAlignment = .center
+    b.layer.cornerRadius = 5
+    b.layer.borderWidth = 1
+    b.layer.borderColor = UIColor.clear.cgColor
+    b.isEnabled = false
+    return b
+  }()
 
+  @objc func handleSave() {
+    print("handleSave")
+    if  let rateText = rate.text,
+      let contact = self.contact {
+      if let rate = Float(rateText) {
+        let newWorker = Worker(contact: contact.identifier, rate: rate)
+        workerDelegate?.observeCreateUpdateWorker(newWorker)
+      }
+    }
+    
+    navigationController?.popViewController(animated: true)
+  }
+  
+  fileprivate func updateSaveAlpha() {
+    if save.isEnabled {
+      save.alpha = 1.0
+    } else {
+      save.alpha = 0.3
+    }
+  }
+  
+  
   fileprivate func setupContainers() {
     view.addSubview(nameContainter)
     view.addSubview(rateContainter)
+    view.addSubview(save)
     
     NSLayoutConstraint.activate([
       nameContainter.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
       nameContainter.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-      nameContainter.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.margin.top),
-      nameContainter.heightAnchor.constraint(equalToConstant: 30)
+      nameContainter.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -140),
+      nameContainter.heightAnchor.constraint(equalToConstant: 44)
       ])
     
     nameContainter.addSubview(nameLabel)
@@ -178,7 +220,7 @@ class CreateUpdateWorkerViewController: UIViewController {
 
     
     NSLayoutConstraint.activate([
-      rateContainter.topAnchor.constraint(equalTo: nameContainter.bottomAnchor, constant: 10),
+      rateContainter.topAnchor.constraint(equalTo: nameContainter.bottomAnchor, constant: 12),
       rateContainter.centerXAnchor.constraint(equalTo: nameContainter.centerXAnchor),
       rateContainter.widthAnchor.constraint(equalTo: nameContainter.widthAnchor),
       rateContainter.heightAnchor.constraint(equalTo: nameContainter.heightAnchor)
@@ -200,28 +242,17 @@ class CreateUpdateWorkerViewController: UIViewController {
       rate.rightAnchor.constraint(equalTo: rateContainter.rightAnchor, constant: -Constants.margin.right),
       rate.heightAnchor.constraint(equalTo: rateContainter.heightAnchor),
       ])
+    
+    NSLayoutConstraint.activate([
+      save.centerXAnchor.constraint(equalTo: rateContainter.centerXAnchor),
+      save.topAnchor.constraint(equalTo: rateContainter.bottomAnchor, constant: 25),
+      save.heightAnchor.constraint(equalToConstant: 40),
+      save.widthAnchor.constraint(equalToConstant: 170),
+      ])
   }
   
-  
-  fileprivate func setupSaveButton() {
-    let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(handleSave))
-    navigationItem.rightBarButtonItem = saveButton
-    navigationItem.rightBarButtonItem?.isEnabled = false
-  }
-  
-  @objc func handleSave() {
-    print("handleSave")
-    if  let rateText = rate.text,
-      let contact = self.contact {
-      if let rate = Float(rateText) {
-        let newWorker = Worker(contact: contact.identifier, rate: rate)
-        workerDelegate?.observeCreateUpdateWorker(newWorker)
-      }
-    }
-
-    navigationController?.popViewController(animated: true)
-  }
 }
+
 
 extension CreateUpdateWorkerViewController: ContactSelectionDelegate {
   func selectContact(_ contact: CNContact) {
@@ -235,14 +266,15 @@ extension CreateUpdateWorkerViewController: ContactSelectionDelegate {
         if let identifier = self.contact?.identifier,
           let delegate = workerDataSourceDelegate {
           let worker = Worker(contact: identifier, rate: 0.0)
-          navigationItem.rightBarButtonItem?.isEnabled =
+          save.isEnabled =
             rate.count > 0 &&
             self.contact != nil &&
             !delegate.exists(worker)
         }
       } else {
-        navigationItem.rightBarButtonItem?.isEnabled = rate.count > 0
+        save.isEnabled = rate.count > 0
       }
+      updateSaveAlpha()
     }
   }
 }
