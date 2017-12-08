@@ -43,16 +43,7 @@ class BillableViewController: UIViewController {
       ])
   }
   
-//  var work: Work = {
-//    let project = "0VXsIC8d14Q1x79F3H7y"
-//    let start = Date()
-//    let stop = Date(timeInterval: 3723, since: start)
-//    let w = Work(rate: 7.8, isPaid: true, start: start, project: project, stop: stop, note: "One note to bring")
-//    return w
-//  }()
-  
   fileprivate func setupHeader() {
-    view.backgroundColor = UIColor.blue
     if let worker = self.worker {
       navigationItem.title = "Can not get name"
       ContactMgr.shared.fetchName(worker.contact) { name in
@@ -94,6 +85,31 @@ class BillableViewController: UIViewController {
     }
   }
   
+  var emptyView: EmptyScreenView = {
+    let v = EmptyScreenView()
+    v.translatesAutoresizingMaskIntoConstraints = false
+    v.message = "This worker\nhas not completed\nany work yet"
+    return v
+  }()
+  
+  private func setupEmptyScreen() {
+    view.addSubview(emptyView)
+    NSLayoutConstraint.activate([
+      emptyView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      emptyView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+      emptyView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+      emptyView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor),
+      ])
+  }
+  
+  func checkEmptyViewVisibility() {
+    if let works = self.works {
+      DispatchQueue.main.async {
+        self.emptyView.isHidden = works.count > 0
+        self.tableView.isHidden = works.count == 0
+      }
+    }
+  }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -103,6 +119,8 @@ class BillableViewController: UIViewController {
     // toggling the button's state so that EDIT button is shown in enabled state
     self.navigationItem.rightBarButtonItem?.isEnabled = false
     self.navigationItem.rightBarButtonItem?.isEnabled = true
+    
+    checkEmptyViewVisibility()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -115,10 +133,11 @@ class BillableViewController: UIViewController {
     super.viewDidLoad()
     setupHeader()
     setupEditWorker()
+    setupEmptyScreen()
     setupControl()
+    setupWorks()
     setupTable()
     setupCurrents()
-    setupWorks()
     print("BLL--- INIT ---")
   }
   
@@ -135,13 +154,13 @@ class BillableViewController: UIViewController {
 extension BillableViewController {
   func setupWorks() {
     if let workerID = self.workerID,
-//      let query = Constants.firestore.collection.workers?.document(workerID).collection(Constants.works) {
       let query = Constants.firestore.collection.works?.whereField("worker", isEqualTo: workerID) {
       
       self.works = LocalCollection(query: query) { [unowned self] (changes) in
         DispatchQueue.main.async {
           self.tableView.reloadData()
         }
+        self.checkEmptyViewVisibility()
       }
       self.works.listen()
       

@@ -30,7 +30,7 @@ class ClockControlView: UIView {
     addSubview(clock)
     NSLayoutConstraint.activate([
       clock.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 1),
-      clock.leftAnchor.constraint(equalTo: leftAnchor, constant: 18),
+      clock.leftAnchor.constraint(equalTo: leftAnchor, constant: 42),
       clock.widthAnchor.constraint(equalToConstant: 140),
       clock.heightAnchor.constraint(equalToConstant: 40)
       ])

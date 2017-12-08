@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import Crashlytics
 
-class WorkerViewController: UITableViewController {
+class WorkerViewController: UIViewController {
   var workers: LocalCollection<Worker>!
   var currents: LocalCollection<Current>!
   var indexOrder = Array<Int>()
@@ -18,34 +18,49 @@ class WorkerViewController: UITableViewController {
   
   static let cellID = "cellID"
   
+  lazy var tableView: UITableView = {
+    let table = UITableView()
+    table.translatesAutoresizingMaskIntoConstraints = false
+    table.dataSource = self
+    table.delegate = self
+    return table
+  }()
+  
   var contactAccessPermission = false {
     didSet {
       self.sort()
       DispatchQueue.main.async {
         self.tableView.reloadData()
       }
+      checkEmptyViewVisibility()
     }
   }
   
+  var emptyView: EmptyScreenView = {
+    let v = EmptyScreenView()
+    v.translatesAutoresizingMaskIntoConstraints = false
+    v.message = "Tap + to add\nyour first worker"
+    return v
+  }()
+  
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-//    timer.fire()
     
     navigationController?.navigationBar.prefersLargeTitles = true
     
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: WorkerViewController.cellID)
     tableView.register(HighlightedWorkerCell.self, forCellReuseIdentifier: HighlightedWorkerCell.cellID)
     navigationItem.title = "Workers"
+    
+    setupEmptyScreen()
+    setupTableView()
     setupBurgerButton()
     setupWorkers()
     setupAddNewWorker()
     requestContactAccess()
     setupCurrents()
     
-    //    Crashlytics.sharedInstance().crash()
-    
-
     
     
     NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
@@ -71,6 +86,17 @@ class WorkerViewController: UITableViewController {
     super.viewWillAppear(animated)
     startTimer()
     self.tableView.reloadData()
+    
+    checkEmptyViewVisibility()
+  }
+  
+  func checkEmptyViewVisibility() {
+    if self.workers != nil {
+      DispatchQueue.main.async {
+        self.emptyView.isHidden = self.workers.count > 0
+        self.tableView.isHidden = self.workers.count == 0
+      }
+    }
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -95,6 +121,26 @@ class WorkerViewController: UITableViewController {
     controller.workerDataSourceDelegate = self
     controller.heading = "Create New Worker"
     navigationController?.pushViewController(controller, animated: true)
+  }
+  
+  private func setupEmptyScreen() {
+    view.addSubview(emptyView)
+    NSLayoutConstraint.activate([
+      emptyView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      emptyView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+      emptyView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+      emptyView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor),
+      ])
+  }
+  
+  private func setupTableView() {
+    view.addSubview(tableView)
+    NSLayoutConstraint.activate([
+      tableView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      tableView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+      tableView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+      tableView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor),
+      ])
   }
   
 }

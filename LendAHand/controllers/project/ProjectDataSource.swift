@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension ProjectViewController {
+extension ProjectViewController: UITableViewDataSource {
   
   func setupProjectObservation() {
     if let query = Constants.firestore.collection.projects {
@@ -17,11 +17,14 @@ extension ProjectViewController {
         DispatchQueue.main.async {
           self.tableView.reloadData()
         }
+        self.checkEmptyViewVisibility()
       }
     }
   }
   
   private func sort() {
+    sortedProjectIndexes.removeAll()
+    
     if let sorted = self.projects.sorted(by: { prj1Index, prj2Index in
       return self.projects[prj1Index].name < self.projects[prj2Index].name
     }) {
@@ -29,15 +32,15 @@ extension ProjectViewController {
     }
   }
   
-  override func numberOfSections(in tableView: UITableView) -> Int {
+  func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }
   
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return self.sortedProjectIndexes.count
   }
   
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViewController.cellID, for: indexPath)
     cell.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
     cell.textLabel?.text = self.projects[sortedProjectIndexes[indexPath.row]].name 

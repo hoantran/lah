@@ -99,7 +99,7 @@ class StatsView: UIView {
 //      amount.rightAnchor.constraint(equalTo: rightAnchor),
 //      amount.leftAnchor.constraint(equalTo: dollar.rightAnchor, constant: -4),
 //      amount.widthAnchor.constraint(equalTo: widthAnchor, constant: -25),
-      amount.heightAnchor.constraint(equalToConstant: 30),
+      amount.heightAnchor.constraint(equalToConstant: 25),
       
       dollar.centerYAnchor.constraint(equalTo: amount.centerYAnchor),
 //      dollar.leftAnchor.constraint(equalTo: leftAnchor, constant: 0),
@@ -111,9 +111,9 @@ class StatsView: UIView {
       nameLabel.topAnchor.constraint(equalTo: amount.bottomAnchor, constant: -1),
       nameLabel.rightAnchor.constraint(equalTo: rightAnchor),
       nameLabel.widthAnchor.constraint(equalTo: widthAnchor),
-      nameLabel.heightAnchor.constraint(equalToConstant: 10),
+      nameLabel.heightAnchor.constraint(equalToConstant: 16),
 
-      rateLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
+      rateLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4),
       rateLabel.rightAnchor.constraint(equalTo: rightAnchor),
       rateLabel.widthAnchor.constraint(equalTo: widthAnchor),
       rateLabel.heightAnchor.constraint(equalToConstant: 10),

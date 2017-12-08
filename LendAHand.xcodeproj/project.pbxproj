@@ -85,6 +85,7 @@
 		3B8AF7031FB682B100C79016 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8AF7021FB682B100C79016 /* ClockView.swift */; };
 		3B8AF7051FB6833900C79016 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8AF7041FB6833900C79016 /* StatsView.swift */; };
 		3BC077A31FB82F3A008D5F94 /* DummyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC077A21FB82F3A008D5F94 /* DummyVC.swift */; };
+		3BE3E74A1FDA7B4A009826C3 /* EmptyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE3E7491FDA7B4A009826C3 /* EmptyScreenView.swift */; };
 		3BF044171FD3E95C004A9884 /* SummaryWorkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF044161FD3E95C004A9884 /* SummaryWorkCell.swift */; };
 		3BF044191FD40290004A9884 /* SummaryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF044181FD40290004A9884 /* SummaryHeaderView.swift */; };
 		70FC41D6934D9A81033F8D38 /* Pods_LendAHandUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D662BA85C19697979754C5C /* Pods_LendAHandUITests.framework */; };
@@ -189,6 +190,7 @@
 		3B8AF7021FB682B100C79016 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		3B8AF7041FB6833900C79016 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		3BC077A21FB82F3A008D5F94 /* DummyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyVC.swift; sourceTree = "<group>"; };
+		3BE3E7491FDA7B4A009826C3 /* EmptyScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyScreenView.swift; sourceTree = "<group>"; };
 		3BF044161FD3E95C004A9884 /* SummaryWorkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryWorkCell.swift; sourceTree = "<group>"; };
 		3BF044181FD40290004A9884 /* SummaryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryHeaderView.swift; sourceTree = "<group>"; };
 		4D662BA85C19697979754C5C /* Pods_LendAHandUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LendAHandUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -274,6 +276,7 @@
 				3B7468871FB1242300ED77B1 /* CurrencyTextFieldDelegate.swift */,
 				3B0BBE0D1FB304BB004821D7 /* BaseCell.swift */,
 				3BC077A21FB82F3A008D5F94 /* DummyVC.swift */,
+				3BE3E7491FDA7B4A009826C3 /* EmptyScreenView.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -411,8 +414,8 @@
 			children = (
 				3B4FF5731FA84666007DBB6A /* ProjectViewController.swift */,
 				3B3C23EB1FD6932500EFB0FF /* ProjectSwipe.swift */,
-				3B2294A71FD0B905009ECAEF /* ProjectDelegate.swift */,
 				3B2294A31FD0B872009ECAEF /* ProjectDataSource.swift */,
+				3B2294A71FD0B905009ECAEF /* ProjectDelegate.swift */,
 				3B2294A51FD0B8B5009ECAEF /* ProjectNewProject.swift */,
 				3B22949F1FD0B72A009ECAEF /* ProjectNewProjectDelegate.swift */,
 				3B2294A11FD0B7D2009ECAEF /* ProjectBurgerMenu.swift */,
@@ -428,8 +431,8 @@
 			children = (
 				3B4FF5751FA84ACB007DBB6A /* WorkerViewController.swift */,
 				3B73B2591FD7401C0066BAEA /* WorkerSwipe.swift */,
-				3B73B2571FD73CAE0066BAEA /* WorkerDelegate.swift */,
 				3B73B2551FD73C740066BAEA /* WorkerDataSource.swift */,
+				3B73B2571FD73CAE0066BAEA /* WorkerDelegate.swift */,
 				3B73B2531FD73C210066BAEA /* WorkerTimer.swift */,
 				3B73B2511FD73BF90066BAEA /* WorkerBurger.swift */,
 				3B73B24F1FD73BC00066BAEA /* WorkerWorker.swift */,
@@ -848,6 +851,7 @@
 				3B8436031FAA6D6C000B1EF2 /* Extensions.swift in Sources */,
 				3B73B25A1FD7401C0066BAEA /* WorkerSwipe.swift in Sources */,
 				3B0BBE101FB30594004821D7 /* BillableCell.swift in Sources */,
+				3BE3E74A1FDA7B4A009826C3 /* EmptyScreenView.swift in Sources */,
 				3B2294B11FD164D6009ECAEF /* SummaryEditProject.swift in Sources */,
 				3B5DBA981FBF74B300D3E81F /* TimeCardTitleValueCell.swift in Sources */,
 				3B84360C1FABE621000B1EF2 /* ProjectNameValidation.swift in Sources */,

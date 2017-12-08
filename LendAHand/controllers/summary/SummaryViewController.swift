@@ -59,6 +59,34 @@ class SummaryViewController: UIViewController {
     }
   }
   
+  var emptyView: EmptyScreenView = {
+    let v = EmptyScreenView()
+    v.translatesAutoresizingMaskIntoConstraints = false
+    v.message = "This project\nhas no work done\nyet"
+    return v
+  }()
+  
+  private func setupEmptyScreen() {
+    view.addSubview(emptyView)
+    NSLayoutConstraint.activate([
+      emptyView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      emptyView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+      emptyView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+      emptyView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor),
+      ])
+  }
+  
+  func checkEmptyViewVisibility() {
+    if let works = self.works {
+      DispatchQueue.main.async {
+        self.emptyView.isHidden = works.count > 0
+        self.tableView.isHidden = works.count == 0
+        self.summaryBox.isHidden = works.count == 0
+        self.separator.isHidden = works.count == 0
+      }
+    }
+  }
+  
   fileprivate func setupProjectObservation(_ projectID: String) {
     if  self.project == nil,
       let query = Constants.firestore.collection.projects?.whereField(FieldPath.documentID(), isEqualTo: projectID)
@@ -101,6 +129,7 @@ class SummaryViewController: UIViewController {
           self.summaryBox.setDates(earliest: earliest, latest: latest)
           self.tableView.reloadData()
         }
+        self.checkEmptyViewVisibility()
       }
       self.works?.listen()
     }
@@ -209,6 +238,8 @@ class SummaryViewController: UIViewController {
     // toggling the button's state so that EDIT button is shown in enabled state (simulator)
     self.navigationItem.rightBarButtonItem?.isEnabled = false
     self.navigationItem.rightBarButtonItem?.isEnabled = true
+    
+    self.checkEmptyViewVisibility()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -218,13 +249,14 @@ class SummaryViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = UIColor.cyan
     
     print("SUM---INIT---")
     
     requestContactAccess()
     setupWorkersObservation()
     setupEditProject()
+    
+    setupEmptyScreen()
     layout()
     setupTable()
 

@@ -8,13 +8,13 @@
 
 import UIKit
 
-extension ProjectViewController {
+extension ProjectViewController: UITableViewDelegate {
   
-  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 48
   }
   
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
     if let id = self.projects.id(sortedProjectIndexes[indexPath.row]) {
       

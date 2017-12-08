@@ -10,9 +10,9 @@ import UIKit
 import Crashlytics
 
 
-extension WorkerViewController {
+extension WorkerViewController: UITableViewDelegate {
   
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
     let indexRow = self.indexOrder[indexPath.row]
     
@@ -22,11 +22,11 @@ extension WorkerViewController {
     navigationController?.pushViewController(controller, animated: true)
   }
   
-  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     if isHighlightedRow(indexPath.row) {
       return 75
     } else {
-      return 44
+      return 42
     }
   }
   

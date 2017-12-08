@@ -16,6 +16,7 @@ extension WorkerViewController {
         DispatchQueue.main.async {
           self.tableView.reloadData()
         }
+        self.checkEmptyViewVisibility()
       }
       self.workers.listen()
     }

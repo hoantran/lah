@@ -60,7 +60,7 @@ extension ProjectViewController {
     return action
   }
   
-  override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     let action = deleteAction(forRowAtIndexPath: indexPath )
     return UISwipeActionsConfiguration(actions: [action])
   }
