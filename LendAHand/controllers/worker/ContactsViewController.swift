@@ -26,6 +26,19 @@ class ContactsViewController: UITableViewController, CNContactViewControllerDele
     }
   }
   
+  fileprivate func sort(_ list :[CNContact])->[CNContact]{
+    let formatter = CNContactFormatter()
+    
+    return list.sorted(by: { a, b in
+      if  let nameA = formatter.string(from: a),
+          let nameB = formatter.string(from: b)
+      {
+        return nameA < nameB
+      }
+      return false
+    })
+  }
+  
   @objc func handleAddTap() {
     let con = CNContact()
     let vc = CNContactViewController(forNewContact: con)
@@ -74,7 +87,7 @@ class ContactsViewController: UITableViewController, CNContactViewControllerDele
     
     ContactMgr.shared.getAll() { contacts in
       if let contacts = contacts {
-        self.contacts = contacts
+        self.contacts = self.sort(contacts)
       } else {
         print("no contact was found")
       }
