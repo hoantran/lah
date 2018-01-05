@@ -71,6 +71,8 @@ extension Work {
   func payable() -> String? {
     if let stop = stop {
       let seconds = Int(stop.timeIntervalSince(start))
+//      let elapsed = ((Float(now.timeIntervalSince(start)))/60).rounded()
+//      let earned = (elapsed/60) * rate
       let hours:Float = Float(Float(seconds) / Float(3600))
       let payable: Float = rate * hours
       return payable.roundedTo(places: 2)
