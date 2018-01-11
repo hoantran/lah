@@ -16,8 +16,9 @@ extension BillableViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let controller = TimeCardViewController()
     
-    controller.work = self.works[indexPath.row]
-    if let workID = self.works.id(indexPath.row) {
+    let sortedIndex = self.orderedIndex[indexPath.row]
+    controller.work = self.works[sortedIndex]
+    if let workID = self.works.id(sortedIndex) {
       controller.workID = workID
     }
     

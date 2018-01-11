@@ -12,6 +12,7 @@ class BillableViewController: UIViewController {
   var currents: LocalCollection<Current>!
   var works: LocalCollection<Work>!
   var timer: Timer!
+  var orderedIndex = [Int]()
   
   static let cellID = "BillableCellID"
   var worker: Worker?
@@ -157,6 +158,13 @@ extension BillableViewController {
       let query = Constants.firestore.collection.works?.whereField("worker", isEqualTo: workerID) {
       
       self.works = LocalCollection(query: query) { [unowned self] (changes) in
+        
+        if let newOrdering = self.works.sorted(by: { a,b in
+          return self.works[a].start.compare(self.works[b].start) == .orderedDescending
+        }) {
+          self.orderedIndex = newOrdering
+        }
+        
         DispatchQueue.main.async {
           self.tableView.reloadData()
         }

@@ -18,7 +18,7 @@ extension BillableViewController: UITableViewDataSource {
   }
   public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: BillableCell.cellID, for: indexPath) as! BillableCell
-    cell.work = self.works[indexPath.row]
+    cell.work = self.works[self.orderedIndex[indexPath.row]]
     return cell
   }
 }
