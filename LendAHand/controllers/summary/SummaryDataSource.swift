@@ -35,7 +35,7 @@ extension SummaryViewController: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: SummaryCell.cellID, for: indexPath) as! SummaryCell
     let work = collapsibles[indexPath.section].works[indexPath.row]
 
-    cell.amount = work.payable()
+    cell.amount = work.payable(true)
     cell.duration = work.durationCompact()
     cell.isPaid = work.isPaid
 

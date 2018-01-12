@@ -27,7 +27,7 @@ class BillableCell: BaseCell {
         dayTimePeriodFormatter.dateFormat = "MMM dd, YYYY"
         self.date.text = dayTimePeriodFormatter.string(from: work.start)
         
-        if let payable = work.payable() {
+        if let payable = work.payable(false) {
           amount.text = payable
         } else {
           amount.text = ""

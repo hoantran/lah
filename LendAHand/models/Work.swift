@@ -68,14 +68,22 @@ extension Work {
     return nil
   }
 
-  func payable() -> String? {
+  func payable(_ incrementInSeconds: Bool) -> String? {
     if let stop = stop {
-      let seconds = Int(stop.timeIntervalSince(start))
-//      let elapsed = ((Float(now.timeIntervalSince(start)))/60).rounded()
-//      let earned = (elapsed/60) * rate
-      let hours:Float = Float(Float(seconds) / Float(3600))
-      let payable: Float = rate * hours
-      return payable.roundedTo(places: 2)
+      if incrementInSeconds {
+        let seconds = Int(stop.timeIntervalSince(start))
+        let hours:Float = Float(Float(seconds) / Float(3600))
+        let payable: Float = rate * hours
+        return payable.roundedTo(places: 2)
+      } else {
+        var seconds = Float(stop.timeIntervalSince(start))
+        let hours = (seconds/3600).rounded(.down)
+        var payable = hours * rate
+        seconds -= hours * 3600
+        let minutes = (seconds/60).rounded(.down)
+        payable += (minutes/60) * rate
+        return payable.roundedTo(places: 2)
+      }
     }
     return nil
   }
