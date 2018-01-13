@@ -17,11 +17,11 @@ class ClockControlView: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-    backgroundColor = UIColor.white
+    backgroundColor = UIColor(hex: "0xfffee5")
     
     addSubview(separator)
     NSLayoutConstraint.activate([
-      separator.topAnchor.constraint(equalTo: topAnchor),
+      separator.bottomAnchor.constraint(equalTo: bottomAnchor),
       separator.leftAnchor.constraint(equalTo: leftAnchor),
       separator.heightAnchor.constraint(equalToConstant: 1),
       separator.widthAnchor.constraint(equalTo: widthAnchor)
@@ -43,6 +43,14 @@ class ClockControlView: UIView {
       control.heightAnchor.constraint(equalToConstant: 40)
       ])
     
+    addSubview(separator2)
+    NSLayoutConstraint.activate([
+      separator2.topAnchor.constraint(equalTo: topAnchor),
+      separator2.leftAnchor.constraint(equalTo: leftAnchor),
+      separator2.heightAnchor.constraint(equalToConstant: 1),
+      separator2.widthAnchor.constraint(equalTo: widthAnchor)
+      ])
+    
     showClockIn()
     
 //    addConstraints(format: "V:|-[v0(1)]-[v1(25)]-|", views: separator, clock)
@@ -59,7 +67,14 @@ class ClockControlView: UIView {
   let separator: UIView = {
     let s = UIView()
     s.translatesAutoresizingMaskIntoConstraints = false
-    s.backgroundColor = UIColor.gray
+    s.backgroundColor = UIColor(hex: "0xcecece")
+    return s
+  }()
+  
+  let separator2: UIView = {
+    let s = UIView()
+    s.translatesAutoresizingMaskIntoConstraints = false
+    s.backgroundColor = UIColor(hex: "0xcecece")
     return s
   }()
   

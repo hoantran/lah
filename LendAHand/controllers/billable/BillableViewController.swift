@@ -37,10 +37,10 @@ class BillableViewController: UIViewController {
   fileprivate func layoutTable() {
     view.addSubview(tableView)
     NSLayoutConstraint.activate([
-      tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      tableView.topAnchor.constraint(equalTo: control.bottomAnchor),
+      tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
       tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
       tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
-      tableView.bottomAnchor.constraint(equalTo: control.topAnchor)
       ])
   }
   
@@ -59,7 +59,7 @@ class BillableViewController: UIViewController {
   fileprivate func setupControl() {
     view.addSubview(control)
     NSLayoutConstraint.activate([
-      control.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      control.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       control.leftAnchor.constraint(equalTo: view.leftAnchor),
       control.rightAnchor.constraint(equalTo: view.rightAnchor),
       control.heightAnchor.constraint(equalToConstant: 55)
