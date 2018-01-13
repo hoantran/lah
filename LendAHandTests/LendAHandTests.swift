@@ -9,6 +9,11 @@
 import XCTest
 @testable import LendAHand
 
+// Had error: "Missing required module 'Firebase'"
+// https://github.com/firebase/firebase-ios-sdk/issues/16
+// "Add "${PODS_ROOT}/Firebase/Core/Sources" to your Tests target only under Build Settings -> Header Search Paths"
+
+
 class LendAHandTests: XCTestCase {
     
     override func setUp() {
