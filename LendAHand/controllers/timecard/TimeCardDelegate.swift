@@ -140,7 +140,7 @@ extension TimeCardViewController: UITableViewDelegate {
   }
   
   func reloadDuration() {
-    let indexPath = IndexPath(item: TimeCardArrangement.timeRow.duration.hashValue, section: TimeCardArrangement.time.hashValue)
+    let indexPath = IndexPath(item: TimeCardArrangement.timeRow.duration.rawValue, section: TimeCardArrangement.time.rawValue)
     tableView.reloadRows(at: [indexPath], with: .automatic)
   }
 }
