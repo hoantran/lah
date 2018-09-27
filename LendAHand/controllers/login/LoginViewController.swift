@@ -33,13 +33,16 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
       return
     }
     let credential = FacebookAuthProvider.credential(withAccessToken: token)
-    Auth.auth().signIn(with: credential, completion: { (user, error) in
+    Auth.auth().signInAndRetrieveData(with: credential) { (user, error) in
       if let error = error {
         print("Could not sign in with FB credential : ", error)
         return
       }
+      if let displayName = user?.additionalUserInfo?.username {
+          print("[\(displayName)] is logged into Firebase")
+      }
       self.userLoggedIn()
-    })
+    }
   }
 
   func isFirebaseLoggedIn()->Bool {

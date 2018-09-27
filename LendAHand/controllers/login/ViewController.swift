@@ -39,16 +39,16 @@ class ViewController: UIViewController, LoginButtonDelegate {
       }
       print("user just logged in : ", accessToken.appId, " : ", accessToken.userId ?? "")
       let credential = FacebookAuthProvider.credential(withAccessToken: token)
-      Auth.auth().signIn(with: credential, completion: { (user, error) in
+      Auth.auth().signInAndRetrieveData(with: credential) { (user, error) in
         if let error = error {
           print("Could not sign in with FB credential : ", error)
           return
         }
-        if let displayName = user?.displayName {
+        if let displayName = user?.additionalUserInfo?.username {
           print("[\(displayName)] is logged into Firebase")
         }
         self.userLoggedIn()
-      })
+      }
     }
   }
   
@@ -132,7 +132,7 @@ class ViewController: UIViewController, LoginButtonDelegate {
   
   func setupProjectObservation() {
     if let query = Constants.firestore.collection.projects {
-      self.projects = LocalCollection(query: query) { [unowned self] (changes) in
+      self.projects = LocalCollection(query: query) { (changes) in
         print("..............: Projects")
         changes.forEach(){ print ("[", $0.type, "]", $0) }
       }
@@ -141,7 +141,7 @@ class ViewController: UIViewController, LoginButtonDelegate {
   
   func setupCurrentObservation() {
     if let query = Constants.firestore.collection.currents {
-      self.currents = LocalCollection(query: query) { [unowned self] (changes) in
+      self.currents = LocalCollection(query: query) { (changes) in
         print("..............: Currents")
         changes.forEach(){ print ("[", $0.type, "]", $0) }
       }

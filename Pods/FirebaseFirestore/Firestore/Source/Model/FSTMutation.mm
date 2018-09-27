@@ -137,7 +137,7 @@ NS_ASSUME_NONNULL_BEGIN
   }
 
   FSTSetMutation *otherMutation = (FSTSetMutation *)other;
-  return [self.key isEqual:otherMutation.key] && [self.value isEqual:otherMutation.value] &&
+  return self.key == otherMutation.key && [self.value isEqual:otherMutation.value] &&
          self.precondition == otherMutation.precondition;
 }
 
@@ -173,7 +173,7 @@ NS_ASSUME_NONNULL_BEGIN
               [maybeDoc class]);
   FSTDocument *doc = (FSTDocument *)maybeDoc;
 
-  HARD_ASSERT([doc.key isEqual:self.key], "Can only set a document with the same key");
+  HARD_ASSERT(doc.key == self.key, "Can only set a document with the same key");
   return [FSTDocument documentWithData:self.value
                                    key:doc.key
                                version:doc.version
@@ -212,7 +212,7 @@ NS_ASSUME_NONNULL_BEGIN
   }
 
   FSTPatchMutation *otherMutation = (FSTPatchMutation *)other;
-  return [self.key isEqual:otherMutation.key] && self.fieldMask == otherMutation.fieldMask &&
+  return self.key == otherMutation.key && self.fieldMask == otherMutation.fieldMask &&
          [self.value isEqual:otherMutation.value] &&
          self.precondition == otherMutation.precondition;
 }
@@ -259,7 +259,7 @@ NS_ASSUME_NONNULL_BEGIN
               [maybeDoc class]);
   FSTDocument *doc = (FSTDocument *)maybeDoc;
 
-  HARD_ASSERT([doc.key isEqual:self.key], "Can only patch a document with the same key");
+  HARD_ASSERT(doc.key == self.key, "Can only patch a document with the same key");
 
   FSTObjectValue *newData = [self patchObjectValue:doc.data];
   return [FSTDocument documentWithData:newData
@@ -271,11 +271,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (FSTObjectValue *)patchObjectValue:(FSTObjectValue *)objectValue {
   FSTObjectValue *result = objectValue;
   for (const FieldPath &fieldPath : self.fieldMask) {
-    FSTFieldValue *newValue = [self.value valueForPath:fieldPath];
-    if (newValue) {
-      result = [result objectBySettingValue:newValue forPath:fieldPath];
-    } else {
-      result = [result objectByDeletingPath:fieldPath];
+    if (!fieldPath.empty()) {
+      FSTFieldValue *newValue = [self.value valueForPath:fieldPath];
+      if (newValue) {
+        result = [result objectBySettingValue:newValue forPath:fieldPath];
+      } else {
+        result = [result objectByDeletingPath:fieldPath];
+      }
     }
   }
   return result;
@@ -312,8 +314,7 @@ NS_ASSUME_NONNULL_BEGIN
   }
 
   FSTTransformMutation *otherMutation = (FSTTransformMutation *)other;
-  return [self.key isEqual:otherMutation.key] &&
-         self.fieldTransforms == otherMutation.fieldTransforms &&
+  return self.key == otherMutation.key && self.fieldTransforms == otherMutation.fieldTransforms &&
          self.precondition == otherMutation.precondition;
 }
 
@@ -355,7 +356,7 @@ NS_ASSUME_NONNULL_BEGIN
               [maybeDoc class]);
   FSTDocument *doc = (FSTDocument *)maybeDoc;
 
-  HARD_ASSERT([doc.key isEqual:self.key], "Can only transform a document with the same key");
+  HARD_ASSERT(doc.key == self.key, "Can only transform a document with the same key");
 
   BOOL hasLocalMutations = (mutationResult == nil);
   NSArray<FSTFieldValue *> *transformResults;
@@ -384,8 +385,8 @@ NS_ASSUME_NONNULL_BEGIN
  * @return The transform results array.
  */
 - (NSArray<FSTFieldValue *> *)
-serverTransformResultsWithBaseDocument:(nullable FSTMaybeDocument *)baseDocument
-                serverTransformResults:(NSArray<FSTFieldValue *> *)serverTransformResults {
+    serverTransformResultsWithBaseDocument:(nullable FSTMaybeDocument *)baseDocument
+                    serverTransformResults:(NSArray<FSTFieldValue *> *)serverTransformResults {
   NSMutableArray<FSTFieldValue *> *transformResults = [NSMutableArray array];
   HARD_ASSERT(self.fieldTransforms.size() == serverTransformResults.count,
               "server transform result count (%s) should match field transforms count (%s)",
@@ -460,7 +461,7 @@ serverTransformResultsWithBaseDocument:(nullable FSTMaybeDocument *)baseDocument
   }
 
   FSTDeleteMutation *otherMutation = (FSTDeleteMutation *)other;
-  return [self.key isEqual:otherMutation.key] && self.precondition == otherMutation.precondition;
+  return self.key == otherMutation.key && self.precondition == otherMutation.precondition;
 }
 
 - (NSUInteger)hash {
@@ -488,7 +489,7 @@ serverTransformResultsWithBaseDocument:(nullable FSTMaybeDocument *)baseDocument
   }
 
   if (maybeDoc) {
-    HARD_ASSERT([maybeDoc.key isEqual:self.key], "Can only delete a document with the same key");
+    HARD_ASSERT(maybeDoc.key == self.key, "Can only delete a document with the same key");
   }
 
   return [FSTDeletedDocument documentWithKey:self.key version:SnapshotVersion::None()];

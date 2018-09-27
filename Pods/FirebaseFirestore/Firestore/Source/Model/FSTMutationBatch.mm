@@ -25,19 +25,20 @@
 
 #include "Firestore/core/src/firebase/firestore/util/hard_assert.h"
 
+using firebase::firestore::model::BatchId;
 using firebase::firestore::model::DocumentKey;
 using firebase::firestore::model::DocumentKeyHash;
-using firebase::firestore::model::SnapshotVersion;
 using firebase::firestore::model::DocumentKeySet;
 using firebase::firestore::model::DocumentVersionMap;
+using firebase::firestore::model::SnapshotVersion;
 
 NS_ASSUME_NONNULL_BEGIN
 
-const FSTBatchID kFSTBatchIDUnknown = -1;
+const BatchId kFSTBatchIDUnknown = -1;
 
 @implementation FSTMutationBatch
 
-- (instancetype)initWithBatchID:(FSTBatchID)batchID
+- (instancetype)initWithBatchID:(BatchId)batchID
                  localWriteTime:(FIRTimestamp *)localWriteTime
                       mutations:(NSArray<FSTMutation *> *)mutations {
   self = [super init];
@@ -77,7 +78,7 @@ const FSTBatchID kFSTBatchIDUnknown = -1;
 - (FSTMaybeDocument *_Nullable)applyTo:(FSTMaybeDocument *_Nullable)maybeDoc
                            documentKey:(const DocumentKey &)documentKey
                    mutationBatchResult:(FSTMutationBatchResult *_Nullable)mutationBatchResult {
-  HARD_ASSERT(!maybeDoc || [maybeDoc.key isEqualToKey:documentKey],
+  HARD_ASSERT(!maybeDoc || maybeDoc.key == documentKey,
               "applyTo: key %s doesn't match maybeDoc key %s", documentKey.ToString(),
               maybeDoc.key.ToString());
   FSTMaybeDocument *baseDoc = maybeDoc;
@@ -90,7 +91,7 @@ const FSTBatchID kFSTBatchIDUnknown = -1;
   for (NSUInteger i = 0; i < self.mutations.count; i++) {
     FSTMutation *mutation = self.mutations[i];
     FSTMutationResult *_Nullable mutationResult = mutationBatchResult.mutationResults[i];
-    if ([mutation.key isEqualToKey:documentKey]) {
+    if (mutation.key == documentKey) {
       maybeDoc = [mutation applyTo:maybeDoc
                       baseDocument:baseDoc
                     localWriteTime:self.localWriteTime

@@ -66,9 +66,21 @@ std::string PrefixSuccessor(absl::string_view prefix);
 std::string ImmediateSuccessor(absl::string_view s);
 
 /**
- * Returns true if the given value starts with the given prefix.
+ * Returns a string description of the contents of the given collection.
  */
-bool StartsWith(const std::string &value, const std::string &prefix);
+template <typename Container>
+std::string ToString(const Container& container) {
+  std::string result;
+  result.append("[");
+  const char* sep = "";
+  for (auto&& item : container) {
+    result.append(sep);
+    result.append(item);
+    sep = ", ";
+  }
+  result.append("]");
+  return result;
+}
 
 }  // namespace util
 }  // namespace firestore

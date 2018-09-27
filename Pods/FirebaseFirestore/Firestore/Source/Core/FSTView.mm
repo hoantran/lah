@@ -30,6 +30,7 @@
 
 using firebase::firestore::model::DocumentKey;
 using firebase::firestore::model::DocumentKeySet;
+using firebase::firestore::model::OnlineState;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -109,7 +110,7 @@ NS_ASSUME_NONNULL_BEGIN
     return NO;
   }
   FSTLimboDocumentChange *otherChange = (FSTLimboDocumentChange *)other;
-  return self.type == otherChange.type && [self.key isEqual:otherChange.key];
+  return self.type == otherChange.type && self.key == otherChange.key;
 }
 
 - (NSUInteger)hash {
@@ -355,8 +356,8 @@ static NSComparisonResult FSTCompareDocumentViewChangeTypes(FSTDocumentViewChang
   }
 }
 
-- (FSTViewChange *)applyChangedOnlineState:(FSTOnlineState)onlineState {
-  if (self.isCurrent && onlineState == FSTOnlineStateOffline) {
+- (FSTViewChange *)applyChangedOnlineState:(OnlineState)onlineState {
+  if (self.isCurrent && onlineState == OnlineState::Offline) {
     // If we're offline, set `current` to NO and then call applyChanges to refresh our syncState
     // and generate an FSTViewChange as appropriate. We are guaranteed to get a new FSTTargetChange
     // that sets `current` back to YES once the client is back online.
@@ -401,28 +402,18 @@ static NSComparisonResult FSTCompareDocumentViewChangeTypes(FSTDocumentViewChang
  */
 - (void)applyTargetChange:(nullable FSTTargetChange *)targetChange {
   if (targetChange) {
-    FSTTargetMapping *targetMapping = targetChange.mapping;
-    if ([targetMapping isKindOfClass:[FSTResetMapping class]]) {
-      _syncedDocuments = ((FSTResetMapping *)targetMapping).documents;
-    } else if ([targetMapping isKindOfClass:[FSTUpdateMapping class]]) {
-      for (const DocumentKey &key : ((FSTUpdateMapping *)targetMapping).addedDocuments) {
-        _syncedDocuments = _syncedDocuments.insert(key);
-      }
-      for (const DocumentKey &key : ((FSTUpdateMapping *)targetMapping).removedDocuments) {
-        _syncedDocuments = _syncedDocuments.erase(key);
-      }
+    for (const DocumentKey &key : targetChange.addedDocuments) {
+      _syncedDocuments = _syncedDocuments.insert(key);
+    }
+    for (const DocumentKey &key : targetChange.modifiedDocuments) {
+      HARD_ASSERT(_syncedDocuments.find(key) != _syncedDocuments.end(),
+                  "Modified document %s not found in view.", key.ToString());
+    }
+    for (const DocumentKey &key : targetChange.removedDocuments) {
+      _syncedDocuments = _syncedDocuments.erase(key);
     }
 
-    switch (targetChange.currentStatusUpdate) {
-      case FSTCurrentStatusUpdateMarkCurrent:
-        self.current = YES;
-        break;
-      case FSTCurrentStatusUpdateMarkNotCurrent:
-        self.current = NO;
-        break;
-      case FSTCurrentStatusUpdateNone:
-        break;
-    }
+    self.current = targetChange.current;
   }
 }
 

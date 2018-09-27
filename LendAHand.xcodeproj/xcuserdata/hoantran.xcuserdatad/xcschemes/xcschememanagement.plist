@@ -7,7 +7,25 @@
 		<key>LendAHand.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>24</integer>
+			<integer>25</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>3B29BC0F1F99767900E66F21</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3B29BC231F99767900E66F21</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3B29BC2E1F99767900E66F21</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
