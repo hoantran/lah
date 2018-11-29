@@ -18,12 +18,12 @@ class ContainerViewController: UIViewController, UIGestureRecognizerDelegate {
         if self.leftViewController?.view != nil {
           self.leftViewController?.view.removeFromSuperview()
         }
-        self.leftViewController?.removeFromParentViewController()
+        self.leftViewController?.removeFromParent()
       }
     }
     didSet {
       self.view.addSubview(self.leftViewController!.view)
-      self.addChildViewController(self.leftViewController!)
+      self.addChild(self.leftViewController!)
     }
   }
   
@@ -33,12 +33,12 @@ class ContainerViewController: UIViewController, UIGestureRecognizerDelegate {
         if self.rightViewController?.view != nil {
           self.rightViewController?.view.removeFromSuperview()
         }
-        self.rightViewController?.removeFromParentViewController()
+        self.rightViewController?.removeFromParent()
       }
     }
     didSet {
       self.view.addSubview(self.rightViewController!.view)
-      self.addChildViewController(self.rightViewController!)
+      self.addChild(self.rightViewController!)
     }
   }
   

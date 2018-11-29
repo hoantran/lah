@@ -63,7 +63,7 @@ class WorkerViewController: UIViewController {
     
     
     
-    NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     
     print("WKR--- INIT ---")
   }

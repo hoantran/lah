@@ -16,8 +16,6 @@
 
 #import "Firestore/Source/Core/FSTSyncEngine.h"
 
-#import <GRPCClient/GRPCCall.h>
-
 #include <map>
 #include <set>
 #include <unordered_map>
@@ -195,7 +193,7 @@ class LimboResolution {
     _queryViewsByTarget = [NSMutableDictionary dictionary];
 
     _limboDocumentRefs = [[FSTReferenceSet alloc] init];
-    _targetIdGenerator = TargetIdGenerator::SyncEngineTargetIdGenerator(0);
+    _targetIdGenerator = TargetIdGenerator::SyncEngineTargetIdGenerator();
     _currentUser = initialUser;
   }
   return self;
@@ -206,25 +204,32 @@ class LimboResolution {
   HARD_ASSERT(self.queryViewsByQuery[query] == nil, "We already listen to query: %s", query);
 
   FSTQueryData *queryData = [self.localStore allocateQuery:query];
-  FSTDocumentDictionary *docs = [self.localStore executeQuery:query];
+  FSTViewSnapshot *viewSnapshot = [self initializeViewAndComputeSnapshotForQueryData:queryData];
+  [self.syncEngineDelegate handleViewSnapshots:@[ viewSnapshot ]];
+
+  [self.remoteStore listenToTargetWithQueryData:queryData];
+  return queryData.targetID;
+}
+
+- (FSTViewSnapshot *)initializeViewAndComputeSnapshotForQueryData:(FSTQueryData *)queryData {
+  FSTDocumentDictionary *docs = [self.localStore executeQuery:queryData.query];
   DocumentKeySet remoteKeys = [self.localStore remoteDocumentKeysForTarget:queryData.targetID];
 
-  FSTView *view = [[FSTView alloc] initWithQuery:query remoteDocuments:std::move(remoteKeys)];
+  FSTView *view =
+      [[FSTView alloc] initWithQuery:queryData.query remoteDocuments:std::move(remoteKeys)];
   FSTViewDocumentChanges *viewDocChanges = [view computeChangesWithDocuments:docs];
   FSTViewChange *viewChange = [view applyChangesToDocuments:viewDocChanges];
   HARD_ASSERT(viewChange.limboChanges.count == 0,
               "View returned limbo docs before target ack from the server.");
 
-  FSTQueryView *queryView = [[FSTQueryView alloc] initWithQuery:query
+  FSTQueryView *queryView = [[FSTQueryView alloc] initWithQuery:queryData.query
                                                        targetID:queryData.targetID
                                                     resumeToken:queryData.resumeToken
                                                            view:view];
-  self.queryViewsByQuery[query] = queryView;
+  self.queryViewsByQuery[queryData.query] = queryView;
   self.queryViewsByTarget[@(queryData.targetID)] = queryView;
-  [self.delegate handleViewSnapshots:@[ viewChange.snapshot ]];
 
-  [self.remoteStore listenToTargetWithQueryData:queryData];
-  return queryData.targetID;
+  return viewChange.snapshot;
 }
 
 - (void)stopListeningToQuery:(FSTQuery *)query {
@@ -245,7 +250,7 @@ class LimboResolution {
   FSTLocalWriteResult *result = [self.localStore locallyWriteMutations:mutations];
   [self addMutationCompletionBlock:completion batchID:result.batchID];
 
-  [self emitNewSnapshotsWithChanges:result.changes remoteEvent:nil];
+  [self emitNewSnapshotsAndNotifyLocalStoreWithChanges:result.changes remoteEvent:nil];
   [self.remoteStore fillWritePipeline];
 }
 
@@ -344,7 +349,7 @@ class LimboResolution {
   }
 
   FSTMaybeDocumentDictionary *changes = [self.localStore applyRemoteEvent:remoteEvent];
-  [self emitNewSnapshotsWithChanges:changes remoteEvent:remoteEvent];
+  [self emitNewSnapshotsAndNotifyLocalStoreWithChanges:changes remoteEvent:remoteEvent];
 }
 
 - (void)applyChangedOnlineState:(OnlineState)onlineState {
@@ -359,7 +364,8 @@ class LimboResolution {
         }
       }];
 
-  [self.delegate handleViewSnapshots:newViewSnapshots];
+  [self.syncEngineDelegate handleViewSnapshots:newViewSnapshots];
+  [self.syncEngineDelegate applyChangedOnlineState:onlineState];
 }
 
 - (void)rejectListenWithTargetID:(const TargetId)targetID error:(NSError *)error {
@@ -378,8 +384,9 @@ class LimboResolution {
     // It's a limbo doc. Create a synthetic event saying it was deleted. This is kind of a hack.
     // Ideally, we would have a method in the local store to purge a document. However, it would
     // be tricky to keep all of the local store's invariants with another method.
-    FSTDeletedDocument *doc =
-        [FSTDeletedDocument documentWithKey:limboKey version:SnapshotVersion::None()];
+    FSTDeletedDocument *doc = [FSTDeletedDocument documentWithKey:limboKey
+                                                          version:SnapshotVersion::None()
+                                            hasCommittedMutations:NO];
     DocumentKeySet limboDocuments = DocumentKeySet{doc.key};
     FSTRemoteEvent *event = [[FSTRemoteEvent alloc] initWithSnapshotVersion:SnapshotVersion::None()
         targetChanges:{}
@@ -392,9 +399,14 @@ class LimboResolution {
   } else {
     FSTQueryView *queryView = self.queryViewsByTarget[@(targetID)];
     HARD_ASSERT(queryView, "Unknown targetId: %s", targetID);
-    [self.localStore releaseQuery:queryView.query];
+    FSTQuery *query = queryView.query;
+    [self.localStore releaseQuery:query];
     [self removeAndCleanupQuery:queryView];
-    [self.delegate handleError:error forQuery:queryView.query];
+    if ([self errorIsInteresting:error]) {
+      LOG_WARN("Listen for query at %s failed: %s", query.path.CanonicalString(),
+               error.localizedDescription);
+    }
+    [self.syncEngineDelegate handleError:error forQuery:query];
   }
 }
 
@@ -407,19 +419,24 @@ class LimboResolution {
   [self processUserCallbacksForBatchID:batchResult.batch.batchID error:nil];
 
   FSTMaybeDocumentDictionary *changes = [self.localStore acknowledgeBatchWithResult:batchResult];
-  [self emitNewSnapshotsWithChanges:changes remoteEvent:nil];
+  [self emitNewSnapshotsAndNotifyLocalStoreWithChanges:changes remoteEvent:nil];
 }
 
 - (void)rejectFailedWriteWithBatchID:(BatchId)batchID error:(NSError *)error {
   [self assertDelegateExistsForSelector:_cmd];
+  FSTMaybeDocumentDictionary *changes = [self.localStore rejectBatchID:batchID];
+
+  if (!changes.isEmpty && [self errorIsInteresting:error]) {
+    LOG_WARN("Write at %s failed: %s", changes.minKey.path.CanonicalString(),
+             error.localizedDescription);
+  }
 
   // The local store may or may not be able to apply the write result and raise events immediately
   // (depending on whether the watcher is caught up), so we raise user callbacks first so that they
   // consistently happen before listen events.
   [self processUserCallbacksForBatchID:batchID error:error];
 
-  FSTMaybeDocumentDictionary *changes = [self.localStore rejectBatchID:batchID];
-  [self emitNewSnapshotsWithChanges:changes remoteEvent:nil];
+  [self emitNewSnapshotsAndNotifyLocalStoreWithChanges:changes remoteEvent:nil];
 }
 
 - (void)processUserCallbacksForBatchID:(BatchId)batchID error:(NSError *_Nullable)error {
@@ -439,7 +456,7 @@ class LimboResolution {
 }
 
 - (void)assertDelegateExistsForSelector:(SEL)methodSelector {
-  HARD_ASSERT(self.delegate, "Tried to call '%s' before delegate was registered.",
+  HARD_ASSERT(self.syncEngineDelegate, "Tried to call '%s' before delegate was registered.",
               NSStringFromSelector(methodSelector));
 }
 
@@ -460,8 +477,8 @@ class LimboResolution {
 /**
  * Computes a new snapshot from the changes and calls the registered callback with the new snapshot.
  */
-- (void)emitNewSnapshotsWithChanges:(FSTMaybeDocumentDictionary *)changes
-                        remoteEvent:(FSTRemoteEvent *_Nullable)remoteEvent {
+- (void)emitNewSnapshotsAndNotifyLocalStoreWithChanges:(FSTMaybeDocumentDictionary *)changes
+                                           remoteEvent:(FSTRemoteEvent *_Nullable)remoteEvent {
   NSMutableArray<FSTViewSnapshot *> *newSnapshots = [NSMutableArray array];
   NSMutableArray<FSTLocalViewChanges *> *documentChangesInAllViews = [NSMutableArray array];
 
@@ -499,7 +516,7 @@ class LimboResolution {
         }
       }];
 
-  [self.delegate handleViewSnapshots:newSnapshots];
+  [self.syncEngineDelegate handleViewSnapshots:newSnapshots];
   [self.localStore notifyLocalViewChanges:documentChangesInAllViews];
 }
 
@@ -570,7 +587,7 @@ class LimboResolution {
   if (userChanged) {
     // Notify local store and emit any resulting events from swapping out the mutation queue.
     FSTMaybeDocumentDictionary *changes = [self.localStore userDidChange:user];
-    [self emitNewSnapshotsWithChanges:changes remoteEvent:nil];
+    [self emitNewSnapshotsAndNotifyLocalStoreWithChanges:changes remoteEvent:nil];
   }
 
   // Notify remote store so it can restart its streams.
@@ -585,6 +602,24 @@ class LimboResolution {
     FSTQueryView *queryView = self.queryViewsByTarget[targetId];
     return queryView ? queryView.view.syncedDocuments : DocumentKeySet{};
   }
+}
+
+/**
+ * Decides if the error likely represents a developer mistake such as forgetting to create an index
+ * or permission denied. Used to decide whether an error is worth automatically logging as a
+ * warning.
+ */
+- (BOOL)errorIsInteresting:(NSError *)error {
+  if (error.domain == FIRFirestoreErrorDomain) {
+    if (error.code == FIRFirestoreErrorCodeFailedPrecondition &&
+        [error.localizedDescription containsString:@"requires an index"]) {
+      return YES;
+    } else if (error.code == FIRFirestoreErrorCodePermissionDenied) {
+      return YES;
+    }
+  }
+
+  return NO;
 }
 
 @end

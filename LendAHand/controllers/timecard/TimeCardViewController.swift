@@ -78,8 +78,8 @@ class TimeCardViewController: UIViewController {
   @objc func keyboardWillShow(notification: NSNotification) {
     print("keyboardWill SHOW")
     if isEditingNote {
-      let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
-      let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
+      let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+      let keyboardDuration = (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
       
       let insets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame!.height, right: 0)
       tableView.contentInset = insets
@@ -91,7 +91,7 @@ class TimeCardViewController: UIViewController {
   
   @objc func keyboardWillHide(_ notification: Notification) {
      print("keyboardWill HIDE")
-    let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
+    let keyboardDuration = (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
     
     tableView.contentInset = UIEdgeInsets.zero
     UIView.animate(withDuration: keyboardDuration!, animations: {
@@ -119,8 +119,8 @@ class TimeCardViewController: UIViewController {
     observeProject()
     
     // http://kingscocoa.com/tutorials/keyboard-content-offset/
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
   }
   
