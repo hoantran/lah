@@ -4,7 +4,7 @@ This iOS app allows clocking in/out of a worker's timecards. These timecards can
 
 **TECHNOLOGIES**
 
-The projects is based on iOS 12, Swift 4, and all UI are code-based, not built using storyboards/XIBs, for ease of maintenance and maximum flexibility.
+The projects is based on iOS 12, Swift 4, and all UI are code-based, and not storyboards/XIBs-based, for ease of maintenance and maximum flexibility.
 Google Firebase authentication provides Facebook logins for each worker,
 while Firestore keeps all of the clock times, workers' and projects' info.
 Offline data availability and online synchronization comes "free" with this backend solution.
