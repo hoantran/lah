@@ -56,18 +56,13 @@ class CreateUpdateWorkerViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.view.backgroundColor = Constants.color.bkg
     
     navigationItem.largeTitleDisplayMode = .never
     view.backgroundColor = UIColor(hex: "0Xefefef")
     
-    print("WKR.CR --- INIT ---")
-    
     setupContainers()
     checkSavability()
-  }
-  
-  deinit {
-    print("WKR.CR --- DE-INIT ---")
   }
   
   lazy var nameContainter:UIView = {

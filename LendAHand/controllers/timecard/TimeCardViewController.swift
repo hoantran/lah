@@ -51,6 +51,7 @@ class TimeCardViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.view.backgroundColor = Constants.color.bkg
     
     navigationItem.title = "Edit Timecard"
     navigationController?.navigationBar.prefersLargeTitles = true
@@ -67,12 +68,6 @@ class TimeCardViewController: UIViewController {
     let tap = UITapGestureRecognizer(target: self, action: #selector(endEditing))
     tap.cancelsTouchesInView = false
     self.view.addGestureRecognizer(tap)
-    
-    print("TC---INIT---")
-  }
-  
-  deinit{
-    print("TC---DE-INIT---")
   }
   
   @objc func keyboardWillShow(notification: NSNotification) {

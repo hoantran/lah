@@ -122,8 +122,6 @@ class CreateUpdateProjectViewController: UIViewController {
     
     setupTextFields()
     updateSaveAlpha()
-    
-    print("PRJ.CR --- INIT ---")
   }
   
   @objc func handleSave() {
@@ -132,10 +130,6 @@ class CreateUpdateProjectViewController: UIViewController {
       projectDelegate?.observeCreateUpdateProject(project)
     }
     navigationController?.popViewController(animated: true)
-  }
-  
-  deinit {
-    print("PRJ.CR --- DEINIT ---")
   }
   
 }

@@ -50,7 +50,7 @@ extension SummaryViewController: UITableViewDataSource {
       for k in 0..<works.count {
         let work = works[k]
         if let workID = works.id(k) {
-          if let index = collapsibles.index(where: { collapsible in
+          if let index = collapsibles.firstIndex(where: { collapsible in
             return collapsible.workerID == work.worker
           }) {
             collapsibles[index].add(workID: workID, work: work)

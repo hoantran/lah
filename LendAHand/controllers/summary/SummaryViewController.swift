@@ -37,7 +37,6 @@ class SummaryViewController: UIViewController {
     self.project?.stopListening()
     self.works?.stopListening()
     self.workers?.stopListening()
-    print("SUM---DE-INIT---")
   }
   
   var contactAccessPermission = false {
@@ -249,8 +248,6 @@ class SummaryViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    print("SUM---INIT---")
     
     requestContactAccess()
     setupWorkersObservation()

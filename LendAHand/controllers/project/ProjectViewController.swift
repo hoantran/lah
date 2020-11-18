@@ -36,20 +36,20 @@ class ProjectViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: ProjectViewController.cellID)
-    navigationItem.title = "Projects"
+    self.view.backgroundColor = Constants.color.bkg
     
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: ProjectViewController.cellID)
+    self.title = "Projects"
+
     setupEmptyScreen()
     setupTableView()
     setupAddNewProject()
     setupProjectObservation()
     self.projects.listen()
-    print("PRJ--- INIT ---")
   }
   
   deinit {
     self.projects.stopListening()
-    print("PRJ--- DEINIT ---")
   }
   
   override func viewWillAppear(_ animated: Bool) {

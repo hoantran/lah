@@ -82,6 +82,7 @@
 		3B8AF7011FB6778900C79016 /* HighlightedWorkerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8AF7001FB6778900C79016 /* HighlightedWorkerCell.swift */; };
 		3B8AF7031FB682B100C79016 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8AF7021FB682B100C79016 /* ClockView.swift */; };
 		3B8AF7051FB6833900C79016 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8AF7041FB6833900C79016 /* StatsView.swift */; };
+		3BBBEA7B220A5AC400142913 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBBEA7A220A5AC400142913 /* Coordinator.swift */; };
 		3BC077A31FB82F3A008D5F94 /* DummyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC077A21FB82F3A008D5F94 /* DummyVC.swift */; };
 		3BE3E74A1FDA7B4A009826C3 /* EmptyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE3E7491FDA7B4A009826C3 /* EmptyScreenView.swift */; };
 		3BF044171FD3E95C004A9884 /* SummaryWorkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF044161FD3E95C004A9884 /* SummaryWorkCell.swift */; };
@@ -189,6 +190,7 @@
 		3B8AF7001FB6778900C79016 /* HighlightedWorkerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightedWorkerCell.swift; sourceTree = "<group>"; };
 		3B8AF7021FB682B100C79016 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		3B8AF7041FB6833900C79016 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		3BBBEA7A220A5AC400142913 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		3BC077A21FB82F3A008D5F94 /* DummyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyVC.swift; sourceTree = "<group>"; };
 		3BE3E7491FDA7B4A009826C3 /* EmptyScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyScreenView.swift; sourceTree = "<group>"; };
 		3BF044161FD3E95C004A9884 /* SummaryWorkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryWorkCell.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 		3B29BC121F99767900E66F21 /* LendAHand */ = {
 			isa = PBXGroup;
 			children = (
+				3BBBEA79220A5AAA00142913 /* coordinators */,
 				3B04FD0B1F9A85BC0044A857 /* models */,
 				3B84360D1FAD8F16000B1EF2 /* contact */,
 				3B04FD0A1F9A85930044A857 /* helpers */,
@@ -463,6 +466,14 @@
 			path = contact;
 			sourceTree = "<group>";
 		};
+		3BBBEA79220A5AAA00142913 /* coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				3BBBEA7A220A5AC400142913 /* Coordinator.swift */,
+			);
+			path = coordinators;
+			sourceTree = "<group>";
+		};
 		79E2AA05F57AC2C36A6281D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -542,23 +553,23 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0910;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = "Hoan Tran";
 				TargetAttributes = {
 					3B29BC0F1F99767900E66F21 = {
 						CreatedOnToolsVersion = 9.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1220;
 						ProvisioningStyle = Automatic;
 					};
 					3B29BC231F99767900E66F21 = {
 						CreatedOnToolsVersion = 9.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1220;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3B29BC0F1F99767900E66F21;
 					};
 					3B29BC2E1F99767900E66F21 = {
 						CreatedOnToolsVersion = 9.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1220;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3B29BC0F1F99767900E66F21;
 					};
@@ -762,6 +773,7 @@
 				3B3C23EA1FD634EF00EFB0FF /* BillableSwipe.swift in Sources */,
 				3B2294B31FD23B8C009ECAEF /* WorkCollapsible.swift in Sources */,
 				3B10AF351FC53E0000958877 /* BillableTimer.swift in Sources */,
+				3BBBEA7B220A5AC400142913 /* Coordinator.swift in Sources */,
 				3B2294A81FD0B905009ECAEF /* ProjectDelegate.swift in Sources */,
 				3B2294A41FD0B872009ECAEF /* ProjectDataSource.swift in Sources */,
 				3B04FD111F9AA29C0044A857 /* Constants.swift in Sources */,
@@ -896,6 +908,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -921,7 +934,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -955,6 +968,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -974,7 +988,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -995,7 +1009,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pego.lendahand;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1012,7 +1026,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pego.lendahand;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1043,7 +1057,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pego.LendAHandTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LendAHand.app/LendAHand";
 			};
@@ -1075,7 +1089,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pego.LendAHandTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LendAHand.app/LendAHand";
 			};
@@ -1092,7 +1106,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pego.LendAHandUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = LendAHand;
 			};
@@ -1109,7 +1123,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pego.LendAHandUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = LendAHand;
 			};

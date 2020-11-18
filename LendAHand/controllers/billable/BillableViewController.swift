@@ -132,6 +132,7 @@ class BillableViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.view.backgroundColor = Constants.color.bkg
     setupHeader()
     setupEditWorker()
     setupEmptyScreen()
@@ -139,11 +140,9 @@ class BillableViewController: UIViewController {
     setupWorks()
     setupTable()
     setupCurrents()
-    print("BLL--- INIT ---")
   }
   
   deinit {
-    print("BLL--- DEINIT ---")
     deinitCurrents()
     deinitWorks()
     self.worker = nil

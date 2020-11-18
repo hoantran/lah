@@ -46,12 +46,14 @@ class WorkerViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.view.backgroundColor = Constants.color.bkg
     
     navigationController?.navigationBar.prefersLargeTitles = true
+
+    self.title = "Workers"
     
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: WorkerViewController.cellID)
     tableView.register(HighlightedWorkerCell.self, forCellReuseIdentifier: HighlightedWorkerCell.cellID)
-    navigationItem.title = "Workers"
     
     setupEmptyScreen()
     setupTableView()
@@ -64,15 +66,12 @@ class WorkerViewController: UIViewController {
     
     
     NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-    
-    print("WKR--- INIT ---")
   }
   
   deinit {
     deinitWorkers()
     deinitCurrents()
     NotificationCenter.default.removeObserver(self)
-    print("WKR--- DEINIT ---")
   }
   
   @objc private func willEnterForeground() {

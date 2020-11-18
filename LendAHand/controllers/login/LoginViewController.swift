@@ -62,7 +62,13 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
     }
     
     let container = ContainerViewController()
-    UIApplication.topViewController()?.present(container, animated: true, completion: nil)
+//    UIApplication.topViewController()?.present(container, animated: true, completion: nil)
+    
+    if let navigationController = self.navigationController {
+        navigationController.viewControllers = [container];
+    } else {
+        UIApplication.topViewController()?.present(container, animated: true, completion: nil)
+    }
   }
   
   func loginButtonDidLogOut(_ loginButton: LoginButton) {
@@ -83,11 +89,9 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationItem.title = "Logging On"
+    navigationItem.title = "Lend A Hand"
     view.backgroundColor = UIColor.cyan
     
-    print("LG---INIT---")
-
     if isFirebaseLoggedIn() {
       userLoggedIn()
     } else {
@@ -97,10 +101,6 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
         showFBLoginButton()
       }
     }
-  }
-  
-  deinit{
-    print("LG---DE-INIT---")
   }
 }
 
